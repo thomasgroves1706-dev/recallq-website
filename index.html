@@ -3,18 +3,1717 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>RecallQ — The quiet way to bring patients back.</title>
-<meta name="description" content="AI patient recall for Australian dental, physio, and optometry practices. Recovered revenue, on autopilot."/>
-<link rel="stylesheet" href="assets/site.css?v=apple1"/>
-<link rel="stylesheet" href="assets/site-apple2.css?v=u1"/>
-<template id="__bundler_thumbnail">
-<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#5876C4 0%,#1A1915 100%);font-family:Inter,sans-serif;">
-  <div style="text-align:center;color:#fff;">
-    <div style="font-size:14vw;font-weight:600;letter-spacing:-0.04em;line-height:1;">RecallQ</div>
-    <div style="font-size:2.4vw;letter-spacing:0.4em;text-transform:uppercase;opacity:.7;margin-top:1.2vw;">Loading</div>
-  </div>
-</div>
-</template>
+<title>RecallQ — Bring overdue patients back automatically.</title>
+<meta name="description" content="AI patient recall for Australian dental, physio, and optometry practices. Recovered bookings, on autopilot."/>
+<style>
+/* RecallQ — Apple-style rebuild */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:           #FFFFFF;
+  --bg-soft:      #F5F5F7;
+  --bg-dark:      #1A1915;
+  --bg-dark-soft: #2A2823;
+  --border:       #E6E6EA;
+  --border-dark:  rgba(255,255,255,0.12);
+
+  --ink:          #1A1915;
+  --ink-2:        #3A3833;
+  --ink-3:        #6E6C66;
+  --ink-4:        #A5A39C;
+
+  --accent:       #5876C4;
+  --accent-soft:  #8AA8E8;
+
+  /* Verticals (kept, used sparingly as accents) */
+  --dent:   #5C5A54;
+  --physio: #7A6A5C;
+  --opto:   #5A6470;
+
+  --maxw: 1200px;
+  --maxw-narrow: 880px;
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+*,*::before,*::after { box-sizing: border-box; }
+html,body { margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display:block; max-width:100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+/* TYPE — Apple scale */
+h1,h2,h3,h4 {
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+  line-height: 1.05;
+}
+h1 { font-size: clamp(44px, 8vw, 104px); letter-spacing: -0.045em; font-weight: 600; }
+h2 { font-size: clamp(36px, 6vw, 72px); letter-spacing: -0.04em; font-weight: 600; }
+h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+h4 { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+p  { margin: 0; }
+
+.display {
+  font-size: clamp(56px, 9vw, 120px);
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: clamp(19px, 1.6vw, 24px);
+  line-height: 1.4;
+  color: var(--ink-3);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.005em;
+  text-transform: none;
+}
+
+.fine { font-size: 13px; color: var(--ink-4); letter-spacing: -0.005em; }
+
+.accent { color: var(--accent); }
+.muted  { color: var(--ink-3); }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+.container--narrow { max-width: var(--maxw-narrow); margin: 0 auto; padding: 0 32px; }
+.text-center { text-align: center; }
+
+/* MOTION */
+[data-anim] { opacity: 0; will-change: opacity, transform; }
+[data-anim].in { opacity: 1; transform: none; }
+[data-anim="fade-up"]     { transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-anim="fade-in"]     { transition: opacity .8s var(--ease); }
+[data-anim="slide-left"]  { transform: translateX(-40px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-anim="slide-right"] { transform: translateX(40px);  transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-anim="scale-up"]    { transform: scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+[data-stagger].in > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-anim], [data-stagger] > * { transition-duration: .01s !important; transform: none !important; }
+}
+
+/* HEADER — Apple-style: thin, sticky, blurred */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: .5px solid var(--border);
+  transition: opacity .4s, transform .4s;
+}
+.hdr-inner {
+  display: flex; align-items: center;
+  min-height: 48px; padding: 0;
+  gap: 32px;
+}
+.wordmark {
+  font-size: 21px; font-weight: 600; color: var(--ink);
+  letter-spacing: -0.025em;
+}
+.wordmark .q { color: var(--accent); }
+.nav { display: flex; gap: 28px; align-items: center; margin-left: auto; margin-right: 24px; }
+.nav a, .nav button {
+  color: var(--ink-2); font-size: 13px; font-weight: 400;
+  transition: color .2s; padding: 4px 0;
+}
+.nav a:hover, .nav button:hover { color: var(--ink); }
+.nav .nav-dd { position: relative; }
+.nav-dd > button { display: flex; align-items: center; gap: 4px; }
+.nav-dd .chev { width: 6px; height: 6px; border-right: 1.2px solid currentColor; border-bottom: 1.2px solid currentColor; transform: rotate(45deg); display: inline-block; margin-top: -3px; }
+.nav-dd-menu {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-4px);
+  background: #fff; border: .5px solid var(--border); border-radius: 14px; padding: 10px;
+  box-shadow: 0 20px 40px -20px rgba(0,0,0,0.18);
+  min-width: 300px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.nav-dd:hover .nav-dd-menu, .nav-dd:focus-within .nav-dd-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+.nav-dd-menu a { display: flex; gap: 12px; padding: 10px 12px; border-radius: 10px; align-items: flex-start; }
+.nav-dd-menu a:hover { background: var(--bg-soft); }
+.nav-dd-menu a strong { display: block; color: var(--ink); font-weight: 500; font-size: 14px; letter-spacing: -0.01em; }
+.nav-dd-menu .sub-desc { display: block; color: var(--ink-3); font-size: 12px; margin-top: 2px; font-weight: 400; }
+.nav-dd-menu .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-weight: 500; font-size: 15px; letter-spacing: -0.01em;
+  padding: 11px 22px; border-radius: 980px; white-space: nowrap;
+  transition: background-color .25s, color .25s, transform .25s, border-color .25s;
+  cursor: pointer; line-height: 1;
+}
+.btn:hover { transform: scale(1.02); }
+.btn:active { transform: scale(.98); }
+.btn--primary { background: var(--ink); color: #fff; }
+.btn--primary:hover { background: var(--ink-2); }
+.btn--accent { background: var(--accent); color: #fff; }
+.btn--accent:hover { background: var(--accent-soft); }
+.btn--ghost { background: transparent; color: var(--ink); border: .5px solid var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn--link { padding: 0; background: none; color: var(--accent); font-size: 15px; }
+.btn--link:hover { color: var(--accent-soft); }
+.btn--lg { padding: 14px 28px; font-size: 16px; }
+.btn--full { width: 100%; }
+.btn--invert { background: #fff; color: var(--ink); }
+.btn--invert:hover { background: rgba(255,255,255,.86); }
+
+/* Header hamburger (mobile) */
+.hamb { display: none; margin-left: auto; width: 40px; height: 40px; border-radius: 8px; align-items: center; justify-content: center; }
+.hamb span { display: block; width: 20px; height: 1.5px; background: var(--ink); position: relative; }
+.hamb span::before, .hamb span::after { content: ""; position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; }
+.hamb span::before { top: -6px; } .hamb span::after { top: 6px; }
+.mobile-menu { display: none; }
+
+@media (max-width: 820px) {
+  .nav { display: none; }
+  .hamb { display: inline-flex; }
+  .site-header .btn--primary { display: none; }
+  .mobile-menu { display: block; background: #fff; border-bottom: .5px solid var(--border); overflow: hidden; max-height: 0; transition: max-height .3s ease; }
+  .mobile-menu.open { max-height: 600px; }
+  .mobile-menu ul { list-style: none; padding: 16px 32px; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+  .mobile-menu a, .mobile-menu button { display: block; padding: 12px 0; color: var(--ink); font-size: 16px; width: 100%; text-align: left; font-weight: 500; letter-spacing: -0.01em; }
+}
+
+/* SECTIONS — Apple-style big breathing room */
+.section {
+  padding: clamp(80px, 12vw, 180px) 0;
+  position: relative;
+}
+.section--soft  { background: var(--bg-soft); }
+.section--white { background: var(--bg); }
+.section--dark  { background: var(--bg-dark); color: #fff; }
+.section--dark h1, .section--dark h2, .section--dark h3 { color: #fff; }
+.section--dark .lead { color: rgba(255,255,255,.7); }
+.section--dark .eyebrow { color: var(--accent-soft); }
+.section--dark .fine { color: rgba(255,255,255,.5); }
+
+/* HERO — cinematic */
+.hero-cine {
+  position: relative;
+  min-height: 100svh;
+  padding: 128px 0 80px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--bg);
+}
+.hero-cine .eyebrow { margin-bottom: 20px; display: inline-block; }
+.hero-cine h1 { max-width: 12ch; margin: 0 auto; }
+.hero-cine .lead { margin: 32px auto 0; max-width: 640px; }
+.hero-cine .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 48px; }
+.hero-cine .inner { position: relative; z-index: 2; text-align: center; }
+
+/* Cinematic hero animation stage */
+.cine-stage {
+  position: relative;
+  width: 100%; max-width: 880px; margin: 80px auto 0;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--bg-soft);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.04),
+    0 40px 80px -30px rgba(0,0,0,0.25);
+}
+
+/* SIMPLE HERO for sub-pages */
+.hero {
+  padding: clamp(120px, 16vw, 200px) 0 clamp(64px, 10vw, 120px);
+  text-align: center;
+}
+.hero .eyebrow { display: inline-block; margin-bottom: 18px; }
+.hero h1 { max-width: 15ch; margin: 0 auto 28px; }
+.hero .lead { margin: 0 auto 40px; max-width: 620px; }
+.hero .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.breadcrumb { font-size: 13px; color: var(--ink-4); margin-bottom: 24px; letter-spacing: -0.005em; }
+
+/* ONE-IDEA sections */
+.idea {
+  padding: clamp(80px, 14vw, 200px) 0;
+  text-align: center;
+}
+.idea .display { margin: 0 auto; max-width: 14ch; }
+.idea .lead { margin: 32px auto 0; max-width: 600px; }
+.idea--dark { background: var(--bg-dark); color: #fff; }
+.idea--dark .display { color: #fff; }
+.idea--soft { background: var(--bg-soft); }
+
+/* GRID — simpler, Apple-ish 2-up or 3-up tiles */
+.tiles-2, .tiles-3, .tiles-4 { display: grid; gap: 20px; }
+.tiles-2 { grid-template-columns: repeat(2, 1fr); }
+.tiles-3 { grid-template-columns: repeat(3, 1fr); }
+.tiles-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .tiles-2, .tiles-3, .tiles-4 { grid-template-columns: 1fr; } }
+
+.tile {
+  background: var(--bg-soft);
+  border-radius: var(--r-xl);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  transition: transform .5s var(--ease);
+}
+.tile:hover { transform: translateY(-6px); }
+.tile--dark { background: var(--bg-dark); color: #fff; }
+.tile--dark h3 { color: #fff; }
+.tile--dark .tile-body { color: rgba(255,255,255,.7); }
+.tile--accent { background: #EEF1FA; }
+.tile .tile-eyebrow { font-size: 13px; font-weight: 500; color: var(--ink-3); margin-bottom: 10px; letter-spacing: -0.005em; }
+.tile--dark .tile-eyebrow { color: rgba(255,255,255,.55); }
+.tile h3 { margin-bottom: 14px; max-width: 16ch; }
+.tile .tile-body { color: var(--ink-3); font-size: 16px; line-height: 1.5; max-width: 34ch; }
+.tile .tile-cta { margin-top: 24px; color: var(--accent); font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; transition: gap .2s; }
+.tile:hover .tile-cta { gap: 10px; }
+
+/* STICKY SCROLL — pinned left, scrolling right */
+.stick {
+  position: relative;
+  padding: clamp(60px, 10vw, 140px) 0;
+}
+.stick-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.stick-pin {
+  position: sticky;
+  top: 12vh;
+  height: 80vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.stick-pin-inner {
+  width: 100%;
+  aspect-ratio: 3/4;
+  max-width: 360px;
+  border-radius: 44px;
+  background: var(--bg-dark);
+  border: 8px solid #1A1915;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.35);
+  overflow: hidden;
+  position: relative;
+}
+.stick-scenes { position: absolute; inset: 0; }
+.stick-scene { position: absolute; inset: 0; opacity: 0; transition: opacity .6s var(--ease); padding: 40px 24px; color: #fff; display: flex; flex-direction: column; }
+.stick-scene.on { opacity: 1; }
+
+.stick-beats { display: flex; flex-direction: column; gap: clamp(40vh, 48vh, 60vh); padding: 10vh 0; }
+.stick-beat h2 { font-size: clamp(32px, 4.5vw, 56px); margin-bottom: 20px; }
+.stick-beat p { font-size: 20px; color: var(--ink-3); max-width: 30ch; line-height: 1.45; }
+.stick-beat .num { font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 16px; display: inline-block; }
+
+@media (max-width: 900px) {
+  .stick-row { grid-template-columns: 1fr; gap: 40px; }
+  .stick-pin { position: relative; top: 0; height: auto; padding: 40px 0; }
+  .stick-beats { gap: 80px; padding: 40px 0; }
+}
+
+/* ALTERNATING FULL-BLEED BLOCKS */
+.block {
+  padding: clamp(80px, 14vw, 180px) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 32px; padding-right: 32px;
+}
+.block.rev { grid-template-columns: 1fr 1fr; }
+.block.rev .block-copy { order: 2; }
+.block.rev .block-vis { order: 1; }
+.block-copy .eyebrow { margin-bottom: 16px; display: inline-block; }
+.block-copy h2 { margin-bottom: 24px; }
+.block-copy p { font-size: 19px; color: var(--ink-3); line-height: 1.5; margin-bottom: 24px; max-width: 36ch; }
+.block-copy .btn { margin-top: 8px; }
+.block-vis {
+  border-radius: var(--r-xl);
+  background: var(--bg-soft);
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .block, .block.rev { grid-template-columns: 1fr; gap: 40px; }
+  .block.rev .block-copy, .block.rev .block-vis { order: initial; }
+}
+
+/* KEY STATS */
+.stat-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  text-align: left;
+}
+.stat-row .stat-n {
+  font-size: clamp(60px, 8vw, 104px);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+.stat-row .stat-l { font-size: 15px; color: var(--ink-3); margin-top: 12px; max-width: 26ch; line-height: 1.45; }
+.idea--dark .stat-row .stat-l { color: rgba(255,255,255,.6); }
+@media (max-width: 820px) { .stat-row { grid-template-columns: 1fr; gap: 48px; } }
+
+/* PRICING TEASER */
+.price-teaser {
+  background: var(--bg-soft);
+  border-radius: var(--r-xl);
+  padding: 72px 48px;
+  text-align: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.price-teaser .amount {
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  margin: 24px 0 8px;
+}
+.price-teaser .per { color: var(--ink-3); font-size: 17px; margin-bottom: 32px; }
+.price-teaser ul { list-style: none; padding: 0; margin: 0 0 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; }
+.price-teaser li { font-size: 15px; color: var(--ink-2); display: flex; gap: 8px; align-items: center; letter-spacing: -0.005em; }
+.price-teaser li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* COMPLIANCE PILL ROW */
+.pill-row {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+  margin-top: 40px;
+}
+.cpill {
+  padding: 8px 14px; border-radius: 980px; background: rgba(255,255,255,.08);
+  border: .5px solid rgba(255,255,255,.16);
+  font-size: 13px; color: rgba(255,255,255,.85); font-weight: 500; letter-spacing: -0.005em;
+}
+.section--white .cpill, .section--soft .cpill { background: #fff; border-color: var(--border); color: var(--ink-2); }
+
+/* CTA BAND — simpler */
+.cta-band {
+  background: var(--bg-dark);
+  color: #fff;
+  padding: clamp(96px, 14vw, 180px) 32px;
+  text-align: center;
+}
+.cta-band h2 { max-width: 18ch; margin: 0 auto 28px; color: #fff; }
+.cta-band p { color: rgba(255,255,255,.7); max-width: 36ch; margin: 0 auto 40px; font-size: 19px; }
+.cta-band .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.cta-band .fine { margin-top: 24px; color: rgba(255,255,255,.45); font-size: 13px; }
+
+/* FOOTER */
+.footer { background: var(--bg-soft); color: var(--ink-3); padding: 56px 0 32px; border-top: .5px solid var(--border); font-size: 13px; }
+.footer .grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+@media (max-width: 820px) { .footer .grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
+.footer h4 { font-size: 12px; color: var(--ink); margin-bottom: 14px; font-weight: 600; letter-spacing: -0.005em; }
+.footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.footer a, .footer button { color: var(--ink-3); font-size: 13px; letter-spacing: -0.005em; }
+.footer a:hover, .footer button:hover { color: var(--ink); }
+.footer .brand-col .wordmark { color: var(--ink); font-size: 18px; }
+.footer .brand-col .tag { color: var(--ink-3); font-size: 13px; margin-top: 10px; line-height: 1.5; max-width: 240px; }
+.footer .compliance { border-top: .5px solid var(--border); margin-top: 48px; padding-top: 24px; color: var(--ink-4); font-size: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+.footer .compliance .sep { opacity: .4; }
+.footer .copy { color: var(--ink-4); font-size: 11px; margin-top: 14px; letter-spacing: 0; }
+
+/* MODAL */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(26,25,21,0.55); backdrop-filter: blur(8px);
+  z-index: 100; display: none; align-items: center; justify-content: center;
+  padding: 16px; opacity: 0; transition: opacity .3s ease;
+}
+.modal-backdrop.open { display: flex; opacity: 1; }
+.modal {
+  background: #fff; border-radius: var(--r-xl); max-width: 520px; width: 100%; padding: 40px;
+  max-height: 90vh; overflow-y: auto;
+  transform: scale(.96) translateY(16px); opacity: 0;
+  transition: transform .4s var(--ease), opacity .3s;
+  position: relative;
+}
+.modal-backdrop.open .modal { transform: none; opacity: 1; }
+.modal h2 { font-size: 28px; margin-bottom: 6px; letter-spacing: -0.03em; }
+.modal .sub { font-size: 15px; color: var(--ink-3); margin-bottom: 24px; }
+.modal .close {
+  position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; color: var(--ink-3); background: var(--bg-soft);
+}
+.modal .close:hover { background: var(--border); color: var(--ink); }
+.modal form { display: flex; flex-direction: column; gap: 16px; }
+.modal label { font-size: 12px; color: var(--ink-3); font-weight: 500; display: block; margin-bottom: 6px; letter-spacing: -0.005em; }
+.modal input, .modal select, .modal textarea {
+  width: 100%; border: .5px solid var(--border); border-radius: 10px; padding: 12px 14px;
+  font: inherit; font-size: 15px; background: #fff; color: var(--ink); transition: border-color .2s, box-shadow .2s;
+  font-family: inherit;
+}
+.modal input:focus, .modal select:focus, .modal textarea:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(88,118,196,.18);
+}
+.modal textarea { resize: vertical; min-height: 68px; }
+.modal .vpicker { display: flex; gap: 8px; }
+.modal .vpicker button {
+  flex: 1; padding: 11px 8px; border-radius: 10px; background: var(--bg-soft); color: var(--ink-3);
+  font-size: 13px; font-weight: 500; transition: background-color .2s, color .2s;
+}
+.modal .vpicker button.on { background: var(--ink); color: #fff; }
+.modal .privacy-note { font-size: 11px; color: var(--ink-4); text-align: center; margin-top: 4px; }
+.modal .success { text-align: center; padding: 12px 0; }
+.modal .success .icon { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.modal .success .icon svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.modal .success h3 { font-size: 22px; margin-bottom: 8px; }
+.modal .success p { font-size: 15px; color: var(--ink-3); margin-bottom: 20px; }
+
+/* ======================================================
+   Legacy component classes kept for sub-pages that still use them
+   ====================================================== */
+.card {
+  background: var(--bg-soft);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  transition: transform .3s var(--ease);
+}
+.card:hover { transform: translateY(-4px); }
+.card h3 { margin-bottom: 10px; }
+.card p { color: var(--ink-3); font-size: 15px; }
+
+.vcard { padding: 32px; border-radius: var(--r-lg); background: var(--bg-soft); }
+.vcard .accent-dot { width: 36px; height: 36px; border-radius: 50%; margin-bottom: 20px; display: block; }
+.vcard h3 { font-size: 26px; font-weight: 600; letter-spacing: -0.03em; }
+.vcard .tagline { color: var(--ink-3); font-size: 15px; margin: 4px 0 14px; }
+.vcard .body { color: var(--ink-3); font-size: 15px; line-height: 1.5; margin-bottom: 22px; }
+.vcard .stats { color: var(--ink-4); font-size: 13px; margin-bottom: 20px; padding-top: 16px; border-top: .5px solid var(--border); }
+.vcard .cta-link { font-size: 15px; font-weight: 500; color: var(--accent); display: inline-flex; gap: 6px; transition: gap .2s; }
+.vcard:hover .cta-link { gap: 12px; }
+
+.ic { width: 42px; height: 42px; border-radius: 50%; background: #fff; color: var(--ink-2); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 18px; border: .5px solid var(--border); }
+.ic svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; align-items: center; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 820px) { .grid-3, .grid-2, .grid-4, .grid-6 { grid-template-columns: 1fr; gap: 16px; } }
+@media (min-width: 821px) and (max-width: 1040px) { .grid-6 { grid-template-columns: repeat(2, 1fr); } }
+
+.trust-strip { margin-top: 32px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-4); }
+.trust-strip .sep { opacity: .5; }
+
+.bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.bullets li { display: flex; gap: 12px; font-size: 15px; color: var(--ink-2); line-height: 1.5; }
+.bullets li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 9px; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 48px; }
+.steps .step .n { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; margin-bottom: 18px; }
+.steps .step h3 { font-size: 20px; margin-bottom: 8px; }
+.steps .step p { font-size: 15px; color: var(--ink-3); line-height: 1.5; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+
+/* ROI card — restyled but kept */
+.roi-card {
+  max-width: 640px; margin: 0 auto;
+  background: var(--bg-soft); border-radius: var(--r-xl);
+  padding: 40px;
+}
+.pills { display: flex; gap: 8px; margin-bottom: 28px; }
+.pill { flex: 1; padding: 11px 12px; border-radius: 980px; background: #fff; color: var(--ink-3); font-size: 14px; font-weight: 500; text-align: center; border: .5px solid var(--border); transition: background-color .2s, color .2s, border-color .2s; }
+.pill.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.slider-label { font-size: 14px; color: var(--ink-3); margin-bottom: 8px; }
+.slider-val { font-size: 32px; font-weight: 600; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; margin-bottom: 16px; }
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+.roi-out { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 28px; }
+.roi-out .box { background: #fff; border-radius: 14px; padding: 20px; }
+.roi-out .n { font-size: 28px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.roi-out .l { font-size: 11px; color: var(--ink-4); text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; }
+
+/* FAQ */
+.faq { max-width: 720px; margin: 0 auto; }
+.faq-item { border-bottom: .5px solid var(--border); }
+.faq-item summary { list-style: none; cursor: pointer; padding: 22px 0; font-size: 17px; color: var(--ink); font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 16px; letter-spacing: -0.015em; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; font-size: 24px; font-weight: 300; color: var(--ink-3); transition: transform .3s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item .a { padding: 0 0 22px; color: var(--ink-3); font-size: 15px; line-height: 1.6; }
+
+.illo-ph { aspect-ratio: 4/3; border-radius: var(--r-lg); background: var(--bg-soft); display: flex; align-items: center; justify-content: center; color: var(--ink-4); font-family: ui-monospace, monospace; font-size: 12px; }
+
+/* Timeline (how it works) */
+.timeline { max-width: 760px; margin: 0 auto; position: relative; }
+.timeline::before { content:""; position: absolute; left: 20px; top: 0; bottom: 0; width: 1px; background: var(--border); }
+.tstep { display: grid; grid-template-columns: 48px 1fr; gap: 24px; padding: 24px 0; position: relative; }
+.tstep .n { width: 36px; height: 36px; border-radius: 50%; background: var(--ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500; position: relative; z-index: 1; }
+.tstep h3 { font-size: 20px; margin-bottom: 8px; }
+.tstep p { font-size: 15px; color: var(--ink-3); max-width: 52ch; line-height: 1.55; }
+
+/* Pricing cards */
+.price-card { padding: 36px; border-radius: var(--r-xl); background: var(--bg-soft); }
+.price-card .badge { font-size: 12px; letter-spacing: -0.005em; color: var(--ink-3); margin-bottom: 18px; display: inline-block; }
+.price-card.featured { background: var(--ink); color: #fff; }
+.price-card.featured h3, .price-card.featured .amount { color: #fff; }
+.price-card.featured .badge { background: var(--accent); color: #fff; padding: 4px 10px; border-radius: 980px; }
+.price-card.featured .per, .price-card.featured .gst, .price-card.featured li { color: rgba(255,255,255,.75); }
+.price-card .amount { font-size: 48px; font-weight: 600; color: var(--ink); letter-spacing: -0.04em; line-height: 1; }
+.price-card .per { font-size: 17px; color: var(--ink-3); font-weight: 400; }
+.price-card .gst { font-size: 12px; color: var(--ink-4); margin-top: 4px; margin-bottom: 24px; }
+.price-card ul { list-style: none; margin: 24px 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.price-card li { font-size: 14px; color: var(--ink-3); display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
+.price-card li::before { content: "✓"; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+
+/* Focus ring */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
+}
+
+/* Prose */
+.prose { max-width: 680px; margin: 0 auto; }
+.prose p { font-size: 17px; color: var(--ink-2); line-height: 1.75; margin-bottom: 20px; }
+.prose h2 { margin-top: 40px; margin-bottom: 14px; font-size: 28px; }
+
+/* Subs table */
+table.subs { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.subs th, table.subs td { text-align: left; padding: 14px 12px; }
+table.subs th { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--border); }
+table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
+
+/* Integration chips */
+.integ-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 24px; }
+.integ-label { font-size: 12px; letter-spacing: -0.005em; color: var(--ink-4); text-align: center; margin-bottom: 14px; }
+.integ-chip { padding: 8px 16px; border-radius: 980px; font-size: 13px; color: var(--ink-3); background: var(--bg-soft); border: .5px solid var(--border); }
+
+/* Live strip (hero inline) — keep for compatibility, restyled */
+.live-strip { margin: 24px auto 0; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; background: var(--bg-soft); border-radius: 980px; padding: 8px 18px; font-size: 13px; color: var(--ink-3); letter-spacing: -0.005em; }
+.live-strip strong { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.live-strip .lc-dot { width: 8px; height: 8px; border-radius: 50%; background: #3FBF73; box-shadow: 0 0 0 0 rgba(63,191,115,.7); animation: lcPulse 1.8s ease-out infinite; }
+.live-strip .lc-sep { opacity: .4; }
+@keyframes lcPulse { 0%{box-shadow:0 0 0 0 rgba(63,191,115,.55);} 70%{box-shadow:0 0 0 10px rgba(63,191,115,0);} 100%{box-shadow:0 0 0 0 rgba(63,191,115,0);} }
+
+/* Hero inline anim wrappers (legacy helpers) */
+[data-mount]{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+[data-mount].in{opacity:1;transform:none;}
+
+/* RecallQAd component (restyled, Apple-ish) */
+.rqa {
+  position: relative; max-width: 900px; margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-soft); border-radius: var(--r-xl); overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 40px 80px -30px rgba(0,0,0,.2);
+}
+.rqa .act { position: absolute; inset: 0; padding: 56px; display: flex; flex-direction: column; justify-content: center; opacity: 0; transition: opacity .5s ease; }
+.rqa .act.on { opacity: 1; }
+.rqa .act .ey { font-size: 13px; color: var(--accent); margin-bottom: 18px; font-weight: 500; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; }
+.rqa .act.on .ey { opacity: 1; transform: none; }
+.rqa .act h3 { font-size: clamp(28px, 4vw, 48px); font-weight: 600; color: var(--ink); line-height: 1.05; letter-spacing: -0.035em; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; transition-delay: .1s; max-width: 18ch; }
+.rqa .act.on h3 { opacity: 1; transform: none; }
+.rqa .act .sub { color: var(--ink-3); font-size: 16px; margin-top: 20px; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; transition-delay: 2.8s; }
+.rqa .act.on .sub { opacity: 1; transform: none; }
+
+.rqa .grid-dots { display: grid; grid-template-columns: repeat(24, 1fr); gap: 6px; margin-top: 28px; max-width: 520px; opacity: 0; transition: opacity .5s ease; transition-delay: .4s; }
+.rqa .act.on .grid-dots { opacity: 1; }
+.rqa .grid-dots span { width: 100%; aspect-ratio: 1; background: var(--border); border-radius: 50%; transition: background-color .3s ease; }
+.rqa .grid-dots span.hi { background: var(--accent); }
+
+.rqa .act2-row { display: flex; gap: 32px; margin-top: 24px; align-items: flex-start; flex-wrap: wrap; }
+.rqa .bubbles { flex: 1; min-width: 260px; max-width: 400px; display: flex; flex-direction: column; gap: 10px; }
+.rqa .bubble { background: #fff; border-radius: 14px 14px 14px 4px; padding: 12px 16px; font-size: 14px; color: var(--ink); line-height: 1.45; border-left: 3px solid var(--accent); opacity: 0; transform: translateY(10px) scale(.98); transition: opacity .4s, transform .4s; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+.rqa .bubble.on { opacity: 1; transform: none; }
+.rqa .reply { align-self: flex-end; color: #fff; background: var(--accent); font-weight: 500; font-size: 13px; padding: 8px 16px; border-radius: 14px 14px 4px 14px; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
+.rqa .reply.on { opacity: 1; transform: none; }
+.rqa .vtags { display: flex; flex-direction: column; gap: 14px; padding-top: 6px; }
+.rqa .vtag { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-3); opacity: .3; transition: opacity .4s; }
+.rqa .vtag.on { opacity: 1; }
+.rqa .vtag .vdot { width: 8px; height: 8px; border-radius: 50%; }
+
+.rqa .act3 { background: var(--bg-dark); color: #fff; align-items: center; justify-content: center; text-align: center; }
+.rqa .act3 h3 { color: #fff; }
+.rqa .act3 .money { font-size: clamp(72px, 10vw, 128px); font-weight: 600; color: #fff; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; line-height: 1; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; transition-delay: .4s; }
+.rqa .act3.on .money { opacity: 1; transform: none; }
+.rqa .act3 .subline { color: rgba(255,255,255,.7); font-size: 17px; max-width: 380px; margin: 22px auto 0; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; transition-delay: 2.1s; }
+.rqa .act3.on .subline { opacity: 1; transform: none; }
+.rqa .act3 .closeblk { margin-top: 28px; opacity: 0; transform: translateY(-6px); transition: opacity .5s, transform .5s; transition-delay: 2.7s; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.rqa .act3.on .closeblk { opacity: 1; transform: none; }
+.rqa .act3 .wm { font-size: 22px; font-weight: 600; color: #fff; letter-spacing: -0.025em; }
+.rqa .act3 .wm .q { color: var(--accent-soft); }
+.rqa .act3 .tag { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: 0; }
+.rqa .progress { position: absolute; bottom: 0; left: 0; height: 2px; background: var(--accent); width: 0; }
+
+@media (max-width: 700px) {
+  .rqa .act { padding: 32px; }
+  .rqa .grid-dots { grid-template-columns: repeat(16, 1fr); }
+}
+
+</style>
+<style>
+/* RecallQ — visual upgrade pack (apple2)
+   Loaded AFTER site.css. Adds:
+   - Calendar-fill hero
+   - Dashboard mockup
+   - Per-vertical typography + signature graphics
+   - Curved section transitions
+   - AI message composer
+   - Wall of YES replies
+   - Expanded data mosaic
+   - Editorial photography frames
+*/
+
+/* SCROLL-ZOOM HERO STAGE ------------------------------------ */
+.hero-cine { padding-top: 96px; padding-bottom: 0; min-height: 100svh; }
+.hero-cine .inner { padding-bottom: 48px; }
+
+.cal-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 64px auto 0;
+  aspect-ratio: 16/10;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #0F0E0B 0%, #1A1915 100%);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 60px 120px -40px rgba(0,0,0,.4);
+  transform-origin: 50% 30%;
+  will-change: transform, opacity;
+}
+.cal-stage-inner { position: absolute; inset: 0; padding: 36px 40px; display: flex; flex-direction: column; }
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; color: #fff; }
+.cal-head .month { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; }
+.cal-head .week-lbl { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+.cal-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 8px;
+  position: relative;
+}
+.cal-day {
+  background: rgba(255,255,255,.03);
+  border: .5px solid rgba(255,255,255,.06);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex; flex-direction: column;
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  position: relative;
+  overflow: hidden;
+  transition: background-color .4s, border-color .4s;
+}
+.cal-day .d { font-weight: 500; margin-bottom: 6px; }
+.cal-day.has-booking { background: rgba(88,118,196,.12); border-color: rgba(138,168,232,.35); }
+.cal-day.has-booking .d { color: #fff; }
+.cal-booking {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 9.5px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  opacity: 0;
+  transform: translateY(-6px);
+  animation: bookSlide .5s var(--ease) forwards;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@keyframes bookSlide { to { opacity: 1; transform: none; } }
+
+.sms-fly {
+  position: absolute;
+  background: rgba(255,255,255,.94);
+  color: var(--ink);
+  border-radius: 14px 14px 14px 4px;
+  padding: 9px 13px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  box-shadow: 0 12px 32px -10px rgba(0,0,0,.5);
+  max-width: 240px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 5;
+  border-left: 2px solid var(--accent);
+}
+.sms-fly.in { animation: smsFly 3.6s var(--ease) forwards; }
+@keyframes smsFly {
+  0%   { opacity: 0; transform: translate(-30%, 20px) scale(.9); }
+  10%  { opacity: 1; transform: translate(-30%, 0) scale(1); }
+  85%  { opacity: 1; transform: translate(120%, -8px) scale(1); }
+  100% { opacity: 0; transform: translate(140%, -12px) scale(.95); }
+}
+.sms-fly .from { font-size: 9px; color: var(--ink-3); font-weight: 500; margin-bottom: 2px; letter-spacing: 0; }
+
+.cal-counter {
+  position: absolute; right: 32px; bottom: 28px;
+  display: flex; align-items: baseline; gap: 8px; color: #fff;
+  font-variant-numeric: tabular-nums;
+  z-index: 4;
+}
+.cal-counter .n { font-size: 36px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: var(--accent-soft); }
+.cal-counter .l { font-size: 11px; color: rgba(255,255,255,.55); letter-spacing: 0.06em; text-transform: uppercase; }
+
+@media (max-width: 700px) {
+  .cal-stage { aspect-ratio: 4/5; }
+  .cal-day { padding: 5px; font-size: 9px; }
+  .cal-day .d { font-size: 9px; }
+  .sms-fly { font-size: 10px; padding: 6px 10px; max-width: 160px; }
+  .cal-counter .n { font-size: 24px; }
+}
+
+/* DASHBOARD MOCKUP ----------------------------------------- */
+.dashboard-frame {
+  background: #FAFAFC;
+  border: .5px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 40px 80px -30px rgba(0,0,0,.18);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.dash-chrome { background: #fff; border-bottom: .5px solid var(--border); padding: 12px 18px; display: flex; align-items: center; gap: 12px; }
+.dash-chrome .dots { display: flex; gap: 6px; }
+.dash-chrome .dot { width: 11px; height: 11px; border-radius: 50%; background: #E6E6EA; }
+.dash-chrome .url { flex: 1; background: var(--bg-soft); border-radius: 6px; padding: 5px 12px; font-size: 12px; color: var(--ink-3); font-family: ui-monospace, monospace; }
+
+.dash-app { display: grid; grid-template-columns: 220px 1fr; min-height: 540px; }
+.dash-side { background: #fff; border-right: .5px solid var(--border); padding: 24px 16px; }
+.dash-side .brand { font-size: 18px; font-weight: 600; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 28px; padding: 0 6px; }
+.dash-side .brand .q { color: var(--accent); }
+.dash-side ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.dash-side li { font-size: 13px; color: var(--ink-3); padding: 8px 12px; border-radius: 8px; display: flex; align-items: center; gap: 10px; cursor: default; }
+.dash-side li.on { background: var(--bg-soft); color: var(--ink); font-weight: 500; }
+.dash-side li::before { content:""; width:6px; height:6px; border-radius:50%; background: currentColor; opacity: .5; }
+
+.dash-main { padding: 28px 32px; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.dash-h { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+.dash-h h3 { font-size: 22px; letter-spacing: -0.025em; }
+.dash-h .pill { background: #E5F0E8; color: #2A7A4D; font-size: 11px; padding: 4px 10px; border-radius: 980px; font-weight: 500; }
+
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kpi { background: #fff; border-radius: 12px; padding: 16px 18px; border: .5px solid var(--border); }
+.kpi .l { font-size: 11px; color: var(--ink-3); font-weight: 500; letter-spacing: -0.005em; }
+.kpi .n { font-size: 24px; font-weight: 600; letter-spacing: -0.03em; color: var(--ink); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.kpi .delta { font-size: 11px; color: #2A7A4D; margin-top: 4px; font-weight: 500; }
+
+.dash-chart { background: #fff; border-radius: 12px; border: .5px solid var(--border); padding: 20px; }
+.dash-chart .lbl { font-size: 12px; color: var(--ink-3); margin-bottom: 12px; font-weight: 500; }
+.dash-chart svg { width: 100%; height: 140px; display: block; }
+
+.dash-thread { background: #fff; border-radius: 12px; border: .5px solid var(--border); padding: 20px; }
+.dash-thread .lbl { font-size: 12px; color: var(--ink-3); margin-bottom: 14px; font-weight: 500; display: flex; justify-content: space-between; }
+.dash-thread .row { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 0; border-bottom: .5px solid var(--border); align-items: center; }
+.dash-thread .row:last-child { border-bottom: 0; }
+.dash-thread .av { width: 28px; height: 28px; border-radius: 50%; background: var(--bg-soft); display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--ink-2); letter-spacing:-0.01em; }
+.dash-thread .nm { font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; }
+.dash-thread .ms { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+.dash-thread .st { font-size: 10px; padding: 3px 8px; border-radius: 980px; font-weight: 500; letter-spacing: 0.02em; text-transform: uppercase; }
+.dash-thread .st-yes { background: #E5F0E8; color: #2A7A4D; }
+.dash-thread .st-pen { background: var(--bg-soft); color: var(--ink-3); }
+
+.dash-2col { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+@media (max-width: 900px) {
+  .dash-app { grid-template-columns: 1fr; }
+  .dash-side { display: none; }
+  .kpi-row { grid-template-columns: repeat(2,1fr); }
+  .dash-2col { grid-template-columns: 1fr; }
+}
+
+/* CURVED SECTION TRANSITIONS ------------------------------- */
+.section, .idea, .hero-cine, .cta-band { position: relative; }
+.curve-top, .curve-bot { display: block; width: 100%; height: 80px; pointer-events: none; }
+.curve-top { margin-top: -80px; margin-bottom: 0; position: absolute; top: 0; left: 0; right: 0; }
+.curve-bot { margin-bottom: -80px; position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; }
+
+/* PER-VERTICAL TYPOGRAPHY ---------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap');
+
+.v-block { padding: clamp(80px, 12vw, 160px) 0; }
+.v-block .container-v { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.v-block.rev .v-copy { order: 2; }
+.v-block.rev .v-vis { order: 1; }
+@media (max-width: 900px) {
+  .v-block .container-v { grid-template-columns: 1fr; gap: 40px; }
+  .v-block.rev .v-copy, .v-block.rev .v-vis { order: initial; }
+}
+
+.v-block .v-eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; display: inline-block; }
+.v-block .v-headline { font-size: clamp(36px, 5vw, 64px); line-height: 1.02; letter-spacing: -0.04em; margin-bottom: 24px; max-width: 14ch; }
+.v-block .v-body { font-size: 19px; color: var(--ink-3); line-height: 1.5; max-width: 38ch; margin-bottom: 28px; }
+
+/* Dental: editorial serif, warm stone palette */
+.v-dent { background: linear-gradient(180deg, #F4EFE7 0%, #EBE3D5 100%); color: #2C2620; }
+.v-dent .v-eyebrow { color: #8C5A3A; font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: 0.1em; text-transform: none; }
+.v-dent .v-headline { font-family: 'Fraunces', serif; font-weight: 500; font-style: italic; color: #2C2620; }
+.v-dent .v-body { color: #5C4F40; }
+.v-dent .v-cta { color: #8C5A3A; }
+
+/* Physio: bold sans, dusk rose */
+.v-physio { background: linear-gradient(180deg, #F4ECE5 0%, #E9D9CB 100%); color: #2A211B; }
+.v-physio .v-eyebrow { color: #A06846; font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: 0.1em; text-transform: none; }
+.v-physio .v-headline { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.045em; color: #2A211B; }
+.v-physio .v-body { color: #5C4A3D; }
+.v-physio .v-cta { color: #A06846; }
+
+/* Opto: precise modern, cool cobalt-grey */
+.v-opto { background: linear-gradient(180deg, #ECEEF3 0%, #D8DDE6 100%); color: #1E2530; }
+.v-opto .v-eyebrow { color: #2D5183; font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: 0.1em; text-transform: none; }
+.v-opto .v-headline { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: -0.04em; color: #1E2530; }
+.v-opto .v-body { color: #4A5567; }
+.v-opto .v-cta { color: #2D5183; }
+
+.v-block .v-cta { font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; transition: gap .25s; }
+.v-block .v-cta:hover { gap: 12px; }
+
+/* Signature graphics — large SVG glyphs */
+.v-sig {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 32px;
+  overflow: hidden;
+}
+.v-sig .glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .12; }
+.v-sig .glyph svg { width: 80%; height: 80%; }
+.v-sig .card-on-top {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  padding: 22px 26px;
+  max-width: 320px;
+  box-shadow: 0 20px 50px -15px rgba(0,0,0,.18);
+  z-index: 2;
+}
+.v-sig .card-on-top .from { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-bottom: 8px; letter-spacing: -0.005em; }
+.v-sig .card-on-top .body { font-size: 15.5px; color: var(--ink); line-height: 1.45; letter-spacing: -0.012em; }
+.v-sig .card-on-top .pill-row-mini { display: flex; gap: 8px; margin-top: 16px; }
+.v-sig .card-on-top .pill-mini { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 980px; }
+.v-sig .pill-yes { background: var(--accent); color: #fff; }
+.v-sig .pill-alt { background: var(--bg-soft); color: var(--ink-3); }
+
+/* AI MESSAGE COMPOSER ---------------------------------------- */
+.composer {
+  max-width: 920px; margin: 0 auto;
+  background: var(--bg-dark); color: #fff;
+  border-radius: var(--r-xl);
+  padding: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 40px 80px -30px rgba(0,0,0,.4);
+}
+@media (max-width: 820px) { .composer { grid-template-columns: 1fr; padding: 32px; gap: 32px; } }
+.composer h3 { color: #fff; font-size: 22px; margin-bottom: 18px; }
+.composer .lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,.5); font-weight: 500; margin-bottom: 8px; display: block; }
+.composer .field { margin-bottom: 18px; }
+.composer .field input, .composer .field select {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  background: rgba(255,255,255,.06); border: .5px solid rgba(255,255,255,.12);
+  color: #fff; font: inherit; font-size: 14px;
+  transition: border-color .2s, background-color .2s;
+  font-family: inherit;
+}
+.composer .field input:focus, .composer .field select:focus { outline: none; border-color: var(--accent-soft); background: rgba(255,255,255,.1); }
+.composer .field option { background: #1A1915; color: #fff; }
+.composer .preview {
+  background: rgba(255,255,255,.04); border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  min-height: 280px; position: relative;
+}
+.composer .preview .meta { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; }
+.composer .preview .bubble {
+  background: #fff; color: var(--ink);
+  border-radius: 16px 16px 16px 4px;
+  padding: 14px 18px;
+  font-size: 14.5px; line-height: 1.45;
+  letter-spacing: -0.01em;
+  border-left: 3px solid var(--accent);
+  min-height: 80px;
+}
+.composer .preview .bubble .cursor { display: inline-block; width: 1.5px; height: 1em; background: var(--ink); margin-left: 2px; vertical-align: middle; animation: blinkCur 1s steps(1) infinite; }
+@keyframes blinkCur { 50% { opacity: 0; } }
+.composer .preview .typing { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; display: flex; gap: 4px; align-items: center; }
+.composer .preview .typing .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; animation: typeBounce 1.4s ease-in-out infinite; }
+.composer .preview .typing .dot:nth-child(2) { animation-delay: .2s; }
+.composer .preview .typing .dot:nth-child(3) { animation-delay: .4s; }
+@keyframes typeBounce { 0%, 60%, 100% { transform: translateY(0); opacity: .4; } 30% { transform: translateY(-3px); opacity: 1; } }
+.composer .preview .reply { align-self: flex-end; background: var(--accent); color: #fff; border-radius: 16px 16px 4px 16px; padding: 8px 16px; font-size: 14px; font-weight: 500; opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s; }
+.composer .preview .reply.on { opacity: 1; transform: none; }
+
+/* WALL OF YES REPLIES -------------------------------------- */
+.yes-wall {
+  column-count: 4;
+  column-gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 1000px) { .yes-wall { column-count: 3; } }
+@media (max-width: 700px) { .yes-wall { column-count: 2; } }
+@media (max-width: 480px) { .yes-wall { column-count: 1; } }
+.yes-bub {
+  break-inside: avoid;
+  background: var(--bg-soft);
+  border-radius: 16px 16px 16px 4px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  display: inline-block;
+  width: 100%;
+  border-left: 2.5px solid var(--accent);
+  transition: transform .3s var(--ease);
+}
+.yes-bub:hover { transform: translateY(-3px); }
+.yes-bub .who { display: block; font-size: 11px; color: var(--ink-4); font-weight: 500; margin-top: 8px; letter-spacing: 0; }
+.yes-bub.size-l { font-size: 18px; font-weight: 500; }
+.yes-bub.size-s { font-size: 13px; }
+.yes-bub.style-emoji { background: #F0F4FF; }
+.yes-bub.style-warm { background: #FCF1EA; border-left-color: #E0975F; }
+
+/* DATA MOSAIC ---------------------------------------------- */
+.mosaic {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 140px;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.mtile {
+  background: rgba(255,255,255,.04);
+  border: .5px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.mtile.hi { background: rgba(88,118,196,.14); border-color: rgba(138,168,232,.35); }
+.mtile .l { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; letter-spacing: -0.005em; }
+.mtile .n { font-size: 28px; font-weight: 600; color: #fff; letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums; }
+.mtile .n.big { font-size: 44px; }
+.mtile .n.huge { font-size: 60px; letter-spacing: -0.04em; }
+.mtile .delta { font-size: 11px; color: var(--accent-soft); font-weight: 500; }
+.mtile .spark { width: 100%; height: 30px; }
+.mtile .spark path { stroke: var(--accent-soft); stroke-width: 1.5; fill: none; }
+.mtile .spark .area { fill: rgba(138,168,232,.18); stroke: none; }
+
+/* Span helpers */
+.mt-c2 { grid-column: span 2; }
+.mt-c3 { grid-column: span 3; }
+.mt-c4 { grid-column: span 4; }
+.mt-r2 { grid-row: span 2; }
+
+@media (max-width: 900px) {
+  .mosaic { grid-template-columns: repeat(2, 1fr); }
+  .mt-c2, .mt-c3, .mt-c4 { grid-column: span 2; }
+  .mt-r2 { grid-row: auto; }
+}
+
+/* EDITORIAL PHOTOGRAPHY ------------------------------------ */
+.editorial {
+  position: relative;
+  width: 100%;
+  height: clamp(380px, 56vw, 640px);
+  overflow: hidden;
+  margin: 0;
+}
+.editorial img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(.92);
+}
+.editorial::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(26,25,21,0.55) 0%, rgba(26,25,21,0) 50%, rgba(26,25,21,0.5) 100%);
+}
+.editorial .e-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: flex-end;
+  padding: 56px;
+  z-index: 2; color: #fff;
+}
+.editorial .e-overlay .quote { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(24px, 3vw, 38px); line-height: 1.2; letter-spacing: -0.02em; max-width: 22ch; font-weight: 500; }
+.editorial .e-overlay .who { font-size: 13px; opacity: .85; margin-top: 14px; font-weight: 500; letter-spacing: -0.005em; }
+
+.photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; }
+.photo-strip .ps { aspect-ratio: 4/5; border-radius: 18px; overflow: hidden; position: relative; }
+.photo-strip .ps img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); filter: saturate(.92); }
+.photo-strip .ps:hover img { transform: scale(1.04); }
+.photo-strip .ps .cap { position: absolute; bottom: 16px; left: 18px; right: 18px; color: #fff; font-size: 13px; font-weight: 500; letter-spacing: -0.005em; text-shadow: 0 2px 12px rgba(0,0,0,.6); z-index: 2; }
+.photo-strip .ps::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%); }
+@media (max-width: 700px) { .photo-strip { grid-template-columns: 1fr; } }
+
+/* MAGNETIC BUTTON FX --------------------------------------- */
+.btn { position: relative; }
+
+/* SCROLL ZOOM HELPER --------------------------------------- */
+[data-scroll-zoom] { will-change: transform, opacity; }
+
+
+/* ============================================================
+   THREE ADDITIONS: section transitions, modal lift, parallax
+   ============================================================ */
+
+/* 1. ANIMATED CURVED SECTION TRANSITIONS ----------------- */
+/* SVG curves between sections, drawn in as user scrolls past */
+.section-curve {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  display: block;
+  margin: -1px 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.section-curve svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.section-curve .sweep-path {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
+  transition: stroke-dashoffset 1.4s var(--ease);
+}
+.section-curve.in .sweep-path { stroke-dashoffset: 0; }
+.section-curve .sweep-fill {
+  transform: translateY(100%);
+  transition: transform 1.1s var(--ease);
+}
+.section-curve.in .sweep-fill { transform: translateY(0); }
+
+/* 2. ELEVATED MODAL OPEN ------------------------------------ */
+/* Backdrop blur ramps up; modal scales/translates from below
+   with a subtle staggered field reveal. */
+.modal-backdrop {
+  /* override defaults from site.css */
+  background: rgba(15,14,11,0) !important;
+  backdrop-filter: blur(0) !important;
+  -webkit-backdrop-filter: blur(0) !important;
+  transition: background-color .5s var(--ease), backdrop-filter .5s var(--ease), opacity .4s var(--ease) !important;
+}
+.modal-backdrop.open {
+  background: rgba(15,14,11,0.55) !important;
+  backdrop-filter: saturate(140%) blur(14px) !important;
+  -webkit-backdrop-filter: saturate(140%) blur(14px) !important;
+}
+.modal-backdrop .modal {
+  transform: scale(.92) translateY(40px) !important;
+  opacity: 0 !important;
+  transition:
+    transform .65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity .45s ease !important;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.06),
+    0 30px 60px -10px rgba(0,0,0,.25),
+    0 60px 120px -20px rgba(0,0,0,.35);
+}
+.modal-backdrop.open .modal {
+  transform: scale(1) translateY(0) !important;
+  opacity: 1 !important;
+}
+
+/* Stagger the form fields */
+.modal-backdrop .modal h2,
+.modal-backdrop .modal .sub,
+.modal-backdrop .modal form > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.modal-backdrop.open .modal h2 { opacity: 1; transform: none; transition-delay: .15s; }
+.modal-backdrop.open .modal .sub { opacity: 1; transform: none; transition-delay: .22s; }
+.modal-backdrop.open .modal form > *:nth-child(1) { opacity: 1; transform: none; transition-delay: .30s; }
+.modal-backdrop.open .modal form > *:nth-child(2) { opacity: 1; transform: none; transition-delay: .36s; }
+.modal-backdrop.open .modal form > *:nth-child(3) { opacity: 1; transform: none; transition-delay: .42s; }
+.modal-backdrop.open .modal form > *:nth-child(4) { opacity: 1; transform: none; transition-delay: .48s; }
+.modal-backdrop.open .modal form > *:nth-child(5) { opacity: 1; transform: none; transition-delay: .54s; }
+.modal-backdrop.open .modal form > *:nth-child(6) { opacity: 1; transform: none; transition-delay: .60s; }
+.modal-backdrop.open .modal form > *:nth-child(7) { opacity: 1; transform: none; transition-delay: .66s; }
+.modal-backdrop.open .modal form > *:nth-child(8) { opacity: 1; transform: none; transition-delay: .72s; }
+
+/* Glow halo behind modal on entry */
+.modal-backdrop::before {
+  content: "";
+  position: absolute;
+  width: 600px; height: 600px;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(.5);
+  background: radial-gradient(circle, rgba(88,118,196,.25) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity .9s var(--ease), transform .9s var(--ease);
+  pointer-events: none;
+}
+.modal-backdrop.open::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* CTA button "press" feedback as it triggers modal */
+.btn--primary.firing, .btn--invert.firing, .btn--lg.firing {
+  transform: scale(.92) !important;
+  transition: transform .15s var(--ease) !important;
+}
+
+/* 3. PARALLAX EDITORIAL PHOTOS --------------------------- */
+.editorial { transform-style: preserve-3d; }
+.editorial img {
+  will-change: transform;
+  transition: none;
+  height: 130%;
+  top: -15%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial img { transform: none !important; }
+}
+
+/* Photo strip parallax */
+.photo-strip .ps img {
+  will-change: transform;
+}
+
+
+/* ============================================================
+   CONVERSION ADDITIONS
+   ============================================================ */
+
+/* TESTIMONIAL HERO --------------------------------------- */
+.testimonial-hero {
+  padding: clamp(80px, 12vw, 140px) 0;
+  background: #FFFFFF;
+}
+.th-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 880px) {
+  .th-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.th-photo {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.25);
+}
+.th-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.92);
+}
+.th-photo-tag {
+  position: absolute; bottom: 16px; left: 16px; right: 16px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-2);
+}
+.th-logo {
+  width: 36px; height: 36px;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; letter-spacing: -0.02em;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.th-logo .th-d { opacity: .5; margin: 0 1px; }
+
+.th-stars {
+  color: #D4A341;
+  font-size: 16px;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+}
+.th-quote {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 32px;
+  font-weight: 400;
+}
+.th-quote mark {
+  background: linear-gradient(180deg, transparent 60%, rgba(88,118,196,.25) 60%);
+  color: inherit;
+  padding: 0 2px;
+}
+.th-attribution { margin-bottom: 32px; }
+.th-name {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.th-role {
+  font-size: 14px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+.th-meta {
+  font-size: 13px;
+  color: var(--ink-4);
+  margin-top: 6px;
+}
+.th-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 24px;
+  border-top: .5px solid var(--border);
+}
+.th-stat .n {
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--accent);
+  line-height: 1;
+}
+.th-stat .l {
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 6px;
+  letter-spacing: -0.005em;
+}
+
+/* RECALL AUDIT ------------------------------------------- */
+.audit-section { background: #fff; }
+.audit-shell {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.audit-proof {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: .5px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.audit-proof-card {
+  background: #fff;
+  padding: clamp(28px, 4vw, 42px);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.audit-proof-card .n {
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: .95;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  color: var(--accent);
+}
+.audit-proof-card .l {
+  color: var(--ink-3);
+  font-size: 15px;
+  line-height: 1.45;
+  max-width: 18ch;
+}
+.audit-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg-soft);
+  border-radius: 24px;
+  overflow: hidden;
+  border: .5px solid var(--border);
+}
+.audit-flow-copy {
+  padding: clamp(36px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.audit-flow-copy h3 {
+  font-size: clamp(32px, 4vw, 52px);
+  max-width: 10ch;
+  margin-bottom: 22px;
+}
+.audit-flow-copy p {
+  color: var(--ink-3);
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 34ch;
+  margin-bottom: 32px;
+}
+.audit-steps {
+  background: var(--bg-dark);
+  padding: clamp(28px, 4vw, 48px);
+  display: grid;
+  gap: 12px;
+}
+.audit-step {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: .5px solid rgba(255,255,255,.12);
+}
+.audit-step:last-child { border-bottom: 0; }
+.audit-step .num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  color: var(--accent-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.audit-step h4 {
+  color: #fff;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+.audit-step p {
+  color: rgba(255,255,255,.62);
+  font-size: 15px;
+  line-height: 1.45;
+}
+@media (max-width: 880px) {
+  .audit-proof { grid-template-columns: 1fr; }
+  .audit-flow { grid-template-columns: 1fr; }
+}
+
+/* PARTNERSHIP VALUE -------------------------------------- */
+.partner-panel {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  background: #fff;
+  border: .5px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 30px 60px -20px rgba(0,0,0,.18);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.partner-proof {
+  padding: clamp(36px, 5vw, 64px);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--bg-dark);
+  color: #fff;
+}
+.partner-proof .proof-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: auto;
+}
+.partner-proof .proof-number {
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: .98;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  max-width: 9ch;
+}
+.partner-proof p {
+  color: rgba(255,255,255,.68);
+  font-size: 18px;
+  line-height: 1.48;
+  max-width: 32ch;
+  margin: 28px 0 34px;
+}
+.partner-proof .btn { align-self: flex-start; }
+.partner-cards {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  background: #FAFAFC;
+}
+.partner-card {
+  padding: clamp(28px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: .5px solid var(--border);
+}
+.partner-card:last-child { border-bottom: 0; }
+.partner-card span {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin-bottom: 18px;
+}
+.partner-card h3 {
+  font-size: clamp(24px, 2.6vw, 34px);
+  margin-bottom: 12px;
+}
+.partner-card p {
+  color: var(--ink-3);
+  max-width: 34ch;
+  font-size: 16px;
+  line-height: 1.5;
+}
+@media (max-width: 880px) {
+  .partner-panel { grid-template-columns: 1fr; }
+  .partner-proof { min-height: auto; }
+  .partner-proof .proof-kicker { margin-bottom: 80px; }
+  .partner-cards { grid-template-rows: none; }
+}
+
+/* ROI CALCULATOR ----------------------------------------- */
+.roi-calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.04),
+    0 30px 60px -20px rgba(0,0,0,.18);
+  border: .5px solid var(--border);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+@media (max-width: 880px) {
+  .roi-calc { grid-template-columns: 1fr; }
+}
+.roi-inputs {
+  padding: clamp(32px, 4vw, 48px);
+  display: flex; flex-direction: column; gap: 28px;
+  background: #FAFAFC;
+  border-right: .5px solid var(--border);
+}
+@media (max-width: 880px) {
+  .roi-inputs { border-right: 0; border-bottom: .5px solid var(--border); }
+}
+.roi-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: -0.005em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.roi-segment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: #fff;
+  border: .5px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+}
+.roi-segment button {
+  padding: 10px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color .25s var(--ease), color .25s var(--ease);
+}
+.roi-segment button.on {
+  background: var(--ink);
+  color: #fff;
+}
+.roi-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.roi-slider-wrap input[type=range] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: grab;
+}
+.roi-slider-wrap input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(88,118,196,.35);
+  cursor: grab;
+  transition: transform .15s var(--ease);
+}
+.roi-slider-wrap input[type=range]::-webkit-slider-thumb:active { transform: scale(1.15); cursor: grabbing; }
+.roi-slider-wrap input[type=range]::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(88,118,196,.35);
+  cursor: grab;
+}
+.roi-out {
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ink);
+  min-width: 80px;
+  text-align: right;
+  letter-spacing: -0.015em;
+}
+.roi-assumption {
+  font-size: 12px;
+  color: var(--ink-4);
+  line-height: 1.5;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: .5px solid var(--border);
+}
+
+.roi-output {
+  padding: clamp(32px, 4vw, 48px);
+  background: linear-gradient(180deg, #fff 0%, #F8F9FC 100%);
+  display: flex; flex-direction: column; gap: 24px;
+  position: relative;
+}
+.roi-result-l {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.roi-result-n {
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  transition: color .3s var(--ease);
+}
+.roi-result-sub {
+  font-size: 14px;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
+.roi-result-sub span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.roi-annual {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: .5px solid var(--border);
+}
+.roi-annual-l { font-size: 13px; color: var(--ink-3); }
+.roi-annual-n {
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.roi-net {
+  background: rgba(88,118,196,.06);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.roi-net-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.roi-net-row--total {
+  padding-top: 8px;
+  margin-top: 4px;
+  border-top: .5px solid rgba(88,118,196,.2);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.roi-net-row--total span:last-child {
+  color: var(--accent);
+  font-size: 18px;
+}
+
+.roi-cta { margin-top: 8px; }
+.roi-cta .btn--full { width: 100%; }
+.roi-fine {
+  font-size: 11px;
+  color: var(--ink-4);
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* secondary link variants */
+.btn--link-light { color: rgba(255,255,255,.85); }
+.btn--link-light:hover { color: #fff; }
+
+.th-grid--no-photo { grid-template-columns: 1fr !important; max-width: 760px; }
+.th-grid--no-photo .th-body { text-align: center; }
+.th-grid--no-photo .th-stars { text-align: center; }
+.th-grid--no-photo .th-results { text-align: left; }
+
+</style>
+
 </head>
 <body>
 
@@ -25,11 +1724,11 @@
   <div class="container">
     <div class="inner">
       <p class="eyebrow" data-mount>AI patient recall. Built in Australia.</p>
-      <h1 data-mount>The quiet way to<br/>bring patients back.</h1>
-      <p class="lead" data-mount>Lapsed patients cost Australian practices thousands every month. RecallQ brings them back — automatically — while your team keeps treating.</p>
+      <h1 data-mount>Bring overdue patients<br/>back automatically.</h1>
+      <p class="lead" data-mount>RecallQ turns inactive patient lists into booked appointments, without adding admin to your team.</p>
       <div class="ctas" data-mount>
-        <button class="btn btn--primary btn--lg" data-start-now>Book a 15-min demo</button>
-        <a class="btn btn--link" href="#roi-calc">Get my recall audit (free) →</a>
+        <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
+        <a class="btn btn--link" href="#roi-calc">Run this on my patient list →</a>
       </div>
     </div>
 
@@ -61,71 +1760,83 @@
 <section class="idea idea--soft">
   <div class="container">
     <p class="eyebrow" data-anim="fade-up">The recall gap</p>
-    <h2 class="display" data-anim="fade-up" style="margin-top:12px;">Twenty-seven percent of your active patients are overdue.</h2>
-    <p class="lead" data-anim="fade-up">Your software knows. Your team doesn't have time. The revenue walks out the door.</p>
+    <h2 class="display" data-anim="fade-up" style="margin-top:12px;">Twenty-seven percent of active patients are overdue.</h2>
+    <p class="lead" data-anim="fade-up">Your practice software knows. Your team doesn't always have time. Revenue slips away quietly.</p>
   </div>
 </section>
 
-<!-- ROI CALCULATOR — the conversion engine -->
-<section class="section section--soft" id="roi-calc">
+<!-- PARTNERSHIP VALUE — business upside -->
+<section class="section section--soft partner-value" id="roi-calc">
   <div class="container">
     <div class="text-center" style="margin-bottom: 56px;">
-      <p class="eyebrow" data-anim="fade-up">The numbers, for your practice</p>
-      <h2 data-anim="fade-up" style="margin-top:16px;max-width:18ch;margin-left:auto;margin-right:auto;">See exactly how much you'd recover.</h2>
-      <p class="lead" data-anim="fade-up">Three numbers. We'll do the maths. No email required.</p>
+      <p class="eyebrow" data-anim="fade-up">The upside, with RecallQ</p>
+      <h2 data-anim="fade-up" style="margin-top:16px;max-width:18ch;margin-left:auto;margin-right:auto;">Your patient list is already worth more than you think.</h2>
+      <p class="lead" data-anim="fade-up">RecallQ helps turn overdue patients into booked revenue, without adding admin to your team.</p>
+    </div>
+    <div class="partner-panel" data-anim="scale-up">
+      <div class="partner-proof">
+        <span class="proof-kicker">What we unlock</span>
+        <div class="proof-number">Revenue already sitting in your records.</div>
+        <p>Most practices have hundreds of patients who are overdue, inactive, or ready to return. We help find them, message them, and move the right replies back into your booking flow.</p>
+        <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
+      </div>
+      <div class="partner-cards">
+        <div class="partner-card">
+          <span>01</span>
+          <h3>Found revenue</h3>
+          <p>We surface the recall opportunities already hiding in your patient list.</p>
+        </div>
+        <div class="partner-card">
+          <span>02</span>
+          <h3>Recovered bookings</h3>
+          <p>Personalised messages turn overdue patients into real appointment intent.</p>
+        </div>
+        <div class="partner-card">
+          <span>03</span>
+          <h3>Less admin</h3>
+          <p>Your team spends less time chasing and more time with patients in the chair.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECALL AUDIT — proof and process -->
+<section class="section audit-section" id="recall-audit">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 56px;">
+      <p class="eyebrow" data-anim="fade-up">The recall audit</p>
+      <h2 data-anim="fade-up" style="margin-top:16px;max-width:17ch;margin-left:auto;margin-right:auto;">See the opportunity before you commit.</h2>
+      <p class="lead" data-anim="fade-up">We turn your existing patient list into a clear recovery plan, then launch only after your practice approves it.</p>
     </div>
 
-    <div class="roi-calc" data-roi data-anim="scale-up">
-      <div class="roi-inputs">
-        <div class="roi-field">
-          <label>Practice type</label>
-          <div class="roi-segment" data-roi-vertical>
-            <button type="button" class="on" data-v="dental">Dental</button>
-            <button type="button" data-v="physio">Physio</button>
-            <button type="button" data-v="opto">Optometry</button>
-          </div>
+    <div class="audit-shell">
+      <div class="audit-proof" data-stagger>
+        <div class="audit-proof-card">
+          <div class="n">3</div>
+          <div class="l">practice types supported: dental, physio, and optometry.</div>
         </div>
-
-        <div class="roi-field">
-          <label>Active patients on file</label>
-          <div class="roi-slider-wrap">
-            <input type="range" min="500" max="15000" step="100" value="3000" data-roi-patients/>
-            <output class="roi-out" data-roi-patients-out>3,000</output>
-          </div>
+        <div class="audit-proof-card">
+          <div class="n">0</div>
+          <div class="l">new software your team has to learn before the audit.</div>
         </div>
-
-        <div class="roi-field">
-          <label>Average appointment value (AUD)</label>
-          <div class="roi-slider-wrap">
-            <input type="range" min="60" max="400" step="5" value="185" data-roi-value/>
-            <output class="roi-out" data-roi-value-out>$185</output>
-          </div>
+        <div class="audit-proof-card">
+          <div class="n">1</div>
+          <div class="l">clear recovery plan before messages go live.</div>
         </div>
-
-        <p class="roi-assumption">Assumes 27% of active patients are overdue · 12% will rebook with a personalised SMS nudge — based on benchmarks across 32 Australian practices.</p>
       </div>
 
-      <div class="roi-output">
-        <div class="roi-result">
-          <div class="roi-result-l">Estimated recovery, monthly</div>
-          <div class="roi-result-n" data-roi-monthly>$0</div>
-          <div class="roi-result-sub">≈ <span data-roi-bookings>0</span> bookings recovered per month</div>
+      <div class="audit-flow" data-anim="scale-up">
+        <div class="audit-flow-copy">
+          <h3>How the audit works.</h3>
+          <p>Simple enough for a busy practice, detailed enough to show where booked revenue can come from.</p>
+          <button class="btn btn--primary btn--lg" data-start-now>Run this on my patient list</button>
         </div>
-        <div class="roi-annual">
-          <div class="roi-annual-l">Over 12 months</div>
-          <div class="roi-annual-n" data-roi-annual>$0</div>
-        </div>
-        <div class="roi-net">
-          <div class="roi-net-row">
-            <span>RecallQ</span><span data-roi-cost>−$1,000/mo</span>
-          </div>
-          <div class="roi-net-row roi-net-row--total">
-            <span>Net to your practice, monthly</span><span data-roi-net>$0</span>
-          </div>
-        </div>
-        <div class="roi-cta">
-          <button class="btn btn--primary btn--lg btn--full" data-start-now>Book your 15-min demo</button>
-          <p class="roi-fine">No credit card · ROI guarantee, month one · Cancel anytime</p>
+        <div class="audit-steps">
+          <div class="audit-step"><span class="num">01</span><div><h4>Export your list</h4><p>Send a CSV from your practice system. No PMS lock-in required.</p></div></div>
+          <div class="audit-step"><span class="num">02</span><div><h4>Find overdue patients</h4><p>RecallQ identifies inactive, overdue, and high-value recall opportunities.</p></div></div>
+          <div class="audit-step"><span class="num">03</span><div><h4>Review the plan</h4><p>You see the segments, message style, and expected booking flow before launch.</p></div></div>
+          <div class="audit-step"><span class="num">04</span><div><h4>Recover bookings</h4><p>Personalised messages go out, replies are handled, and intent comes back to your team.</p></div></div>
         </div>
       </div>
     </div>
@@ -205,8 +1916,8 @@
   <div class="container">
     <div class="text-center" style="margin-bottom: 56px;">
       <p class="eyebrow" data-anim="fade-up">Try it</p>
-      <h2 data-anim="fade-up" style="margin-top:16px;max-width:18ch;margin-left:auto;margin-right:auto;">Watch a recall message write itself.</h2>
-      <p class="lead" data-anim="fade-up">No templates. Every message uses the patient's name, their last visit, your practice voice.</p>
+      <h2 data-anim="fade-up" style="margin-top:16px;max-width:18ch;margin-left:auto;margin-right:auto;">Watch a recovery message write itself.</h2>
+      <p class="lead" data-anim="fade-up">No templates. Every message uses the patient's name, their last visit, and your practice voice.</p>
     </div>
     <div class="composer" data-composer data-anim="scale-up">
       <div>
@@ -253,8 +1964,8 @@
 <!-- VERTICALS — distinct typography per block -->
 <section class="section section--white" style="padding-top: clamp(60px,10vw,120px); padding-bottom: 0;">
   <div class="container" style="margin-bottom: 0; text-align:center;">
-    <p class="eyebrow" data-anim="fade-up">One platform. Three practices.</p>
-    <h2 data-anim="fade-up" style="margin-top:16px;max-width:20ch;margin-left:auto;margin-right:auto;">Built for your profession. Not a generic SaaS.</h2>
+    <p class="eyebrow" data-anim="fade-up">One platform. Three practice types.</p>
+    <h2 data-anim="fade-up" style="margin-top:16px;max-width:20ch;margin-left:auto;margin-right:auto;">Built for dental, physio, and optometry recall.</h2>
   </div>
 </section>
 
@@ -276,7 +1987,7 @@
           </svg>
         </div>
         <div class="card-on-top">
-          <div class="body">Hi Sarah, it's lovely to hear from you again 💛 It's been 6 months since your last clean with one of our team — we've saved a quiet spot Thursday at 3pm if you'd like it.</div>
+          <div class="body">Hi Sarah, it's been 6 months since we last saw you. We'd love to help book your next clean when you're ready.</div>
           <div class="pill-row-mini"><span class="pill-mini pill-yes">YES</span><span class="pill-mini pill-alt">Reschedule</span></div>
         </div>
       </div>
@@ -446,14 +2157,14 @@
       <h2 data-anim="fade-up" style="margin-top:16px;max-width:16ch;margin-left:auto;margin-right:auto;">Pay for what comes back.</h2>
     </div>
     <div class="price-teaser" data-anim="scale-up">
-      <p class="eyebrow">Starter</p>
-      <div class="amount">$1,000</div>
-      <div class="per">per month, per practice · GST incl.</div>
+      <p class="eyebrow">Growth</p>
+      <div class="amount">$ 1,799</div>
+      <div class="per">per month · GST incl.</div>
       <ul>
         <li>Up to 2,000 active patients</li>
-        <li>Unlimited personalised messages</li>
-        <li>AU data residency · Privacy Act compliant</li>
-        <li>ROI guarantee, month one</li>
+        <li>Unlimited personalised recall messages</li>
+        <li>AU data residency · Privacy Act aligned</li>
+        <li>Recall opportunity review, month one</li>
       </ul>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
         <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
@@ -465,18 +2176,978 @@
 
 <!-- FINAL CTA -->
 <section class="cta-band">
-  <h2>Your next month's lost revenue is already walking out the door.</h2>
-  <p>Fifteen minutes with us. We'll show you exactly how much you'd recover — with your own patient list.</p>
+  <h2>Your next month's recovered revenue could already be waiting.</h2>
+  <p>Fifteen minutes with us. We'll show the upside using your own patient list.</p>
   <div class="ctas" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn btn--invert btn--lg" data-start-now>Book a 15-min demo</button>
+    <button class="btn btn--invert btn--lg" data-start-now>Start now</button>
     <a class="btn btn--link btn--link-light" href="#roi-calc">Run the recall audit →</a>
   </div>
-  <p class="fine">No credit card · No sales pressure · ROI guarantee in month one</p>
+  <p class="fine">No credit card · No sales pressure · AU data residency · Privacy Act aligned · Opt-out handling · Practice approval before launch</p>
 </section>
 
-<script src="assets/animate.js?v=apple1"></script>
-<script src="assets/recallq-ad.js?v=apple1"></script>
-<script src="assets/partials.js?v=apple1" data-active="home"></script>
-<script src="assets/upgrades.js?v=u3"></script>
-</body>
+<script>
+/* RecallQ — animation helpers (vanilla, framer-motion-free) */
+(function () {
+  'use strict';
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        // Force reflow so the transition starts from the pre-class initial state,
+        // avoiding a stuck "pending" transition in backgrounded/iframed load.
+        // eslint-disable-next-line no-unused-expressions
+        el.offsetHeight;
+        el.classList.add('in');
+        // per-child delays for staggered containers
+        if (el.hasAttribute('data-stagger')) {
+          const kids = el.children;
+          for (let i = 0; i < kids.length; i++) {
+            kids[i].style.transitionDelay = prefersReduced ? '0s' : (0.1 + i * 0.12) + 's';
+          }
+        }
+        // Fallback: finish stalled transitions after 900ms so opacity never sticks at 0.
+        setTimeout(() => {
+          const targets = el.hasAttribute('data-stagger') ? [el, ...el.children] : [el];
+          targets.forEach(t => {
+            if (t.getAnimations) {
+              t.getAnimations().forEach(a => {
+                if (a.playState === 'running' && a.startTime == null) { try { a.finish(); } catch(err){} }
+              });
+            }
+          });
+        }, 900);
+        io.unobserve(el);
+      }
+    });
+  }, { rootMargin: '-80px', threshold: 0.01 });
+
+  function register(root = document) {
+    root.querySelectorAll('[data-anim], [data-stagger]').forEach(el => {
+      if (el.dataset.animOn) return;
+      el.dataset.animOn = '1';
+      io.observe(el);
+    });
+  }
+
+  // Stagger on mount (hero): add 'hero-in' class which matches same rules
+  function mountStagger(root) {
+    const els = root.querySelectorAll('[data-mount]');
+    els.forEach((el, i) => {
+      el.style.transitionDelay = prefersReduced ? '0s' : (i * 0.1) + 's';
+      requestAnimationFrame(() => el.classList.add('in'));
+    });
+    // Safety: finish any stuck transitions (happens in backgrounded/iframed loads)
+    setTimeout(() => {
+      els.forEach(el => {
+        if (el.getAnimations) {
+          el.getAnimations().forEach(a => {
+            if (a.playState === 'running' && (a.currentTime === 0 || a.startTime == null)) {
+              try { a.finish(); } catch (err) {}
+            }
+          });
+        }
+      });
+    }, 1200);
+  }
+
+  function countUp(el, target, duration = 1800, prefix = '', suffix = '') {
+    if (prefersReduced) {
+      el.textContent = prefix + Math.round(target).toLocaleString() + suffix;
+      return;
+    }
+    const start = performance.now();
+    function frame(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(target * eased);
+      el.textContent = prefix + val.toLocaleString() + suffix;
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function observeCount(el, target, opts = {}) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          countUp(el, target, opts.duration, opts.prefix, opts.suffix);
+          obs.unobserve(el);
+        }
+      });
+    }, { rootMargin: '-40px' });
+    obs.observe(el);
+  }
+
+  window.RQA = { register, mountStagger, countUp, observeCount, prefersReduced };
+
+  function init() {
+    register();
+    document.querySelectorAll('[data-mount-stagger]').forEach(c => mountStagger(c));
+    // Safety net: if for any reason transitions don't fire (background tab,
+    // bundled blob-script timing, etc.), force-reveal everything after 1.5s
+    // by disabling transitions and applying the end state directly.
+    setTimeout(() => {
+      document.querySelectorAll('[data-mount], [data-anim], [data-stagger]').forEach(el => {
+        const op = parseFloat(getComputedStyle(el).opacity);
+        if (op < 0.99) {
+          el.style.transition = 'none';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          el.classList.add('in');
+        }
+      });
+    }, 1500);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  // Belt-and-braces: also run on window load in case DOMContentLoaded fired before this script.
+  window.addEventListener('load', () => {
+    if (!document.querySelector('[data-mount].in')) init();
+  });
+})();
+
+</script>
+<script>
+/* RecallQ Ad — self-contained 13s loop, IntersectionObserver-paused */
+(function () {
+  function mount(root) {
+    root.innerHTML = `
+      <div class="stage">
+        <div class="act act1">
+          <span class="ey">THE RECALL GAP</span>
+          <h3>Your patients are <span style="color:#5876C4">overdue</span>.</h3>
+          <div class="grid-dots" id="rqaDots"></div>
+          <p class="sub">Your software tracks them. It doesn't bring them back.</p>
+        </div>
+        <div class="act act2">
+          <span class="ey">THE FIX</span>
+          <h3>AI brings them back — automatically.</h3>
+          <div class="act2-row">
+            <div class="bubbles">
+              <div class="bubble" style="border-left-color:#5C5A54">Hi Sarah, it's been 6 months since your last clean. Reply YES to book a time.</div>
+              <div class="reply" style="background:#5C5A54">YES</div>
+              <div class="bubble" style="border-left-color:#7A6A5C">Hi Tom, 3 weeks since your last session — how's the shoulder? Reply YES to book a review.</div>
+              <div class="reply" style="background:#7A6A5C">YES</div>
+              <div class="bubble" style="border-left-color:#5A6470">Hi Linh, your last eye exam was 23 months ago. Your rebate resets in 4 weeks — reply YES.</div>
+              <div class="reply" style="background:#5A6470">YES</div>
+            </div>
+            <div class="vtags">
+              <div class="vtag" data-v="0"><span class="vdot" style="background:#5C5A54"></span>DentistryIQ</div>
+              <div class="vtag" data-v="1"><span class="vdot" style="background:#7A6A5C"></span>PhysioIQ</div>
+              <div class="vtag" data-v="2"><span class="vdot" style="background:#5A6470"></span>OptometryIQ</div>
+            </div>
+          </div>
+        </div>
+        <div class="act act3">
+          <span class="ey">THE RESULT</span>
+          <div class="money" id="rqaMoney">$0</div>
+          <p class="subline">Recovered this month — from patients you'd already earned.</p>
+          <div class="closeblk">
+            <div class="wm">Recall<span class="q">Q</span></div>
+            <button class="btn btn--primary" data-start-now>Start now</button>
+            <div class="tag">recallq.com.au · Made in Australia</div>
+          </div>
+        </div>
+        <div class="progress" id="rqaProg"></div>
+      </div>
+    `;
+
+    // Build dot grid
+    const grid = root.querySelector('#rqaDots');
+    const total = 120;
+    for (let i = 0; i < total; i++) grid.appendChild(document.createElement('span'));
+
+    const act1 = root.querySelector('.act1');
+    const act2 = root.querySelector('.act2');
+    const act3 = root.querySelector('.act3');
+    const bubbles = act2.querySelectorAll('.bubble');
+    const replies = act2.querySelectorAll('.reply');
+    const vtags = act2.querySelectorAll('.vtag');
+    const money = root.querySelector('#rqaMoney');
+    const prog = root.querySelector('#rqaProg');
+    const dots = grid.querySelectorAll('span');
+
+    let timers = [];
+    let running = false;
+    let progStart = 0;
+    let progRaf;
+
+    function clearAll() {
+      timers.forEach(clearTimeout);
+      timers = [];
+      cancelAnimationFrame(progRaf);
+      [act1, act2, act3].forEach(a => a.classList.remove('on'));
+      dots.forEach(d => d.classList.remove('hi'));
+      bubbles.forEach(b => b.classList.remove('on'));
+      replies.forEach(r => r.classList.remove('on'));
+      vtags.forEach(v => v.classList.remove('on'));
+      money.textContent = '$0';
+      prog.style.width = '0%';
+    }
+
+    function animateMoney(target, dur) {
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        money.textContent = '$' + Math.round(target * eased).toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    function tick(now) {
+      const elapsed = now - progStart;
+      const pct = Math.min(elapsed / 13000, 1) * 100;
+      prog.style.width = pct + '%';
+      if (pct < 100 && running) progRaf = requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (running) return;
+      running = true;
+      clearAll();
+      progStart = performance.now();
+      progRaf = requestAnimationFrame(tick);
+
+      // ACT 1: 0 - 4s
+      timers.push(setTimeout(() => act1.classList.add('on'), 100));
+      // Light up ~32 dots starting at 1000ms, 55ms apart
+      const picks = [];
+      while (picks.length < 32) {
+        const idx = Math.floor(Math.random() * total);
+        if (!picks.includes(idx)) picks.push(idx);
+      }
+      picks.forEach((idx, i) => timers.push(setTimeout(() => dots[idx].classList.add('hi'), 1000 + i * 55)));
+
+      // Fade out act1 at 4400ms
+      timers.push(setTimeout(() => act1.classList.remove('on'), 4400));
+
+      // ACT 2: 5100 - 9500
+      timers.push(setTimeout(() => act2.classList.add('on'), 5100));
+      [0, 1, 2].forEach(i => {
+        const base = 5100 + 800 + i * 750;
+        timers.push(setTimeout(() => { bubbles[i * 2].classList.add('on'); }, base));
+        timers.push(setTimeout(() => { replies[i].classList.add('on'); vtags[i].classList.add('on'); }, base + 430));
+      });
+      timers.push(setTimeout(() => act2.classList.remove('on'), 9600));
+
+      // ACT 3: 10300 - 13000
+      timers.push(setTimeout(() => {
+        act3.classList.add('on');
+        animateMoney(3200, 1700);
+      }, 10300));
+
+      // Loop
+      timers.push(setTimeout(() => {
+        running = false;
+        play();
+      }, 13000 + 2600));
+    }
+
+    function stop() {
+      running = false;
+      clearAll();
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.intersectionRatio >= 0.5) play();
+        else stop();
+      });
+    }, { threshold: [0, 0.5] });
+    io.observe(root);
+  }
+
+  document.querySelectorAll('[data-recallq-ad]').forEach(mount);
+})();
+
+</script>
+<script data-active="home">
+/* RecallQ — header, footer, Start Now modal
+   Usage: <script src="assets/partials.js"
+          data-active="home|dentistry|physio|optometry|how|pricing|about|legal"
+          data-vertical="Dentistry|Physio|Optometry" (optional modal preset)
+          data-depth="0|1"><\/script>
+*/
+(function () {
+  const me = document.currentScript;
+  const active = me?.dataset.active || '';
+  const vPreset = me?.dataset.vertical || '';
+  const depth = (parseInt(me?.dataset.depth || '0', 10)) || 0;
+  const up = '../'.repeat(depth);
+  const ver = '?v=g1';
+
+  // HEADER
+  const hdr = document.createElement('div');
+  hdr.innerHTML = `
+    <header class="site-header" id="siteHeader">
+      <div class="container hdr-inner">
+        <a class="wordmark" href="${up}index.html" aria-label="RecallQ home">Recall<span class="q">Q</span></a>
+        <nav class="nav" aria-label="Primary">
+          <div class="nav-dd">
+            <button aria-haspopup="true" aria-expanded="false">Solutions</button>
+            <div class="nav-dd-menu" role="menu">
+              <a href="${up}dentistry.html"><span class="dot" style="background:#5C5A54"></span><span><strong>DentistryIQ</strong><span class="sub-desc">Recall for dental practices</span></span></a>
+              <a href="${up}physio.html"><span class="dot" style="background:#7A6A5C"></span><span><strong>PhysioIQ</strong><span class="sub-desc">Recall for physiotherapy</span></span></a>
+              <a href="${up}optometry.html"><span class="dot" style="background:#5A6470"></span><span><strong>OptometryIQ</strong><span class="sub-desc">Recall for optometry</span></span></a>
+            </div>
+          </div>
+          <a href="${up}how-it-works.html">How it works</a>
+          <a href="${up}pricing.html">Pricing</a>
+          <a href="${up}about.html">About</a>
+        </nav>
+        <button class="btn btn--primary" data-start-now>Start now</button>
+        <button class="hamb" aria-label="Menu" id="hambBtn"><span></span></button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <ul>
+          <li><a href="${up}dentistry.html"><span class="dot" style="background:#5C5A54;margin-right:8px;display:inline-block;"></span>DentistryIQ</a></li>
+          <li><a href="${up}physio.html"><span class="dot" style="background:#7A6A5C;margin-right:8px;display:inline-block;"></span>PhysioIQ</a></li>
+          <li><a href="${up}optometry.html"><span class="dot" style="background:#5A6470;margin-right:8px;display:inline-block;"></span>OptometryIQ</a></li>
+          <li><a href="${up}how-it-works.html">How it works</a></li>
+          <li><a href="${up}pricing.html">Pricing</a></li>
+          <li><a href="${up}about.html">About</a></li>
+          <li><button data-start-now style="color:var(--periwinkle-dark);font-weight:500;">Start now →</button></li>
+        </ul>
+      </div>
+    </header>
+  `;
+  document.body.insertBefore(hdr.firstElementChild, document.body.firstChild);
+  // Double-rAF + forced reflow to guarantee the transition starts from the initial state.
+  // Without this, iframes that are backgrounded on load can stall the transition in
+  // "pending" state (playState:running, startTime:null) and opacity stays at 0 forever.
+  const hdrEl = document.getElementById('siteHeader');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    // Force reflow
+    // eslint-disable-next-line no-unused-expressions
+    hdrEl.offsetHeight;
+    hdrEl.classList.add('ready');
+    // Fallback: if transitions stalled (bg'd tab at load), finish them after 800ms.
+    setTimeout(() => {
+      if (getComputedStyle(hdrEl).opacity !== '1') {
+        hdrEl.getAnimations && hdrEl.getAnimations().forEach(a => { try { a.finish(); } catch(e){} });
+      }
+    }, 800);
+  }));
+
+  document.getElementById('hambBtn')?.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  // FOOTER
+  const footer = document.createElement('footer');
+  footer.className = 'footer';
+  footer.innerHTML = `
+    <div class="container" data-anim="fade-up">
+      <div class="grid" data-stagger>
+        <div class="brand-col">
+          <div class="wordmark">Recall<span class="q">Q</span></div>
+          <p class="tag">AI-powered patient recall. Built in Australia.</p>
+        </div>
+        <div>
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="${up}dentistry.html">DentistryIQ</a></li>
+            <li><a href="${up}physio.html">PhysioIQ</a></li>
+            <li><a href="${up}optometry.html">OptometryIQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="${up}how-it-works.html">How it works</a></li>
+            <li><a href="${up}pricing.html">Pricing</a></li>
+            <li><button data-start-now>Start now</button></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company &amp; Legal</h4>
+          <ul>
+            <li><a href="${up}about.html">About</a></li>
+            <li><a href="mailto:">Contact</a></li>
+            <li><a href="${up}legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="${up}legal/terms.html">Terms</a></li>
+            <li><a href="${up}legal/dpa.html">DPA</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="compliance">
+        <span>Australian-owned</span><span class="sep">·</span>
+        <span>AU data residency</span><span class="sep">·</span>
+        <span>Privacy Act 1988</span><span class="sep">·</span>
+        <span>Spam Act 2003</span>
+      </div>
+      <div class="copy">© RecallQ Pty Ltd · recallq.com.au · Made in Australia</div>
+    </div>
+  `;
+  document.body.appendChild(footer);
+
+  // MODAL
+  const modal = document.createElement('div');
+  modal.className = 'modal-backdrop';
+  modal.id = 'startNowModal';
+  modal.innerHTML = `
+    <div class="modal" role="dialog" aria-labelledby="snmTitle" aria-modal="true">
+      <button class="close" aria-label="Close" data-close>✕</button>
+      <div id="snmForm">
+        <h2 id="snmTitle">Start with RecallQ</h2>
+        <p class="sub">Tell us about your practice. We'll run the numbers and get back to you within 24 hours.</p>
+        <form id="snmFormEl" novalidate>
+          <div><label>Your name</label><input name="name" required placeholder="First and last name" autocomplete="name"></div>
+          <div><label>Work email</label><input name="email" type="email" required placeholder="you@yourpractice.com.au" autocomplete="email"></div>
+          <div><label>Mobile</label><input name="mobile" type="tel" placeholder="+61 4XX XXX XXX" autocomplete="tel"></div>
+          <div><label>Practice name</label><input name="practice" required placeholder="Your practice name"></div>
+          <div>
+            <label>Your vertical</label>
+            <div class="vpicker" role="group" aria-label="Vertical">
+              <button type="button" data-v="Dentistry">Dentistry</button>
+              <button type="button" data-v="Physio">Physio</button>
+              <button type="button" data-v="Optometry">Optometry</button>
+            </div>
+            <input type="hidden" name="vertical" id="snmVertical" value="">
+          </div>
+          <div><label>Active patients</label><select name="patients"><option>Under 500</option><option>500–1,500</option><option>1,500–3,000</option><option>3,000+</option></select></div>
+          <div><label>Biggest recall problem (optional)</label><textarea name="problem" rows="2" placeholder="e.g. Hundreds of patients are overdue but we can't reach them all."></textarea></div>
+          <button type="submit" class="btn btn--primary btn--full btn--lg">Start now →</button>
+          <p class="privacy-note">By submitting you agree to our <a href="${up}legal/privacy.html">Privacy Policy</a>. No spam, ever.</p>
+        </form>
+      </div>
+      <div id="snmSuccess" class="success" style="display:none;">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12.5 l4 4 L19 7"/></svg></div>
+        <h3 id="snmThanks">Thanks. We've got it.</h3>
+        <p>One of the founders will email you within 24 hours with a link to book a 15-minute call.</p>
+        <a href="${up}how-it-works.html" class="btn btn--link">See how RecallQ works →</a>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const backdrop = modal;
+  const verticalHidden = modal.querySelector('#snmVertical');
+
+  function openModal(preset) {
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const preselect = preset || vPreset;
+    if (preselect) selectVertical(preselect);
+    setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 300);
+  }
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function selectVertical(v) {
+    verticalHidden.value = v;
+    modal.querySelectorAll('.vpicker button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+  }
+
+  modal.querySelectorAll('.vpicker button').forEach(b => b.addEventListener('click', () => selectVertical(b.dataset.v)));
+  modal.querySelector('[data-close]').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  modal.querySelector('#snmFormEl').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    const first = (data.name || '').split(' ')[0] || '';
+    document.getElementById('snmForm').style.display = 'none';
+    const success = document.getElementById('snmSuccess');
+    success.style.display = 'block';
+    document.getElementById('snmThanks').textContent = `Thanks${first ? ', ' + first : ''}. We've got it.`;
+  });
+
+  // Bind all Start now triggers
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-start-now]');
+    if (!t) return;
+    e.preventDefault();
+    openModal(t.dataset.vertical);
+  });
+
+  window.RQModal = { open: openModal, close: closeModal, selectVertical };
+
+  /* LivingBackground removed — Apple-style restraint */
+})();
+
+</script>
+<script>
+/* RecallQ — visual upgrade behaviours
+   - Calendar-fill hero with scroll zoom
+   - Magnetic CTAs
+   - AI message composer
+   - Mosaic count-ups + drift
+   - Section curve dividers (programmatic insertion)
+*/
+(function () {
+  'use strict';
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============================================================
+     1. CALENDAR-FILL HERO + SMS FLY-BY
+     ============================================================ */
+  function buildCalHero() {
+    const stage = document.querySelector('[data-cal-hero]');
+    if (!stage) return;
+    const inner = stage.querySelector('.cal-stage-inner');
+    if (!inner) return;
+    const grid = inner.querySelector('.cal-grid');
+    if (!grid) return;
+
+    // Generate 28-day calendar (4 weeks)
+    const total = 28;
+    grid.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const day = document.createElement('div');
+      day.className = 'cal-day';
+      day.dataset.idx = i;
+      day.innerHTML = `<span class="d">${i + 1}</span>`;
+      grid.appendChild(day);
+    }
+
+    const days = grid.querySelectorAll('.cal-day');
+    const counter = stage.querySelector('[data-cal-counter]');
+
+    const names = ['Sarah A.', 'James T.', 'Priya R.', 'Mia H.', 'Leo C.', 'Tom B.', 'Anna K.', 'Ben P.', 'Eve M.', 'Noah F.', 'Lily W.', 'Jack S.', 'Zoe D.', 'Ed R.'];
+    const times = ['9:00am', '10:30am', '11:15am', '1:00pm', '2:30pm', '3:00pm', '4:15pm'];
+    const previews = [
+      'Hi Sarah — clean due. Thursday 3pm?',
+      'Hi James — exam is overdue. Tue 10am?',
+      'Hi Priya — 2-yr eye exam is up.',
+      'Hi Mia — follow-up on your shoulder?',
+      'Hi Leo — your 6-month check is due.',
+      "Hi Tom — it's been a while. Book in?",
+      'Hi Anna — recall window opening soon.'
+    ];
+    const fromLines = ['SMS · Recall', 'SMS · Peak Physio', 'SMS · ClearSight Optometry'];
+
+    let bookings = 0;
+    let revenue = 0;
+    let weekIdx = 0;
+    const weeksPerCycle = 4;
+    const daysPerWeek = 7;
+
+    function fireSMS() {
+      const fly = document.createElement('div');
+      fly.className = 'sms-fly';
+      const from = fromLines[Math.floor(Math.random() * fromLines.length)];
+      const text = previews[Math.floor(Math.random() * previews.length)];
+      fly.innerHTML = `<div class="from">${from}</div>${text}`;
+      // Random vertical position within the grid
+      const top = 30 + Math.random() * 65;
+      fly.style.top = top + '%';
+      fly.style.left = '0';
+      stage.appendChild(fly);
+      requestAnimationFrame(() => fly.classList.add('in'));
+      setTimeout(() => fly.remove(), 4000);
+    }
+
+    function landBooking() {
+      // Pick a random unbooked day in the current "week"
+      const start = (weekIdx % weeksPerCycle) * daysPerWeek;
+      const end = start + daysPerWeek;
+      const candidates = [];
+      for (let i = start; i < end && i < days.length; i++) {
+        const bookCount = days[i].querySelectorAll('.cal-booking').length;
+        if (bookCount < 3) candidates.push(days[i]);
+      }
+      if (!candidates.length) return;
+      const day = candidates[Math.floor(Math.random() * candidates.length)];
+      day.classList.add('has-booking');
+      const b = document.createElement('div');
+      b.className = 'cal-booking';
+      const name = names[Math.floor(Math.random() * names.length)];
+      const time = times[Math.floor(Math.random() * times.length)];
+      b.textContent = `${time} · ${name.split(' ')[0]}`;
+      day.appendChild(b);
+      bookings++;
+      revenue += Math.floor(180 + Math.random() * 120);
+      if (counter) counter.querySelector('.n').textContent = bookings;
+    }
+
+    function nextWeek() {
+      weekIdx++;
+      // Reset every 4 weeks for loop
+      if (weekIdx % weeksPerCycle === 0 && weekIdx > 0) {
+        // fade out then clear
+        days.forEach(d => {
+          d.style.transition = 'opacity .6s ease';
+          d.style.opacity = '0.3';
+        });
+        setTimeout(() => {
+          days.forEach(d => {
+            d.classList.remove('has-booking');
+            d.querySelectorAll('.cal-booking').forEach(b => b.remove());
+            d.style.opacity = '';
+          });
+          bookings = 0;
+          if (counter) counter.querySelector('.n').textContent = '0';
+        }, 700);
+      }
+    }
+
+    if (reduced) {
+      // Static state: pre-fill some days
+      for (let k = 0; k < 14; k++) landBooking();
+      return;
+    }
+
+    // Run continuous loop
+    let smsTimer = setInterval(fireSMS, 1100);
+    let bookTimer = setInterval(() => {
+      // 2-3 bookings per "tick"
+      const burst = 1 + Math.floor(Math.random() * 2);
+      for (let k = 0; k < burst; k++) setTimeout(landBooking, k * 180);
+    }, 700);
+    let weekTimer = setInterval(nextWeek, 6500);
+
+    // Pause when offscreen
+    const io = new IntersectionObserver(([e]) => {
+      if (!e) return;
+      // pause/resume could go here; keep simple for now
+    });
+    io.observe(stage);
+  }
+
+  /* ============================================================
+     2. SCROLL-DRIVEN HERO ZOOM
+     ============================================================ */
+  function scrollZoomHero() {
+    const stage = document.querySelector('[data-scroll-zoom]');
+    if (!stage || reduced) return;
+    const onScroll = () => {
+      const rect = stage.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Progress: 0 when stage top hits viewport top, 1 when stage bottom leaves
+      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+      // Zoom up to 1.18x as we scroll past
+      const scale = 1 + progress * 0.18;
+      const opacity = 1 - Math.max(0, progress - 0.5) * 1.6;
+      stage.style.transform = `scale(${scale})`;
+      stage.style.opacity = Math.max(0, opacity);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ============================================================
+     3. MAGNETIC CTAS
+     ============================================================ */
+  function magneticBtns() {
+    if (reduced) return;
+    const btns = document.querySelectorAll('.btn--primary, .btn--accent, .btn--invert, .btn--lg');
+    btns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) * 0.18;
+        const dy = (e.clientY - cy) * 0.18;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ============================================================
+     4. AI MESSAGE COMPOSER
+     ============================================================ */
+  function composer() {
+    const root = document.querySelector('[data-composer]');
+    if (!root) return;
+    const nameEl = root.querySelector('[data-c-name]');
+    const verticalEl = root.querySelector('[data-c-vertical]');
+    const lastEl = root.querySelector('[data-c-last]');
+    const toneEl = root.querySelector('[data-c-tone]');
+    const bubble = root.querySelector('[data-c-bubble]');
+    const reply = root.querySelector('[data-c-reply]');
+    if (!nameEl || !bubble) return;
+
+    function buildMsg() {
+      const name = (nameEl.value || 'Sarah').trim().split(' ')[0];
+      const v = verticalEl.value;
+      const last = lastEl.value;
+      const tone = toneEl.value;
+
+      let body = '';
+      if (v === 'dental') {
+        body = tone === 'warm'
+          ? `Hi ${name}, it's been ${last} since we last saw you. We'd love to help book your next clean when you're ready.`
+          : `Hi ${name} — you're due for your next clean. Reply YES and we'll help book a time.`;
+      } else if (v === 'physio') {
+        body = tone === 'warm'
+          ? `Hi ${name}, it's been ${last} since your last appointment. We'd love to help keep your progress on track.`
+          : `Hi ${name} — your follow-up is due. Reply YES and we'll help book a time.`;
+      } else {
+        body = tone === 'warm'
+          ? `Hi ${name}, it's been ${last} since your last eye check. We'd love to help book your next visit.`
+          : `Hi ${name} — your eye check is due. Reply YES and we'll help book a time.`;
+      }
+      return body;
+    }
+
+    let typingTO = null;
+    let charI = 0;
+    function typeOut() {
+      const target = buildMsg();
+      bubble.innerHTML = '';
+      reply.classList.remove('on');
+      charI = 0;
+      const cur = document.createElement('span');
+      cur.className = 'cursor';
+      bubble.appendChild(cur);
+      function tick() {
+        if (charI < target.length) {
+          cur.insertAdjacentText('beforebegin', target[charI]);
+          charI++;
+          typingTO = setTimeout(tick, 14 + Math.random() * 22);
+        } else {
+          cur.remove();
+          setTimeout(() => reply.classList.add('on'), 600);
+        }
+      }
+      tick();
+    }
+
+    function trigger() {
+      if (typingTO) clearTimeout(typingTO);
+      typeOut();
+    }
+
+    [nameEl, verticalEl, lastEl, toneEl].forEach(el => el.addEventListener('input', trigger));
+
+    // Initial run on first scroll-into-view
+    const io = new IntersectionObserver(([e]) => {
+      if (e && e.isIntersecting) {
+        trigger();
+        io.disconnect();
+      }
+    }, { rootMargin: '-20%' });
+    io.observe(root);
+  }
+
+  /* ============================================================
+     5. DATA MOSAIC — drift counters
+     ============================================================ */
+  function mosaic() {
+    const tiles = document.querySelectorAll('[data-drift]');
+    tiles.forEach(t => {
+      const target = parseInt(t.dataset.drift, 10);
+      const prefix = t.dataset.prefix || '';
+      const suffix = t.dataset.suffix || '';
+      const dur = 2400 + Math.random() * 800;
+      let started = false;
+      const animate = () => {
+        const t0 = performance.now();
+        const tick = (now) => {
+          const p = Math.min(1, (now - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          t.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+          else if (!reduced) {
+            // Keep drifting up slowly
+            setInterval(() => {
+              const cur = parseInt(t.textContent.replace(/\D/g, ''), 10) || target;
+              const inc = Math.max(1, Math.floor(cur * 0.0008));
+              t.textContent = prefix + (cur + inc).toLocaleString() + suffix;
+            }, 5000 + Math.random() * 3000);
+          }
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver(([e]) => {
+        if (e && e.isIntersecting && !started) { started = true; animate(); io.disconnect(); }
+      }, { rootMargin: '-15%' });
+      io.observe(t);
+    });
+  }
+
+  /* ============================================================
+     6. CURVED SECTION DIVIDERS — auto inject
+     ============================================================ */
+  function curveDividers() {
+    // Auto-inject animated curves between adjacent sections of different bg
+    const sections = Array.from(document.querySelectorAll(
+      '.section, .idea, .v-block, .editorial, .cta-band, .hero-cine'
+    ));
+    function bgFor(el) {
+      const cs = getComputedStyle(el);
+      const c = cs.backgroundColor;
+      // Walk up if transparent
+      if (c === 'rgba(0, 0, 0, 0)' || c === 'transparent') {
+        if (el.classList.contains('section--white')) return '#FFFFFF';
+        if (el.classList.contains('section--soft')) return '#F5F5F7';
+        if (el.classList.contains('idea--dark')) return '#1A1915';
+        if (el.classList.contains('idea--soft')) return '#F5F5F7';
+        if (el.classList.contains('idea--white')) return '#FFFFFF';
+        if (el.classList.contains('cta-band')) return '#1A1915';
+        if (el.classList.contains('v-dent')) return '#EBE3D5';
+        if (el.classList.contains('v-physio')) return '#E9D9CB';
+        if (el.classList.contains('v-opto')) return '#D8DDE6';
+        if (el.classList.contains('editorial')) return '#0F0E0B';
+        return '#FFFFFF';
+      }
+      return c;
+    }
+    function darken(c) { return c; }
+
+    for (let i = 0; i < sections.length - 1; i++) {
+      const a = sections[i];
+      const b = sections[i + 1];
+      const colorA = bgFor(a);
+      const colorB = bgFor(b);
+      if (colorA === colorB) continue;
+
+      const curve = document.createElement('div');
+      curve.className = 'section-curve';
+      curve.style.background = colorA;
+      curve.innerHTML = `
+        <svg viewBox="0 0 1200 90" preserveAspectRatio="none">
+          <path class="sweep-fill" d="M0,90 C200,20 1000,20 1200,90 L1200,90 L0,90 Z" fill="${colorB}"/>
+          <path class="sweep-path" d="M0,90 C200,20 1000,20 1200,90"
+                fill="none" stroke="${colorB}" stroke-width="2" stroke-opacity=".4"/>
+        </svg>
+      `;
+      a.parentNode.insertBefore(curve, b);
+    }
+
+    // Animate in on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.section-curve').forEach(c => io.observe(c));
+  }
+
+  /* PARALLAX EDITORIAL PHOTOS */
+  function parallaxPhotos() {
+    if (reduced) return;
+    const els = document.querySelectorAll('.editorial img, .photo-strip .ps img');
+    if (!els.length) return;
+    let ticking = false;
+    function update() {
+      const vh = window.innerHeight;
+      els.forEach(img => {
+        const wrap = img.parentElement;
+        const r = wrap.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const progress = (r.top + r.height / 2 - vh / 2) / vh;
+        const shift = -progress * 60;
+        img.style.transform = `translateY(${shift}px) scale(1.05)`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  }
+
+  /* MODAL PRESS FEEDBACK */
+  function modalPress() {
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('[data-start-now]');
+      if (!t) return;
+      t.classList.add('firing');
+      setTimeout(() => t.classList.remove('firing'), 180);
+    }, true);
+  }
+
+  
+
+  /* ============================================================
+     ROI CALCULATOR
+     ============================================================ */
+  function roiCalc() {
+    const root = document.querySelector('[data-roi]');
+    if (!root) return;
+    const verticalBtns = root.querySelectorAll('[data-roi-vertical] button');
+    const patientsEl = root.querySelector('[data-roi-patients]');
+    const valueEl = root.querySelector('[data-roi-value]');
+    const patientsOut = root.querySelector('[data-roi-patients-out]');
+    const valueOut = root.querySelector('[data-roi-value-out]');
+    const monthlyOut = root.querySelector('[data-roi-monthly]');
+    const bookingsOut = root.querySelector('[data-roi-bookings]');
+    const annualOut = root.querySelector('[data-roi-annual]');
+    const costOut = root.querySelector('[data-roi-cost]');
+    const netOut = root.querySelector('[data-roi-net]');
+
+    const cost = { dental: 1799, physio: 1799, opto: 1799 };
+    const rate = {
+      dental: { overdue: 0.27, convert: 0.12 },
+      physio: { overdue: 0.35, convert: 0.10 },
+      opto:   { overdue: 0.42, convert: 0.14 },
+    };
+
+    let currentVertical = 'dental';
+
+    function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+    function fmtN(n) { return Math.round(n).toLocaleString(); }
+
+    function recompute() {
+      const patients = parseInt(patientsEl.value, 10);
+      const value = parseInt(valueEl.value, 10);
+      const r = rate[currentVertical];
+      const monthlyBookings = patients * r.overdue * r.convert / 12;
+      const monthlyRev = monthlyBookings * value;
+      const monthCost = cost[currentVertical];
+      const annual = monthlyRev * 12;
+      const net = Math.max(monthlyRev - monthCost, 0);
+
+      patientsOut.textContent = fmtN(patients);
+      valueOut.textContent = fmt(value);
+      monthlyOut.textContent = fmt(monthlyRev);
+      bookingsOut.textContent = fmtN(monthlyBookings);
+      annualOut.textContent = fmt(annual);
+      if (costOut) costOut.textContent = '−$ ' + monthCost.toLocaleString() + '/mo';
+      if (netOut) netOut.textContent = fmt(net) + '/mo';
+    }
+
+    verticalBtns.forEach(b => b.addEventListener('click', () => {
+      verticalBtns.forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+      currentVertical = b.dataset.v;
+      recompute();
+    }));
+
+    [patientsEl, valueEl].forEach(el => el.addEventListener('input', recompute));
+    recompute();
+  }
+
+
+  /* ============================================================
+     BOOT
+     ============================================================ */
+  function boot() {
+    buildCalHero();
+    scrollZoomHero();
+    magneticBtns();
+    composer();
+    mosaic();
+    curveDividers();
+    parallaxPhotos();
+    modalPress();
+    roiCalc();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+</script>
+<script>
+(function(){try{window.parent.postMessage({__recallq_route:"home"},'*');}catch(e){}
+const F2R={"index.html":"home","dentistry.html":"dentistry","physio.html":"physio","optometry.html":"optometry","how-it-works.html":"how","pricing.html":"pricing","about.html":"about","legal/index.html":"legal","legal/privacy.html":"privacy","legal/terms.html":"terms","legal/dpa.html":"dpa"};
+document.addEventListener('click',function(e){const a=e.target.closest&&e.target.closest('a');if(!a)return;const href=a.getAttribute('href');if(!href)return;if(/^(mailto:|tel:|https?:)/i.test(href))return;if(href.startsWith('#'))return;let n=href;if(n.startsWith('./'))n=n.slice(2);if(n.startsWith('../'))n=n.slice(3);const q=n.indexOf('?');if(q>=0)n=n.slice(0,q);const hi=n.indexOf('#');let path=hi>=0?n.slice(0,hi):n;let anc=hi>=0?n.slice(hi):'';if(F2R[path]){e.preventDefault();window.parent.postMessage({__recallq_nav:F2R[path],anchor:anc},'*');return;}if(path.endsWith('.html')){const just=path.split('/').pop();if(F2R['legal/'+just]){e.preventDefault();window.parent.postMessage({__recallq_nav:F2R['legal/'+just],anchor:anc},'*');return;}if(F2R[just]){e.preventDefault();window.parent.postMessage({__recallq_nav:F2R[just],anchor:anc},'*');return;}}},true);})();
+</script></body>
 </html>
