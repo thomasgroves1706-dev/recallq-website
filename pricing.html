@@ -707,8 +707,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     <!-- Billing cycle toggle -->
     <div style="display:flex;justify-content:center;margin-bottom:48px;" data-anim="fade-up">
       <div style="display:inline-flex;background:var(--bg-soft);border-radius:980px;padding:4px;gap:2px;" role="group" aria-label="Billing frequency">
-        <button class="billing-tog" data-tog="monthly" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;">Monthly</button>
-        <button class="billing-tog" data-tog="annual" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink-3);cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:8px;">Annual <span style="background:#3FBF73;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:980px;white-space:nowrap;">Save 1.5 months</span></button>
+        <button class="billing-tog" data-tog="monthly" aria-pressed="true" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;">Monthly</button>
+        <button class="billing-tog" data-tog="annual" aria-pressed="false" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink-3);cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:8px;">Annual <span style="background:#3FBF73;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:980px;white-space:nowrap;">Save 1.5 months</span></button>
       </div>
     </div>
 
@@ -720,7 +720,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <div><span class="amount price-val" data-monthly="$1,000" data-annual="$875">$1,000</span><span class="per">/month</span></div>
         <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $10,500/year</span></div>
         <ul>
-          <li>Up to 500 active patients</li>
+          <li><strong>Up to 500 active patients</strong></li>
           <li><strong>Email recall messages</strong></li>
           <li>Standard templates</li>
           <li>Email support</li>
@@ -742,7 +742,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <li><strong>AI-personalised messages</strong></li>
           <li>Two-way replies with booking intent classification</li>
           <li>Priority support</li>
-          <li>Calendly integration</li>
+          <li>Online booking integration</li>
         </ul>
         <a class="btn btn--ghost btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
         <p class="fine" style="text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
@@ -776,7 +776,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section">
   <div class="container">
     <blockquote data-anim="fade-up" style="max-width:640px;margin:0 auto;border-left:3px solid var(--periwinkle-dark);padding-left:24px;color:var(--text-primary);font-size:18px;font-weight:500;line-height:1.55;">
-      Across dental, physio, and optometry, the average RecallQ practice recovers $1,200–$20,000 in month one. Our Growth plan costs $1,799. The maths is the maths.
+      Across dental, physio, and optometry, a typical practice can recover $1,200–$20,000 in the first month. Our Growth plan costs $1,799. The maths is the maths.
     </blockquote>
   </div>
 </section>
@@ -808,14 +808,13 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 /* Billing cycle toggle — monthly vs annual (annual = monthly × 10.5, per-month equivalent shown) */
 (function () {
   'use strict';
-  var isAnnual = false;
 
   function setMode(annual) {
-    isAnnual = annual;
     document.querySelectorAll('.billing-tog').forEach(function (btn) {
       var active = annual ? btn.dataset.tog === 'annual' : btn.dataset.tog === 'monthly';
       btn.style.background = active ? 'var(--ink)' : 'transparent';
       btn.style.color = active ? '#fff' : 'var(--ink-3)';
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
     document.querySelectorAll('.price-val').forEach(function (el) {
       el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
