@@ -1107,30 +1107,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   }
 
   /* ============================================================
-     LIVE COUNTER STRIP (optional — inject if [data-live-counter])
-     ============================================================ */
-  function liveCounter() {
-    const el = document.querySelector('[data-live-counter]');
-    if (!el) return;
-    // seed from a pseudo-random base that increments every second
-    const startBase = 2384000; // cumulative AUD recovered this month
-    const startTime = Date.now();
-    const amountEl = el.querySelector('[data-lc-amount]');
-    const bookingsEl = el.querySelector('[data-lc-bookings]');
-
-    function tick() {
-      const elapsed = (Date.now() - startTime) / 1000;
-      // ~$47/sec steady tick + noise
-      const amt = startBase + Math.floor(elapsed * 47) + Math.floor(Math.random() * 3);
-      const bookings = 11842 + Math.floor(elapsed * 0.19);
-      if (amountEl) amountEl.textContent = '$' + amt.toLocaleString();
-      if (bookingsEl) bookingsEl.textContent = bookings.toLocaleString();
-    }
-    tick();
-    setInterval(tick, reduced ? 5000 : 900);
-  }
-
-  /* ============================================================
      CTA pulse beacon — adds a subtle pulsing ring to primary CTAs
      ============================================================ */
   function addCTAPulse() {
@@ -1186,7 +1162,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   function boot() {
     injectKeyframes();
     addCTAPulse();
-    liveCounter();
     enhanceROI();
   }
 
