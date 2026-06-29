@@ -2113,7 +2113,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   </div>
 </section>
 
-<!-- LIVE STATS — full mosaic, dark -->
+<!-- MOSAIC STATS — illustrative, dark -->
 <section class="idea idea--dark">
   <div class="container">
     <p class="eyebrow" data-anim="fade-up" style="color: var(--accent-soft);">Illustrative — typical practice</p>
@@ -2123,7 +2123,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
       <div class="mtile mt-c4 mt-r2 hi">
         <div class="l">Recovered / year (example 1,500-patient practice)</div>
         <div>
-          <div class="n huge" data-drift="48600" data-prefix="$">$0</div>
+          <div class="n huge" data-drift="60000" data-prefix="$">$0</div>
         </div>
         <svg class="spark" viewBox="0 0 300 30" preserveAspectRatio="none">
           <path class="area" d="M0,28 L20,25 L40,22 L60,24 L80,18 L100,20 L120,14 L140,16 L160,10 L180,12 L200,8 L220,6 L240,5 L260,3 L280,2 L300,1 L300,30 L0,30 Z"/>
@@ -2132,7 +2132,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
       </div>
       <div class="mtile mt-c2">
         <div class="l">Bookings / year (example)</div>
-        <div class="n big" data-drift="420">0</div>
+        <div class="n big" data-drift="300">0</div>
       </div>
       <div class="mtile mt-c2">
         <div class="l">Typical reply rate</div>
@@ -2143,8 +2143,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <div class="n big">&lt; 10 min</div>
       </div>
       <div class="mtile mt-c2">
-        <div class="l">Avg annual recovery (example)</div>
-        <div class="n">$48,600</div>
+        <div class="l">Recovered / year — example practice</div>
+        <div class="n">$60,000</div>
       </div>
       <div class="mtile mt-c2">
         <div class="l">Time to first booking</div>
@@ -3017,9 +3017,9 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 
     const cost = { dental: 1799, physio: 1799, opto: 1799 };
     const rate = {
-      dental: { overdue: 0.27, convert: 0.12 },
-      physio: { overdue: 0.35, convert: 0.10 },
-      opto:   { overdue: 0.42, convert: 0.14 },
+      dental: { overdue: 0.40, convert: 0.50 },
+      physio: { overdue: 0.45, convert: 0.45 },
+      opto:   { overdue: 0.45, convert: 0.50 },
     };
 
     let currentVertical = 'dental';
