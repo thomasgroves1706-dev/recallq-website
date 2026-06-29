@@ -1347,8 +1347,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     document.addEventListener('mouseout',onMove);
     function trigger(){
       sessionStorage.setItem('rqa-exit','1');
-      const btn=document.querySelector('[data-start-now]');
-      if(btn) btn.click();
+      window.location.href='https://app.recallq.com.au/signup';
     }
   }
 
@@ -1357,7 +1356,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     const roi=document.getElementById('roiMonth'); if(!roi) return;
     if(sessionStorage.getItem('rqa-sroi-dismissed')) return;
     const bar=document.createElement('div'); bar.className='rqa-sticky-roi';
-    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="#" data-start-now>Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
+    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="https://app.recallq.com.au/signup">Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
     document.body.appendChild(bar);
     const amt=bar.querySelector('#rqa-sroi-amt');
     function sync(){ amt.textContent=roi.textContent; }

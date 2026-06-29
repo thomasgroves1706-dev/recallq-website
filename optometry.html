@@ -676,7 +676,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     <p class="eyebrow" data-anim="fade-up" style="color:#5A6470;">RECALLQ FOR OPTOMETRY PRACTICES</p>
     <h1 data-anim="fade-up">The 2-year eye exam is the most missed appointment in Australian healthcare. OptometryIQ fixes that.</h1>
     <p class="lead center" data-anim="fade-up">60% of Australians don't use their full optical rebate before it resets. OptometryIQ brings them back — and helps them unlock their allowance before it expires.</p>
-    <div class="ctas" data-anim="fade-up"><button class="btn btn--primary btn--lg" data-start-now data-vertical="Optometry">Start now</button></div>
+    <div class="ctas" data-anim="fade-up"><a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup?vertical=optometry&utm_source=site&utm_campaign=optometry">Recover patients now →</a></div>
     <p class="trust-strip" data-anim="fade-up"><span>Built for optometry</span><span class="sep">·</span><span>AU data residency</span><span class="sep">·</span><span>Live in 20 minutes</span></p>
   </div>
 </section>
@@ -707,7 +707,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section section--dark">
   <div class="container text-center">
     <p data-anim="fade-up" style="max-width:620px;margin:0 auto 24px;font-size:18px;line-height:1.6;">A 2,000-patient optometry practice. 900 patients overdue. Recovery rate yields 63 bookings/month × $340 = <strong style="color:var(--periwinkle);">$21,400/month recovered</strong>. OptometryIQ Growth plan: $ 1,799/month. Net: <strong style="color:var(--periwinkle);">$19,601/month</strong>.</p>
-    <button class="btn btn--primary btn--lg" data-start-now data-vertical="Optometry">Start now — run this on my numbers</button>
+    <a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup?vertical=optometry&utm_source=site&utm_campaign=optometry">Recover patients now →</a>
   </div>
 </section>
 
@@ -729,7 +729,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   <div class="container" data-stagger>
     <h2>Ready to see OptometryIQ on your patient data?</h2>
     <p>15 minutes. Your real numbers. No credit card.</p>
-    <div><button class="btn btn--primary btn--lg" data-start-now data-vertical="Optometry">Start now</button></div>
+    <div><a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup?vertical=optometry&utm_source=site&utm_campaign=optometry">Recover patients now →</a></div>
   </div>
 </section>
 
@@ -1372,8 +1372,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     document.addEventListener('mouseout',onMove);
     function trigger(){
       sessionStorage.setItem('rqa-exit','1');
-      const btn=document.querySelector('[data-start-now]');
-      if(btn) btn.click();
+      window.location.href='https://app.recallq.com.au/signup?vertical=optometry&utm_source=site&utm_campaign=optometry';
     }
   }
 
@@ -1382,7 +1381,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     const roi=document.getElementById('roiMonth'); if(!roi) return;
     if(sessionStorage.getItem('rqa-sroi-dismissed')) return;
     const bar=document.createElement('div'); bar.className='rqa-sticky-roi';
-    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="#" data-start-now>Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
+    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="https://app.recallq.com.au/signup?vertical=optometry&utm_source=site&utm_campaign=optometry">Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
     document.body.appendChild(bar);
     const amt=bar.querySelector('#rqa-sroi-amt');
     function sync(){ amt.textContent=roi.textContent; }
