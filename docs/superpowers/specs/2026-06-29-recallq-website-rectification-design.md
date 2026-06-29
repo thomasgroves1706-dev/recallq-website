@@ -44,7 +44,7 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 | ROI calculator | **Build** the real interactive calculator from the existing unused scaffolding; point "Run this…" CTAs at it; fix both `#roi-calc` dead-ends. |
 | Primary CTA copy | **"Recover patients now →"** (outcome-led). Compact variant in the tight header. Reassurance line under each primary CTA. |
 | Button animation | **Maximum polish:** hover lift + soft shadow + arrow nudge + scale-on-press site-wide; plus magnetic cursor-pull AND a periodic sheen sweep on the hero primary CTA. All disabled under `prefers-reduced-motion`; pointer/desktop-guarded. |
-| Footer contact email | **Assumption:** `hello@recallq.com.au` (confirm; legal pages already use `privacy@`/`legal@`/`security@`). |
+| Footer contact email | `recallq@gmail.com` (interim; legal pages keep their `privacy@`/`legal@`/`security@` addresses). |
 
 ## Work breakdown (phased)
 
@@ -61,7 +61,7 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 - Define the 4 missing `:root` tokens (one shared edit → fixes money-emphasis on every page incl. inline usages). Map: `--periwinkle` → accent `#5876C4`; `--periwinkle-dark` → darker accent `#3F5BA8`; `--text-primary` → `--ink #1A1915`; `--text-muted` → `--ink-3 #6E6C66`.
 - Pricing: `$ 1,799`→`$1,799`; name Growth; Pro = featured "Most popular"; monthly/annual toggle (annual = 1.5 months free, ≈12.5%); make tier differences legible (progressive "Everything in X, plus…" lists, emphasised per-tier differentiator, compact comparison).
 - **Site-wide card cleanup pass:** normalise informational-card spacing/padding, alignment, muted-caption colour (resolved by token defs above), border/elevation consistency, and hover states across home + vertical + legal-hub cards.
-- Fix footer `mailto:` (`hello@recallq.com.au`) + about.html's second blank mailto; define `.hero--short` (kills pricing void); reduce scroll-reveal animation 0.8–0.9s → ~0.45s; guard `.tile:hover` with `@media (hover: hover)`; apply active-nav state from `data-active`; button-animation polish (see locked decision).
+- Fix footer `mailto:` (`recallq@gmail.com`) + about.html's second blank mailto; define `.hero--short` (kills pricing void); reduce scroll-reveal animation 0.8–0.9s → ~0.45s; guard `.tile:hover` with `@media (hover: hover)`; apply active-nav state from `data-active`; button-animation polish (see locked decision).
 
 ### Phase 4 — Performance / SEO / a11y / cleanup
 - Fonts: drop `@import`; add `<link rel="preconnect">` + stylesheet `<link>` in `<head>`; reduce CLS.
@@ -91,6 +91,8 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 - New brand/visual identity — the existing Apple-style design system is kept and corrected, not replaced.
 
 ## Open items to confirm
-1. Footer contact email = `hello@recallq.com.au`? (assumed; flag if wrong).
+1. ~~Footer contact email~~ — **resolved: `recallq@gmail.com` (interim)**.
 2. ~~Annual discount~~ — **resolved: 1.5 months free (≈12.5%)**.
 3. ~~Cleanup~~ — **resolved: approved, with a full backup zip taken first**.
+
+All open items resolved — spec is final.
