@@ -588,6 +588,25 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .price-card li { font-size: 14px; color: var(--ink-3); display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
 .price-card li::before { content: "✓"; color: var(--accent); font-weight: 600; flex-shrink: 0; }
 
+/* Pricing — plan name, featured scale, strong highlight, annual note */
+.price-card .price-plan-name {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #fff;
+  display: block;
+  margin-top: 8px;
+}
+.price-card li strong { color: var(--ink); }
+.price-card.featured li strong { color: #fff; }
+.price-card.featured li::before { color: var(--accent-soft); }
+.card.price-card.featured { transform: scale(1.03); }
+.card.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+@media (prefers-reduced-motion: reduce) {
+  .card.price-card.featured,
+  .card.price-card.featured:hover { transform: none; }
+}
+
 /* Focus ring */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
@@ -682,50 +701,73 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   </div>
 </section>
 
-<section class="section section--white">
+<section class="section section--white" id="pricing-cards">
   <div class="container">
+
+    <!-- Billing cycle toggle -->
+    <div style="display:flex;justify-content:center;margin-bottom:48px;" data-anim="fade-up">
+      <div style="display:inline-flex;background:var(--bg-soft);border-radius:980px;padding:4px;gap:2px;" role="group" aria-label="Billing frequency">
+        <button class="billing-tog" data-tog="monthly" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;">Monthly</button>
+        <button class="billing-tog" data-tog="annual" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink-3);cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:8px;">Annual <span style="background:#3FBF73;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:980px;white-space:nowrap;">Save 1.5 months</span></button>
+      </div>
+    </div>
+
     <div class="grid-3" data-stagger>
+
+      <!-- STARTER -->
       <div class="card price-card">
         <span class="badge">Starter</span>
-        <div><span class="amount">$1,000</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
+        <div><span class="amount price-val" data-monthly="$1,000" data-annual="$875">$1,000</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $10,500/year</span></div>
         <ul>
           <li>Up to 500 active patients</li>
-          <li>Email recall messages</li>
+          <li><strong>Email recall messages</strong></li>
           <li>Standard templates</li>
           <li>Email support</li>
           <li>AU data residency</li>
         </ul>
-        <button class="btn btn--ghost btn--full" data-start-now>Start now</button>
+        <a class="btn btn--ghost btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p class="fine" style="text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
-      <div class="card price-card featured">
-        <span class="badge">Most popular</span>
-        <div><span class="amount">$ 1,799</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
-        <ul>
-          <li>Up to 2,000 active patients</li>
-          <li>SMS + email recall messages</li>
-          <li>AI-personalised messages</li>
+
+      <!-- GROWTH -->
+      <div class="card price-card">
+        <span class="badge">Growth</span>
+        <div><span class="amount price-val" data-monthly="$1,799" data-annual="$1,574">$1,799</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $18,890/year</span></div>
+        <p style="font-size:13px;color:var(--ink-4);font-weight:500;margin:20px 0 0;">Everything in Starter, plus:</p>
+        <ul style="margin-top:8px;">
+          <li><strong>Up to 2,000 active patients</strong></li>
+          <li><strong>SMS + email recall messages</strong></li>
+          <li><strong>AI-personalised messages</strong></li>
           <li>Two-way replies with booking intent classification</li>
           <li>Priority support</li>
           <li>Calendly integration</li>
         </ul>
-        <button class="btn btn--primary btn--full" data-start-now>Start now</button>
+        <a class="btn btn--ghost btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p class="fine" style="text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
-      <div class="card price-card">
-        <span class="badge">Pro</span>
-        <div><span class="amount">$2,000</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
-        <ul>
-          <li>Unlimited patients</li>
-          <li>Everything in Growth</li>
-          <li>WhatsApp messaging</li>
-          <li>Conversational booking agent</li>
+
+      <!-- PRO — featured / Most popular -->
+      <div class="card price-card featured">
+        <div style="margin-bottom:18px;">
+          <span class="badge">Most popular</span>
+          <span class="price-plan-name">Pro</span>
+        </div>
+        <div><span class="amount price-val" data-monthly="$2,000" data-annual="$1,750">$2,000</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $21,000/year</span></div>
+        <p style="font-size:13px;color:rgba(255,255,255,.45);font-weight:500;margin:20px 0 0;">Everything in Growth, plus:</p>
+        <ul style="margin-top:8px;">
+          <li><strong>Unlimited patients</strong></li>
+          <li><strong>WhatsApp messaging</strong></li>
+          <li><strong>Conversational booking agent</strong></li>
           <li>Direct PMS integrations</li>
           <li>Dedicated success manager</li>
         </ul>
-        <button class="btn btn--ghost btn--full" data-start-now>Start now</button>
+        <a class="btn btn--primary btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
+
     </div>
     <p class="text-center small" data-anim="fade-up" style="margin-top:24px;">Multi-location or group practice? Contact us for Enterprise pricing.</p>
   </div>
@@ -746,7 +788,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
       <details class="faq-item" open><summary>How long is the minimum contract?</summary><p class="a">Month-to-month. Cancel anytime.</p></details>
       <details class="faq-item"><summary>What happens to my data if I cancel?</summary><p class="a">Export your data as CSV within 30 days; then it is permanently deleted.</p></details>
       <details class="faq-item"><summary>What practice management systems do you support?</summary><p class="a">Any system that exports CSV, including most major AU practice management systems.</p></details>
-      <details class="faq-item"><summary>Do I need a credit card to start?</summary><p class="a">No. Click Start now, fill the form, and we run a recall audit on your patient list first.</p></details>
+      <details class="faq-item"><summary>Do I need a credit card to start?</summary><p class="a">No credit card needed. Create your account, import a patient CSV, and you're live in about 20 minutes. No contracts, no setup calls.</p></details>
       <details class="faq-item"><summary>How fast can I go live?</summary><p class="a">Under 20 minutes from CSV upload.</p></details>
       <details class="faq-item"><summary>What about GST?</summary><p class="a">GST is included in the price — no extra charge at checkout.</p></details>
       <details class="faq-item"><summary>Can I run multiple verticals?</summary><p class="a">Yes — ask us about combined pricing for multi-vertical groups.</p></details>
@@ -762,6 +804,40 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   </div>
 </section>
 
+<script>
+/* Billing cycle toggle — monthly vs annual (annual = monthly × 10.5, per-month equivalent shown) */
+(function () {
+  'use strict';
+  var isAnnual = false;
+
+  function setMode(annual) {
+    isAnnual = annual;
+    document.querySelectorAll('.billing-tog').forEach(function (btn) {
+      var active = annual ? btn.dataset.tog === 'annual' : btn.dataset.tog === 'monthly';
+      btn.style.background = active ? 'var(--ink)' : 'transparent';
+      btn.style.color = active ? '#fff' : 'var(--ink-3)';
+    });
+    document.querySelectorAll('.price-val').forEach(function (el) {
+      el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
+    });
+    document.querySelectorAll('.annual-note').forEach(function (el) {
+      el.style.display = annual ? 'inline' : 'none';
+    });
+  }
+
+  function init() {
+    document.querySelectorAll('.billing-tog').forEach(function (btn) {
+      btn.addEventListener('click', function () { setMode(btn.dataset.tog === 'annual'); });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 <script>
 /* RecallQ — animation helpers (vanilla, framer-motion-free) */
 (function () {
