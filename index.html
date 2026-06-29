@@ -1798,6 +1798,34 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         </div>
       </div>
     </div>
+
+    <h3 class="text-center" style="margin-top:64px;">Run the numbers on your own list</h3>
+
+    <div class="roi-calc" data-roi data-anim="fade-up">
+      <div class="roi-inputs">
+        <div class="roi-segment" data-roi-vertical role="group" aria-label="Practice type">
+          <button type="button" data-v="dental" class="on">Dental</button>
+          <button type="button" data-v="physio">Physio</button>
+          <button type="button" data-v="opto">Optometry</button>
+        </div>
+        <div class="roi-slider-wrap">
+          <label for="roiPatients">Active patients: <span class="slider-val" data-roi-patients-out>1,500</span></label>
+          <input id="roiPatients" type="range" min="200" max="6000" step="100" value="1500" data-roi-patients>
+        </div>
+        <div class="roi-slider-wrap">
+          <label for="roiValue">Average visit value: <span class="slider-val" data-roi-value-out>$200</span></label>
+          <input id="roiValue" type="range" min="80" max="600" step="10" value="200" data-roi-value>
+        </div>
+      </div>
+      <div class="roi-output">
+        <div class="roi-out">
+          <div class="box"><div class="n" data-roi-bookings>0</div><div class="l">Bookings / month</div></div>
+          <div class="box"><div class="n" data-roi-monthly>$0</div><div class="l">Recovered / month</div></div>
+          <div class="box"><div class="n" data-roi-annual>$0</div><div class="l">Recovered / year</div></div>
+        </div>
+        <p class="fine" style="margin-top:16px;">Illustrative estimate based on typical overdue and re-booking rates. Your results will vary.</p>
+      </div>
+    </div>
   </div>
 </section>
 
