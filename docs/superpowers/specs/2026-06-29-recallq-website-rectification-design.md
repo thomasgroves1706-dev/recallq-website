@@ -38,7 +38,8 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 | Sign-up flow | All CTAs link to `https://app.recallq.com.au/signup` (+ `?vertical=…&utm_source=site&utm_campaign=…` on vertical pages). Modal removed. |
 | Fabricated stats | Reframe as **clearly illustrative** ("example / typical practice"); remove "right now / live" language and auto-incrementing counters; remove fake booking toasts. |
 | Testimonials | Replace invented patient quotes with honest framing (e.g. founding-practice program) — no fabricated names. |
-| Pricing | Presentation fixes **+ monthly/annual toggle** (annual ≈ 2 months free). Make **Pro ($2,000) the "Most popular"** featured card (dark + badge + subtle scale); Starter & Growth flank it; keep ascending price order. Fix `$ 1,799` typo; name the **Growth** plan; "no credit card · cancel anytime" on each card. |
+| Pricing | Presentation fixes **+ monthly/annual toggle** (annual = **1.5 months free**, ≈12.5%). Make **Pro ($2,000) the "Most popular"** featured card (dark + badge + subtle scale); Starter & Growth flank it; keep ascending price order. Fix `$ 1,799` typo; name the **Growth** plan; "no credit card · cancel anytime" on each card. **Make tier differences legible:** consistent "Everything in [lower tier], plus…" progression, visually emphasise each tier's key differentiator, and add a compact feature-comparison so a buyer instantly sees what each plan adds. Feature content sourced from the existing `pricing.html` lists (no invented features). |
+| Info cards | **Site-wide consistent card-cleanup pass** across every informational card: spacing, alignment, muted-caption colour (fixed via token defs), borders, and hover states. |
 | Legal | Add ABN **84 202 664 713**; redraft the overseas-transfer/APP 8 wording to match the disclosed sub-processors; add meta descriptions; fix flat "Read →" links. *(Lawyer sign-off still recommended before relying on the redraft.)* |
 | ROI calculator | **Build** the real interactive calculator from the existing unused scaffolding; point "Run this…" CTAs at it; fix both `#roi-calc` dead-ends. |
 | Primary CTA copy | **"Recover patients now →"** (outcome-led). Compact variant in the tight header. Reassurance line under each primary CTA. |
@@ -58,19 +59,20 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 
 ### Phase 3 — Visual / CSS correctness
 - Define the 4 missing `:root` tokens (one shared edit → fixes money-emphasis on every page incl. inline usages). Map: `--periwinkle` → accent `#5876C4`; `--periwinkle-dark` → darker accent `#3F5BA8`; `--text-primary` → `--ink #1A1915`; `--text-muted` → `--ink-3 #6E6C66`.
-- Pricing: `$ 1,799`→`$1,799`; name Growth; Pro = featured "Most popular"; monthly/annual toggle.
+- Pricing: `$ 1,799`→`$1,799`; name Growth; Pro = featured "Most popular"; monthly/annual toggle (annual = 1.5 months free, ≈12.5%); make tier differences legible (progressive "Everything in X, plus…" lists, emphasised per-tier differentiator, compact comparison).
+- **Site-wide card cleanup pass:** normalise informational-card spacing/padding, alignment, muted-caption colour (resolved by token defs above), border/elevation consistency, and hover states across home + vertical + legal-hub cards.
 - Fix footer `mailto:` (`hello@recallq.com.au`) + about.html's second blank mailto; define `.hero--short` (kills pricing void); reduce scroll-reveal animation 0.8–0.9s → ~0.45s; guard `.tile:hover` with `@media (hover: hover)`; apply active-nav state from `data-active`; button-animation polish (see locked decision).
 
 ### Phase 4 — Performance / SEO / a11y / cleanup
 - Fonts: drop `@import`; add `<link rel="preconnect">` + stylesheet `<link>` in `<head>`; reduce CLS.
 - Per-page OG + Twitter Card + canonical + JSON-LD (Organization on home, FAQPage on pricing). Handle the 3 minified-head legal pages separately.
 - `loading="lazy"` on non-hero images; add favicon (logo asset available); toggle `aria-expanded` on Solutions dropdown + hamburger; disambiguate repeated CTA `aria-label`s.
-- Sync the 2 billing pages (via `assets/partials.js`). Optional cleanup: delete dead `assets/*` (unused subset), `RecallQ-final website.html`, and the stray `recall finished website.zip`.
+- Sync the 2 billing pages (via `assets/partials.js`). Cleanup (**backup first**): archive the current site to a timestamped zip outside the repo before deleting dead `assets/*` (unused subset), `RecallQ-final website.html`, and the stray `recall finished website.zip`.
 
 ## Per-file impact (summary)
 - **Shared (all 11 pages, scripted, byte-identical):** `:root` token defs, footer mailto, modal→portal handler, animation timing, tile-hover guard, active-nav, font `<link>`, `aria-expanded`.
 - **`index.html` only:** ROI calculator build, illustrative-stats reframe, fake-toast removal, testimonial replacement, home-specific CSS (`.hero--short`, button polish), OG/JSON-LD.
-- **`pricing.html`:** typo, Growth naming, Pro-featured, annual toggle, reassurance, FAQ rewrite (self-serve), OG/FAQPage JSON-LD.
+- **`pricing.html`:** typo, Growth naming, Pro-featured, annual toggle, reassurance, **tier-differentiation redesign (progressive feature lists + compact comparison)**, FAQ rewrite (self-serve), OG/FAQPage JSON-LD.
 - **`how-it-works.html`:** mid-page CTA, "Calendly for MVP" copy removal, OG.
 - **`dentistry/physio/optometry.html`:** CTA links (+vertical UTM), illustrative ROI numbers, fix optometry math (63×340=21,420), `$ 1,799` typo, OG.
 - **`about.html`:** second blank mailto, OG.
@@ -89,6 +91,6 @@ Success = a visitor can move landing → value → proof → pricing → sign-up
 - New brand/visual identity — the existing Apple-style design system is kept and corrected, not replaced.
 
 ## Open items to confirm
-1. Footer contact email = `hello@recallq.com.au`? (Y/N)
-2. Annual discount magnitude (default: ~2 months free ≈ 17%).
-3. OK to delete dead assets / `RecallQ-final website.html` / stray zip as cleanup, or leave them?
+1. Footer contact email = `hello@recallq.com.au`? (assumed; flag if wrong).
+2. ~~Annual discount~~ — **resolved: 1.5 months free (≈12.5%)**.
+3. ~~Cleanup~~ — **resolved: approved, with a full backup zip taken first**.
