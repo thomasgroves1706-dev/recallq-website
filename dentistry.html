@@ -187,6 +187,15 @@ p  { margin: 0; }
 .btn--full { width: 100%; }
 .btn--invert { background: #fff; color: var(--ink); }
 .btn--invert:hover { background: rgba(255,255,255,.86); }
+/* ---- primary/invert lift & press (Task-12) ---- */
+.btn--primary, .btn--invert { transition: transform .2s var(--ease), box-shadow .2s var(--ease), background-color .25s; }
+@media (hover: hover) { .btn--primary:hover, .btn--invert:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,25,21,.20); } }
+.btn--primary:active, .btn--invert:active { transform: translateY(0) scale(.97); }
+@media (prefers-reduced-motion: reduce) { .btn--primary, .btn--invert { transition: none; } .btn--primary:hover, .btn--invert:hover { transform: none; } }
+/* ---- CTA arrow nudge (Task-12) ---- */
+.cta-arrow { display: inline-block; transition: transform .2s var(--ease); }
+@media (hover: hover) { .btn:hover .cta-arrow { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) { .cta-arrow { transition: none; } }
 
 /* Header hamburger (mobile) */
 .hamb { display: none; margin-left: auto; width: 40px; height: 40px; border-radius: 8px; align-items: center; justify-content: center; }
@@ -1000,6 +1009,13 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     </div>
   `;
   document.body.appendChild(footer);
+
+  // Task-12: wrap trailing → in .btn CTAs for arrow nudge animation
+  document.querySelectorAll('a.btn, button.btn').forEach(function(b){
+    if (/→\s*$/.test(b.textContent) && !b.querySelector('.cta-arrow')) {
+      b.innerHTML = b.innerHTML.replace(/→(\s*)$/, '<span class="cta-arrow">→</span>$1');
+    }
+  });
 
   /* LivingBackground removed — Apple-style restraint */
 })();
