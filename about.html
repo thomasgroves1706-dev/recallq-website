@@ -206,7 +206,7 @@ p  { margin: 0; }
 @media (hover: hover) { .btn--primary:hover, .btn--invert:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,25,21,.20); } }
 .btn--primary:active, .btn--invert:active { transform: translateY(0) scale(.97); }
 @media (prefers-reduced-motion: reduce) { .btn--primary, .btn--invert { transition: none; } .btn--primary:hover, .btn--invert:hover { transform: none; }
-  .btn--primary:active, .btn--invert:active { transform: none; } }
+  .btn:active { transform: none; } .btn--primary:active, .btn--invert:active { transform: none; } }
 /* ---- CTA arrow nudge (Task-12) ---- */
 .cta-arrow { display: inline-block; transition: transform .2s var(--ease); }
 @media (hover: hover) { .btn:hover .cta-arrow { transform: translateX(4px); } }
@@ -737,7 +737,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section section--white">
   <div class="container text-center" data-anim="fade-up">
     <p style="color:var(--text-primary);font-size:15px;margin-bottom:6px;">RecallQ is co-founded by <strong>Tom</strong> and <strong>Jack</strong>, based in Sydney.</p>
-    <p class="small">We're small, senior, and reachable. <a href="mailto:" style="color:var(--periwinkle-dark);"></a></p>
+    <p class="small">We're small, senior, and reachable. <a href="mailto:recallq@gmail.com" style="color:var(--periwinkle-dark);">recallq@gmail.com</a></p>
   </div>
 </section>
 
@@ -995,7 +995,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <h4>Company &amp; Legal</h4>
           <ul>
             <li><a href="${up}about.html">About</a></li>
-            <li><a href="mailto:">Contact</a></li>
+            <li><a href="mailto:recallq@gmail.com">Contact</a></li>
             <li><a href="${up}legal/privacy.html">Privacy Policy</a></li>
             <li><a href="${up}legal/terms.html">Terms</a></li>
             <li><a href="${up}legal/dpa.html">DPA</a></li>
@@ -1281,19 +1281,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     });
   }
 
-  /* ---------- ExitIntentModal ---------- */
-  function exitIntent(){
-    if(sessionStorage.getItem('rqa-exit')) return;
-    function onMove(e){
-      if(e.clientY<20){ trigger(); document.removeEventListener('mouseout',onMove); }
-    }
-    document.addEventListener('mouseout',onMove);
-    function trigger(){
-      sessionStorage.setItem('rqa-exit','1');
-      window.location.href='https://app.recallq.com.au/signup';
-    }
-  }
-
   /* ---------- StickyROIBar ---------- */
   function stickyROI(){
     const roi=document.getElementById('roiMonth'); if(!roi) return;
@@ -1358,7 +1345,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     particles();
     odometer();
     stickyROI();
-    exitIntent();
     verticalDetect();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
