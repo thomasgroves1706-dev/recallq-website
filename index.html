@@ -4,10 +4,40 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>RecallQ — Bring overdue patients back automatically.</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="description" content="AI patient recall for Australian dental, physio, and optometry practices. Recovered bookings, on autopilot."/>
+<link rel="canonical" href="https://recallq.com.au/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RecallQ">
+<meta property="og:title" content="RecallQ — Bring overdue patients back automatically.">
+<meta property="og:description" content="AI patient recall for Australian dental, physio, and optometry practices. Recovered bookings, on autopilot.">
+<meta property="og:url" content="https://recallq.com.au/">
+<meta property="og:image" content="https://recallq.com.au/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RecallQ — Bring overdue patients back automatically.">
+<meta name="twitter:description" content="AI patient recall for Australian dental, physio, and optometry practices. Recovered bookings, on autopilot.">
+<meta name="twitter:image" content="https://recallq.com.au/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RecallQ",
+  "url": "https://recallq.com.au",
+  "logo": "https://recallq.com.au/assets/og-image.png",
+  "taxID": "ABN 84 202 664 713",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "AU"
+  },
+  "areaServed": "AU",
+  "description": "AI-powered patient recall platform for Australian dental, physiotherapy, and optometry practices. Automates personalised recall messages, classifies patient replies, and recovers overdue bookings on autopilot."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* RecallQ — Apple-style rebuild */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --bg:           #FFFFFF;
@@ -24,6 +54,10 @@
 
   --accent:       #5876C4;
   --accent-soft:  #8AA8E8;
+  --periwinkle:      #5876C4;
+  --periwinkle-dark: #3F5BA8;
+  --text-primary:    #1A1915;
+  --text-muted:      #6E6C66;
 
   /* Verticals (kept, used sparingly as accents) */
   --dent:   #5C5A54;
@@ -109,12 +143,12 @@ p  { margin: 0; }
 /* MOTION */
 [data-anim] { opacity: 0; will-change: opacity, transform; }
 [data-anim].in { opacity: 1; transform: none; }
-[data-anim="fade-up"]     { transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="fade-in"]     { transition: opacity .8s var(--ease); }
-[data-anim="slide-left"]  { transform: translateX(-40px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="slide-right"] { transform: translateX(40px);  transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="scale-up"]    { transform: scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+[data-anim="fade-up"]     { transform: translateY(36px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="fade-in"]     { transition: opacity .4s var(--ease); }
+[data-anim="slide-left"]  { transform: translateX(-40px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="slide-right"] { transform: translateX(40px);  transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="scale-up"]    { transform: scale(.94); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
 [data-stagger].in > * { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   [data-anim], [data-stagger] > * { transition-duration: .01s !important; transform: none !important; }
@@ -145,6 +179,7 @@ p  { margin: 0; }
   transition: color .2s; padding: 4px 0;
 }
 .nav a:hover, .nav button:hover { color: var(--ink); }
+.nav a.is-active { color: var(--ink); font-weight: 600; }
 .nav .nav-dd { position: relative; }
 .nav-dd > button { display: flex; align-items: center; gap: 4px; }
 .nav-dd .chev { width: 6px; height: 6px; border-right: 1.2px solid currentColor; border-bottom: 1.2px solid currentColor; transform: rotate(45deg); display: inline-block; margin-top: -3px; }
@@ -183,6 +218,16 @@ p  { margin: 0; }
 .btn--full { width: 100%; }
 .btn--invert { background: #fff; color: var(--ink); }
 .btn--invert:hover { background: rgba(255,255,255,.86); }
+/* ---- primary/invert lift & press (Task-12) ---- */
+.btn--primary, .btn--invert { transition: transform .2s var(--ease), box-shadow .2s var(--ease), background-color .25s; }
+@media (hover: hover) { .btn--primary:hover, .btn--invert:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,25,21,.20); } }
+.btn--primary:active, .btn--invert:active { transform: translateY(0) scale(.97); }
+@media (prefers-reduced-motion: reduce) { .btn--primary, .btn--invert { transition: none; } .btn--primary:hover, .btn--invert:hover { transform: none; }
+  .btn:active { transform: none; } .btn--primary:active, .btn--invert:active { transform: none; } }
+/* ---- CTA arrow nudge (Task-12) ---- */
+.cta-arrow { display: inline-block; transition: transform .2s var(--ease); }
+@media (hover: hover) { .btn:hover .cta-arrow { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) { .cta-arrow { transition: none; } }
 
 /* Header hamburger (mobile) */
 .hamb { display: none; margin-left: auto; width: 40px; height: 40px; border-radius: 8px; align-items: center; justify-content: center; }
@@ -251,6 +296,7 @@ p  { margin: 0; }
 .hero h1 { max-width: 15ch; margin: 0 auto 28px; }
 .hero .lead { margin: 0 auto 40px; max-width: 620px; }
 .hero .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.hero--short { padding-top: clamp(64px, 8vw, 110px); padding-bottom: clamp(32px, 4vw, 56px); }
 .breadcrumb { font-size: 13px; color: var(--ink-4); margin-bottom: 24px; letter-spacing: -0.005em; }
 
 /* ONE-IDEA sections */
@@ -270,6 +316,7 @@ p  { margin: 0; }
 .tiles-3 { grid-template-columns: repeat(3, 1fr); }
 .tiles-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 900px) { .tiles-2, .tiles-3, .tiles-4 { grid-template-columns: 1fr; } }
+@media (min-width: 600px) and (max-width: 900px) { .tiles-4 { grid-template-columns: repeat(2, 1fr); } }
 
 .tile {
   background: var(--bg-soft);
@@ -281,7 +328,8 @@ p  { margin: 0; }
   display: flex; flex-direction: column; justify-content: flex-end;
   transition: transform .5s var(--ease);
 }
-.tile:hover { transform: translateY(-6px); }
+@media (hover: hover) { .tile:hover { transform: translateY(-6px); } }
+@media (max-width: 900px) { .tile { min-height: auto; } }
 .tile--dark { background: var(--bg-dark); color: #fff; }
 .tile--dark h3 { color: #fff; }
 .tile--dark .tile-body { color: rgba(255,255,255,.7); }
@@ -499,7 +547,7 @@ p  { margin: 0; }
   padding: 28px;
   transition: transform .3s var(--ease);
 }
-.card:hover { transform: translateY(-4px); }
+@media (hover: hover) { .card:hover { transform: translateY(-4px); } }
 .card h3 { margin-bottom: 10px; }
 .card p { color: var(--ink-3); font-size: 15px; }
 
@@ -520,6 +568,7 @@ p  { margin: 0; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 820px) { .grid-3, .grid-2, .grid-4, .grid-6 { grid-template-columns: 1fr; gap: 16px; } }
+@media (min-width: 600px) and (max-width: 820px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 821px) and (max-width: 1040px) { .grid-6 { grid-template-columns: repeat(2, 1fr); } }
 
 .trust-strip { margin-top: 32px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-4); }
@@ -614,7 +663,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 @keyframes lcPulse { 0%{box-shadow:0 0 0 0 rgba(63,191,115,.55);} 70%{box-shadow:0 0 0 10px rgba(63,191,115,0);} 100%{box-shadow:0 0 0 0 rgba(63,191,115,0);} }
 
 /* Hero inline anim wrappers (legacy helpers) */
-[data-mount]{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+[data-mount]{opacity:0;transform:translateY(24px);transition:opacity .4s var(--ease),transform .4s var(--ease);}
 [data-mount].in{opacity:1;transform:none;}
 
 /* RecallQAd component (restyled, Apple-ish) */
@@ -850,9 +899,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 .curve-bot { margin-bottom: -80px; position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; }
 
 /* PER-VERTICAL TYPOGRAPHY ---------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap');
 
 .v-block { padding: clamp(80px, 12vw, 160px) 0; }
 .v-block .container-v { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -1076,6 +1122,25 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 
 /* MAGNETIC BUTTON FX --------------------------------------- */
 .btn { position: relative; }
+
+/* ---- hero CTA sheen sweep (Task-12, index only) ---- */
+.hero-cine .btn--primary { overflow: hidden; }
+.hero-cine .btn--primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  animation: heroSheen 5s var(--ease) infinite;
+  pointer-events: none;
+}
+@keyframes heroSheen {
+  0%, 65% { left: -60%; opacity: 0; }
+  70% { opacity: 1; }
+  95% { left: 130%; opacity: 0; }
+  100% { left: 130%; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-cine .btn--primary::before { animation: none !important; display: none; } }
 
 /* SCROLL ZOOM HELPER --------------------------------------- */
 [data-scroll-zoom] { will-change: transform, opacity; }
@@ -1727,9 +1792,10 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
       <h1 data-mount>Bring overdue patients<br/>back automatically.</h1>
       <p class="lead" data-mount>RecallQ turns inactive patient lists into booked appointments, without adding admin to your team.</p>
       <div class="ctas" data-mount>
-        <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
+        <a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup">Recover patients now →</a>
         <a class="btn btn--link" href="#roi-calc">Run this on my patient list →</a>
       </div>
+      <p class="fine text-center" style="margin-top:12px;">No credit card · Cancel anytime · Live in 20 minutes</p>
     </div>
 
     <!-- Calendar-fill stage with SMS fly-by -->
@@ -1778,7 +1844,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <span class="proof-kicker">What we unlock</span>
         <div class="proof-number">Revenue already sitting in your records.</div>
         <p>Most practices have hundreds of patients who are overdue, inactive, or ready to return. We help find them, message them, and move the right replies back into your booking flow.</p>
-        <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
+        <a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup">Recover patients now →</a>
       </div>
       <div class="partner-cards">
         <div class="partner-card">
@@ -1796,6 +1862,34 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <h3>Less admin</h3>
           <p>Your team spends less time chasing and more time with patients in the chair.</p>
         </div>
+      </div>
+    </div>
+
+    <h3 class="text-center" style="margin-top:64px;">Run the numbers on your own list</h3>
+
+    <div class="roi-calc" data-roi data-anim="fade-up">
+      <div class="roi-inputs">
+        <div class="roi-segment" data-roi-vertical role="group" aria-label="Practice type">
+          <button type="button" data-v="dental" class="on">Dental</button>
+          <button type="button" data-v="physio">Physio</button>
+          <button type="button" data-v="opto">Optometry</button>
+        </div>
+        <div class="roi-slider-wrap">
+          <label for="roiPatients">Active patients: <span class="slider-val" data-roi-patients-out>1,500</span></label>
+          <input id="roiPatients" type="range" min="200" max="6000" step="100" value="1500" data-roi-patients>
+        </div>
+        <div class="roi-slider-wrap">
+          <label for="roiValue">Average visit value: <span class="slider-val" data-roi-value-out>$200</span></label>
+          <input id="roiValue" type="range" min="80" max="600" step="10" value="200" data-roi-value>
+        </div>
+      </div>
+      <div class="roi-output">
+        <div class="roi-out">
+          <div class="box"><div class="n" data-roi-bookings>0</div><div class="l">Bookings / month</div></div>
+          <div class="box"><div class="n" data-roi-monthly>$0</div><div class="l">Recovered / month</div></div>
+          <div class="box"><div class="n" data-roi-annual>$0</div><div class="l">Recovered / year</div></div>
+        </div>
+        <p class="fine" style="margin-top:16px;">Illustrative estimate based on typical overdue and re-booking rates. Your results will vary.</p>
       </div>
     </div>
   </div>
@@ -1830,7 +1924,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <div class="audit-flow-copy">
           <h3>How the audit works.</h3>
           <p>Simple enough for a busy practice, detailed enough to show where booked revenue can come from.</p>
-          <button class="btn btn--primary btn--lg" data-start-now>Run this on my patient list</button>
+          <a class="btn btn--primary btn--lg" href="#roi-calc">Run this on my patient list →</a>
         </div>
         <div class="audit-steps">
           <div class="audit-step"><span class="num">01</span><div><h4>Export your list</h4><p>Send a CSV from your practice system. No PMS lock-in required.</p></div></div>
@@ -1847,7 +1941,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section section--white">
   <div class="container">
     <div class="text-center" style="margin-bottom: 64px;">
-      <p class="eyebrow" data-anim="fade-up">The dashboard</p>
+      <p class="eyebrow" data-anim="fade-up">Your dashboard</p>
       <h2 data-anim="fade-up" style="margin-top:16px;max-width:18ch;margin-left:auto;margin-right:auto;">Open RecallQ. See exactly what you got back.</h2>
     </div>
     <div data-anim="scale-up">
@@ -1877,8 +1971,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
               <span class="pill">↑ 18% vs October</span>
             </div>
             <div class="kpi-row">
-              <div class="kpi"><div class="l">Recovered</div><div class="n" data-drift="14820" data-prefix="$">$0</div><div class="delta">+$3,180 this week</div></div>
-              <div class="kpi"><div class="l">Bookings</div><div class="n" data-drift="73">0</div><div class="delta">+12 this week</div></div>
+              <div class="kpi"><div class="l">Recovered</div><div class="n" data-drift="14820" data-prefix="$">$0</div><div class="delta">+$3,180 in week 4</div></div>
+              <div class="kpi"><div class="l">Bookings</div><div class="n" data-drift="73">0</div><div class="delta">+12 in week 4</div></div>
               <div class="kpi"><div class="l">Reply rate</div><div class="n" data-drift="42" data-suffix="%">0%</div><div class="delta">Above avg.</div></div>
               <div class="kpi"><div class="l">Patients reached</div><div class="n" data-drift="412">0</div><div class="delta">86% deliverable</div></div>
             </div>
@@ -1898,7 +1992,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
               </div>
               <div class="dash-thread">
                 <div class="lbl"><span>Recent replies</span><span style="color:var(--accent);">View all →</span></div>
-                <div class="row"><div class="av">SA</div><div><div class="nm">Sarah A.</div><div class="ms">Yes — Thursday 3pm works</div></div><span class="st st-yes">Yes</span></div>
+                <div class="row"><div class="av">SA</div><div><div class="nm">Sam A.</div><div class="ms">Yes — Thursday 3pm works</div></div><span class="st st-yes">Yes</span></div>
                 <div class="row"><div class="av">JT</div><div><div class="nm">James T.</div><div class="ms">Book me in for next week</div></div><span class="st st-yes">Yes</span></div>
                 <div class="row"><div class="av">PR</div><div><div class="nm">Priya R.</div><div class="ms">Can we do morning?</div></div><span class="st st-yes">Yes</span></div>
                 <div class="row"><div class="av">MH</div><div><div class="nm">Mia H.</div><div class="ms">Sent · awaiting reply</div></div><span class="st st-pen">Pending</span></div>
@@ -2060,42 +2154,41 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section section--white">
   <div class="container">
     <div class="text-center" style="margin-bottom: 56px;">
-      <p class="eyebrow" data-anim="fade-up">What patients reply</p>
-      <h2 data-anim="fade-up" style="margin-top:16px;max-width:20ch;margin-left:auto;margin-right:auto;">Real replies, from real patients, this month.</h2>
+      <p class="eyebrow" data-anim="fade-up">Illustrative examples</p>
+      <h2 data-anim="fade-up" style="margin-top:16px;max-width:20ch;margin-left:auto;margin-right:auto;">What a "yes" looks like.</h2>
     </div>
     <div class="yes-wall" data-anim="fade-up">
-      <div class="yes-bub size-l">Yes please<span class="who">Sarah A. · Sydney</span></div>
-      <div class="yes-bub">Tuesday works for me<span class="who">James T. · Melbourne</span></div>
-      <div class="yes-bub style-warm">Book me in. Thank you for the reminder.<span class="who">Priya R. · Brisbane</span></div>
-      <div class="yes-bub size-s">Yes<span class="who">Tom B.</span></div>
-      <div class="yes-bub">Can we do a morning slot?<span class="who">Mia H. · Perth</span></div>
-      <div class="yes-bub size-l">Finally — yes<span class="who">Anna K. · Adelaide</span></div>
-      <div class="yes-bub">Wednesday after 4 if possible<span class="who">Leo C.</span></div>
-      <div class="yes-bub style-emoji">Sounds good 👍<span class="who">Noah F.</span></div>
-      <div class="yes-bub">Yes — and can I bring my son for his check too?<span class="who">Eve M. · Newcastle</span></div>
-      <div class="yes-bub size-s">Booked, thanks<span class="who">Ben P.</span></div>
-      <div class="yes-bub">Was just thinking about this. Yes<span class="who">Lily W. · Hobart</span></div>
-      <div class="yes-bub style-warm">Thank you, yes please<span class="who">Jack S.</span></div>
-      <div class="yes-bub">Friday morning?<span class="who">Zoe D. · Cairns</span></div>
-      <div class="yes-bub size-l">YES<span class="who">Ed R.</span></div>
-      <div class="yes-bub">Confirmed for Thursday<span class="who">Hana L. · Darwin</span></div>
-      <div class="yes-bub style-emoji">👍<span class="who">Sam K.</span></div>
+      <div class="yes-bub size-l">Yes please</div>
+      <div class="yes-bub">Tuesday works for me</div>
+      <div class="yes-bub style-warm">Book me in. Thank you for the reminder.</div>
+      <div class="yes-bub size-s">Yes</div>
+      <div class="yes-bub">Can we do a morning slot?</div>
+      <div class="yes-bub size-l">Finally — yes</div>
+      <div class="yes-bub">Wednesday after 4 if possible</div>
+      <div class="yes-bub style-emoji">Sounds good 👍</div>
+      <div class="yes-bub">Yes — and can I bring my son for his check too?</div>
+      <div class="yes-bub size-s">Booked, thanks</div>
+      <div class="yes-bub">Was just thinking about this. Yes</div>
+      <div class="yes-bub style-warm">Thank you, yes please</div>
+      <div class="yes-bub">Friday morning?</div>
+      <div class="yes-bub size-l">YES</div>
+      <div class="yes-bub">Confirmed for Thursday</div>
+      <div class="yes-bub style-emoji">👍</div>
     </div>
   </div>
 </section>
 
-<!-- LIVE STATS — full mosaic, dark -->
+<!-- MOSAIC STATS — illustrative, dark -->
 <section class="idea idea--dark">
   <div class="container">
-    <p class="eyebrow" data-anim="fade-up" style="color: var(--accent-soft);">Live this month</p>
-    <h2 class="display" data-anim="fade-up" style="margin-top:16px;margin-bottom:64px;color:#fff;max-width:22ch;margin-left:auto;margin-right:auto;">The numbers RecallQ is putting back into Australian practices right now.</h2>
+    <p class="eyebrow" data-anim="fade-up" style="color: var(--accent-soft);">Illustrative — typical practice</p>
+    <h2 class="display" data-anim="fade-up" style="margin-top:16px;margin-bottom:64px;color:#fff;max-width:22ch;margin-left:auto;margin-right:auto;">What RecallQ can put back into a practice like yours.</h2>
 
     <div class="mosaic" data-anim="fade-up">
       <div class="mtile mt-c4 mt-r2 hi">
-        <div class="l">Total recovered · this month</div>
+        <div class="l">Recovered / year (example 1,500-patient practice)</div>
         <div>
-          <div class="n huge" data-drift="2384000" data-prefix="$">$0</div>
-          <div class="delta" style="margin-top:8px;">↑ across 32 practices</div>
+          <div class="n huge" data-drift="60000" data-prefix="$">$0</div>
         </div>
         <svg class="spark" viewBox="0 0 300 30" preserveAspectRatio="none">
           <path class="area" d="M0,28 L20,25 L40,22 L60,24 L80,18 L100,20 L120,14 L140,16 L160,10 L180,12 L200,8 L220,6 L240,5 L260,3 L280,2 L300,1 L300,30 L0,30 Z"/>
@@ -2103,21 +2196,20 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         </svg>
       </div>
       <div class="mtile mt-c2">
-        <div class="l">Bookings landed</div>
-        <div class="n big" data-drift="11842">0</div>
+        <div class="l">Bookings / year (example)</div>
+        <div class="n big" data-drift="300">0</div>
       </div>
       <div class="mtile mt-c2">
-        <div class="l">Reply rate</div>
+        <div class="l">Typical reply rate</div>
         <div class="n big" data-drift="42" data-suffix="%">0%</div>
       </div>
       <div class="mtile mt-c2">
-        <div class="l">Practices live</div>
-        <div class="n big" data-drift="32">0</div>
-        <div class="delta">+5 this week</div>
+        <div class="l">Typical setup time</div>
+        <div class="n big">&lt; 10 min</div>
       </div>
       <div class="mtile mt-c2">
-        <div class="l">Avg recovered / practice</div>
-        <div class="n">$74,500</div>
+        <div class="l">Recovered / year — example practice</div>
+        <div class="n">$60,000</div>
       </div>
       <div class="mtile mt-c2">
         <div class="l">Time to first booking</div>
@@ -2158,7 +2250,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     </div>
     <div class="price-teaser" data-anim="scale-up">
       <p class="eyebrow">Growth</p>
-      <div class="amount">$ 1,799</div>
+      <div class="amount">$1,799</div>
       <div class="per">per month · GST incl.</div>
       <ul>
         <li>Up to 2,000 active patients</li>
@@ -2167,7 +2259,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <li>Recall opportunity review, month one</li>
       </ul>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn btn--primary btn--lg" data-start-now>Start now</button>
+        <a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup">Recover patients now →</a>
         <a class="btn btn--link" href="pricing.html">See all plans →</a>
       </div>
     </div>
@@ -2179,7 +2271,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   <h2>Your next month's recovered revenue could already be waiting.</h2>
   <p>Fifteen minutes with us. We'll show the upside using your own patient list.</p>
   <div class="ctas" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn btn--invert btn--lg" data-start-now>Start now</button>
+    <a class="btn btn--invert btn--lg" href="https://app.recallq.com.au/signup">Recover patients now →</a>
     <a class="btn btn--link btn--link-light" href="#roi-calc">Run the recall audit →</a>
   </div>
   <p class="fine">No credit card · No sales pressure · AU data residency · Privacy Act aligned · Opt-out handling · Practice approval before launch</p>
@@ -2346,10 +2438,10 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <div class="act act3">
           <span class="ey">THE RESULT</span>
           <div class="money" id="rqaMoney">$0</div>
-          <p class="subline">Recovered this month — from patients you'd already earned.</p>
+          <p class="subline">Recovered — from patients you'd already earned.</p>
           <div class="closeblk">
             <div class="wm">Recall<span class="q">Q</span></div>
-            <button class="btn btn--primary" data-start-now>Start now</button>
+            <a class="btn btn--primary" href="https://app.recallq.com.au/signup" aria-label="Recover patients now — create your RecallQ account">Recover patients</a>
             <div class="tag">recallq.com.au · Made in Australia</div>
           </div>
         </div>
@@ -2502,8 +2594,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <a href="${up}pricing.html">Pricing</a>
           <a href="${up}about.html">About</a>
         </nav>
-        <button class="btn btn--primary" data-start-now>Start now</button>
-        <button class="hamb" aria-label="Menu" id="hambBtn"><span></span></button>
+        <a class="btn btn--primary" href="https://app.recallq.com.au/signup" aria-label="Recover patients now — create your RecallQ account">Recover patients</a>
+        <button class="hamb" aria-label="Menu" id="hambBtn" aria-expanded="false"><span></span></button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -2513,12 +2605,24 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <li><a href="${up}how-it-works.html">How it works</a></li>
           <li><a href="${up}pricing.html">Pricing</a></li>
           <li><a href="${up}about.html">About</a></li>
-          <li><button data-start-now style="color:var(--periwinkle-dark);font-weight:500;">Start now →</button></li>
+          <li><a href="https://app.recallq.com.au/signup" style="color:var(--periwinkle-dark);font-weight:500;">Recover patients now →</a></li>
         </ul>
       </div>
     </header>
   `;
   document.body.insertBefore(hdr.firstElementChild, document.body.firstChild);
+
+  // Wire aria-expanded on Solutions dropdown — reflects open state to screen readers
+  (function(){
+    var _dd = document.querySelector('.nav-dd');
+    var _ddBtn = _dd && _dd.querySelector('button[aria-haspopup]');
+    if (_dd && _ddBtn) {
+      _dd.addEventListener('mouseenter', function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('mouseleave', function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+      _dd.addEventListener('focusin',    function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('focusout',   function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+    }
+  })();
   // Double-rAF + forced reflow to guarantee the transition starts from the initial state.
   // Without this, iframes that are backgrounded on load can stall the transition in
   // "pending" state (playState:running, startTime:null) and opacity stays at 0 forever.
@@ -2537,8 +2641,21 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   }));
 
   document.getElementById('hambBtn')?.addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    var _mm = document.getElementById('mobileMenu');
+    _mm.classList.toggle('open');
+    var _hb = document.getElementById('hambBtn');
+    if (_hb) _hb.setAttribute('aria-expanded', _mm.classList.contains('open') ? 'true' : 'false');
   });
+
+  // Active nav state
+  if (active) {
+    var _fileMap = { home: 'index.html', how: 'how-it-works.html', pricing: 'pricing.html', about: 'about.html', dentistry: 'dentistry.html', physio: 'physio.html', optometry: 'optometry.html' };
+    var _target = _fileMap[active];
+    if (_target) {
+      var _link = document.getElementById('siteHeader') && document.getElementById('siteHeader').querySelector('a[href$="' + _target + '"]');
+      if (_link) _link.classList.add('is-active');
+    }
+  }
 
   // FOOTER
   const footer = document.createElement('footer');
@@ -2563,14 +2680,14 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <ul>
             <li><a href="${up}how-it-works.html">How it works</a></li>
             <li><a href="${up}pricing.html">Pricing</a></li>
-            <li><button data-start-now>Start now</button></li>
+            <li><a href="https://app.recallq.com.au/signup">Recover patients now →</a></li>
           </ul>
         </div>
         <div>
           <h4>Company &amp; Legal</h4>
           <ul>
             <li><a href="${up}about.html">About</a></li>
-            <li><a href="mailto:">Contact</a></li>
+            <li><a href="mailto:recallq@gmail.com">Contact</a></li>
             <li><a href="${up}legal/privacy.html">Privacy Policy</a></li>
             <li><a href="${up}legal/terms.html">Terms</a></li>
             <li><a href="${up}legal/dpa.html">DPA</a></li>
@@ -2583,94 +2700,24 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <span>Privacy Act 1988</span><span class="sep">·</span>
         <span>Spam Act 2003</span>
       </div>
-      <div class="copy">© RecallQ Pty Ltd · recallq.com.au · Made in Australia</div>
+      <div class="copy">© RecallQ Pty Ltd ABN 84 202 664 713 · recallq.com.au · Made in Australia</div>
     </div>
   `;
   document.body.appendChild(footer);
 
-  // MODAL
-  const modal = document.createElement('div');
-  modal.className = 'modal-backdrop';
-  modal.id = 'startNowModal';
-  modal.innerHTML = `
-    <div class="modal" role="dialog" aria-labelledby="snmTitle" aria-modal="true">
-      <button class="close" aria-label="Close" data-close>✕</button>
-      <div id="snmForm">
-        <h2 id="snmTitle">Start with RecallQ</h2>
-        <p class="sub">Tell us about your practice. We'll run the numbers and get back to you within 24 hours.</p>
-        <form id="snmFormEl" novalidate>
-          <div><label>Your name</label><input name="name" required placeholder="First and last name" autocomplete="name"></div>
-          <div><label>Work email</label><input name="email" type="email" required placeholder="you@yourpractice.com.au" autocomplete="email"></div>
-          <div><label>Mobile</label><input name="mobile" type="tel" placeholder="+61 4XX XXX XXX" autocomplete="tel"></div>
-          <div><label>Practice name</label><input name="practice" required placeholder="Your practice name"></div>
-          <div>
-            <label>Your vertical</label>
-            <div class="vpicker" role="group" aria-label="Vertical">
-              <button type="button" data-v="Dentistry">Dentistry</button>
-              <button type="button" data-v="Physio">Physio</button>
-              <button type="button" data-v="Optometry">Optometry</button>
-            </div>
-            <input type="hidden" name="vertical" id="snmVertical" value="">
-          </div>
-          <div><label>Active patients</label><select name="patients"><option>Under 500</option><option>500–1,500</option><option>1,500–3,000</option><option>3,000+</option></select></div>
-          <div><label>Biggest recall problem (optional)</label><textarea name="problem" rows="2" placeholder="e.g. Hundreds of patients are overdue but we can't reach them all."></textarea></div>
-          <button type="submit" class="btn btn--primary btn--full btn--lg">Start now →</button>
-          <p class="privacy-note">By submitting you agree to our <a href="${up}legal/privacy.html">Privacy Policy</a>. No spam, ever.</p>
-        </form>
-      </div>
-      <div id="snmSuccess" class="success" style="display:none;">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12.5 l4 4 L19 7"/></svg></div>
-        <h3 id="snmThanks">Thanks. We've got it.</h3>
-        <p>One of the founders will email you within 24 hours with a link to book a 15-minute call.</p>
-        <a href="${up}how-it-works.html" class="btn btn--link">See how RecallQ works →</a>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  const backdrop = modal;
-  const verticalHidden = modal.querySelector('#snmVertical');
-
-  function openModal(preset) {
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    const preselect = preset || vPreset;
-    if (preselect) selectVertical(preselect);
-    setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 300);
-  }
-  function closeModal() {
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function selectVertical(v) {
-    verticalHidden.value = v;
-    modal.querySelectorAll('.vpicker button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-  }
-
-  modal.querySelectorAll('.vpicker button').forEach(b => b.addEventListener('click', () => selectVertical(b.dataset.v)));
-  modal.querySelector('[data-close]').addEventListener('click', closeModal);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  modal.querySelector('#snmFormEl').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    const first = (data.name || '').split(' ')[0] || '';
-    document.getElementById('snmForm').style.display = 'none';
-    const success = document.getElementById('snmSuccess');
-    success.style.display = 'block';
-    document.getElementById('snmThanks').textContent = `Thanks${first ? ', ' + first : ''}. We've got it.`;
+  // Task-12: wrap trailing → in .btn CTAs for arrow nudge animation
+  document.querySelectorAll('a.btn, button.btn').forEach(function(b){
+    if (/→\s*$/.test(b.textContent) && !b.querySelector('.cta-arrow')) {
+      b.innerHTML = b.innerHTML.replace(/→(\s*)$/, '<span class="cta-arrow">→</span>$1');
+    }
   });
 
-  // Bind all Start now triggers
-  document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-start-now]');
-    if (!t) return;
-    e.preventDefault();
-    openModal(t.dataset.vertical);
+  // Wire aria-label on portal signup CTAs — disambiguates repeated labels for screen readers
+  document.querySelectorAll('a.btn[href*="app.recallq.com.au/signup"]').forEach(function(a){
+    if (!a.getAttribute('aria-label')) {
+      a.setAttribute('aria-label', 'Recover patients now — create your RecallQ account');
+    }
   });
-
-  window.RQModal = { open: openModal, close: closeModal, selectVertical };
 
   /* LivingBackground removed — Apple-style restraint */
 })();
@@ -2713,7 +2760,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     const days = grid.querySelectorAll('.cal-day');
     const counter = stage.querySelector('[data-cal-counter]');
 
-    const names = ['Sarah A.', 'James T.', 'Priya R.', 'Mia H.', 'Leo C.', 'Tom B.', 'Anna K.', 'Ben P.', 'Eve M.', 'Noah F.', 'Lily W.', 'Jack S.', 'Zoe D.', 'Ed R.'];
+    const names = ['Alex P.', 'James T.', 'Priya R.', 'Mia H.', 'Leo C.', 'Tom B.', 'Anna K.', 'Ben P.', 'Eve M.', 'Noah F.', 'Lily W.', 'Jack S.', 'Zoe D.', 'Ed R.'];
     const times = ['9:00am', '10:30am', '11:15am', '1:00pm', '2:30pm', '3:00pm', '4:15pm'];
     const previews = [
       'Hi Sarah — clean due. Thursday 3pm?',
@@ -2840,7 +2887,10 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
      ============================================================ */
   function magneticBtns() {
     if (reduced) return;
-    const btns = document.querySelectorAll('.btn--primary, .btn--accent, .btn--invert, .btn--lg');
+    if (window.innerWidth < 1024) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+    // Scope to hero-cine primary CTA only (Task-12)
+    const btns = document.querySelectorAll('.hero-cine .btn--primary');
     btns.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
@@ -2951,14 +3001,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           const eased = 1 - Math.pow(1 - p, 3);
           t.textContent = prefix + Math.round(target * eased).toLocaleString() + suffix;
           if (p < 1) requestAnimationFrame(tick);
-          else if (!reduced) {
-            // Keep drifting up slowly
-            setInterval(() => {
-              const cur = parseInt(t.textContent.replace(/\D/g, ''), 10) || target;
-              const inc = Math.max(1, Math.floor(cur * 0.0008));
-              t.textContent = prefix + (cur + inc).toLocaleString() + suffix;
-            }, 5000 + Math.random() * 3000);
-          }
+
         };
         requestAnimationFrame(tick);
       };
@@ -3054,17 +3097,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     update();
   }
 
-  /* MODAL PRESS FEEDBACK */
-  function modalPress() {
-    document.addEventListener('click', (e) => {
-      const t = e.target.closest('[data-start-now]');
-      if (!t) return;
-      t.classList.add('firing');
-      setTimeout(() => t.classList.remove('firing'), 180);
-    }, true);
-  }
-
-  
 
   /* ============================================================
      ROI CALCULATOR
@@ -3085,9 +3117,9 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 
     const cost = { dental: 1799, physio: 1799, opto: 1799 };
     const rate = {
-      dental: { overdue: 0.27, convert: 0.12 },
-      physio: { overdue: 0.35, convert: 0.10 },
-      opto:   { overdue: 0.42, convert: 0.14 },
+      dental: { overdue: 0.40, convert: 0.50 },
+      physio: { overdue: 0.45, convert: 0.45 },
+      opto:   { overdue: 0.45, convert: 0.50 },
     };
 
     let currentVertical = 'dental';
@@ -3137,7 +3169,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     mosaic();
     curveDividers();
     parallaxPhotos();
-    modalPress();
     roiCalc();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

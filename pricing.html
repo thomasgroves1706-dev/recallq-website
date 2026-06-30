@@ -3,10 +3,88 @@
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Pricing — RecallQ</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="description" content="Simple, transparent pricing for RecallQ. Starter, Growth, Pro. Month-to-month patient recall."/>
+<link rel="canonical" href="https://recallq.com.au/pricing.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RecallQ">
+<meta property="og:title" content="Pricing — RecallQ">
+<meta property="og:description" content="Simple, transparent pricing for RecallQ. Starter, Growth, Pro. Month-to-month patient recall.">
+<meta property="og:url" content="https://recallq.com.au/pricing.html">
+<meta property="og:image" content="https://recallq.com.au/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pricing — RecallQ">
+<meta name="twitter:description" content="Simple, transparent pricing for RecallQ. Starter, Growth, Pro. Month-to-month patient recall.">
+<meta name="twitter:image" content="https://recallq.com.au/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long is the minimum contract?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Month-to-month. Cancel anytime."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to my data if I cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Export your data as CSV within 30 days; then it is permanently deleted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What practice management systems do you support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any system that exports CSV, including most major AU practice management systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a credit card to start?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No credit card needed. Create your account, import a patient CSV, and you're live in about 20 minutes. No contracts, no setup calls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast can I go live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Under 20 minutes from CSV upload."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about GST?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GST is included in the price — no extra charge at checkout."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I run multiple verticals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — ask us about combined pricing for multi-vertical groups."
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* RecallQ — Apple-style rebuild */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   --bg:           #FFFFFF;
@@ -23,6 +101,10 @@
 
   --accent:       #5876C4;
   --accent-soft:  #8AA8E8;
+  --periwinkle:      #5876C4;
+  --periwinkle-dark: #3F5BA8;
+  --text-primary:    #1A1915;
+  --text-muted:      #6E6C66;
 
   /* Verticals (kept, used sparingly as accents) */
   --dent:   #5C5A54;
@@ -108,12 +190,12 @@ p  { margin: 0; }
 /* MOTION */
 [data-anim] { opacity: 0; will-change: opacity, transform; }
 [data-anim].in { opacity: 1; transform: none; }
-[data-anim="fade-up"]     { transform: translateY(36px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="fade-in"]     { transition: opacity .8s var(--ease); }
-[data-anim="slide-left"]  { transform: translateX(-40px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="slide-right"] { transform: translateX(40px);  transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-anim="scale-up"]    { transform: scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-[data-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+[data-anim="fade-up"]     { transform: translateY(36px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="fade-in"]     { transition: opacity .4s var(--ease); }
+[data-anim="slide-left"]  { transform: translateX(-40px); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="slide-right"] { transform: translateX(40px);  transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-anim="scale-up"]    { transform: scale(.94); transition: opacity .45s var(--ease), transform .45s var(--ease); }
+[data-stagger] > * { opacity: 0; transform: translateY(28px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
 [data-stagger].in > * { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   [data-anim], [data-stagger] > * { transition-duration: .01s !important; transform: none !important; }
@@ -144,6 +226,7 @@ p  { margin: 0; }
   transition: color .2s; padding: 4px 0;
 }
 .nav a:hover, .nav button:hover { color: var(--ink); }
+.nav a.is-active { color: var(--ink); font-weight: 600; }
 .nav .nav-dd { position: relative; }
 .nav-dd > button { display: flex; align-items: center; gap: 4px; }
 .nav-dd .chev { width: 6px; height: 6px; border-right: 1.2px solid currentColor; border-bottom: 1.2px solid currentColor; transform: rotate(45deg); display: inline-block; margin-top: -3px; }
@@ -182,6 +265,16 @@ p  { margin: 0; }
 .btn--full { width: 100%; }
 .btn--invert { background: #fff; color: var(--ink); }
 .btn--invert:hover { background: rgba(255,255,255,.86); }
+/* ---- primary/invert lift & press (Task-12) ---- */
+.btn--primary, .btn--invert { transition: transform .2s var(--ease), box-shadow .2s var(--ease), background-color .25s; }
+@media (hover: hover) { .btn--primary:hover, .btn--invert:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(26,25,21,.20); } }
+.btn--primary:active, .btn--invert:active { transform: translateY(0) scale(.97); }
+@media (prefers-reduced-motion: reduce) { .btn--primary, .btn--invert { transition: none; } .btn--primary:hover, .btn--invert:hover { transform: none; }
+  .btn:active { transform: none; } .btn--primary:active, .btn--invert:active { transform: none; } }
+/* ---- CTA arrow nudge (Task-12) ---- */
+.cta-arrow { display: inline-block; transition: transform .2s var(--ease); }
+@media (hover: hover) { .btn:hover .cta-arrow { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) { .cta-arrow { transition: none; } }
 
 /* Header hamburger (mobile) */
 .hamb { display: none; margin-left: auto; width: 40px; height: 40px; border-radius: 8px; align-items: center; justify-content: center; }
@@ -250,6 +343,7 @@ p  { margin: 0; }
 .hero h1 { max-width: 15ch; margin: 0 auto 28px; }
 .hero .lead { margin: 0 auto 40px; max-width: 620px; }
 .hero .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.hero--short { padding-top: clamp(64px, 8vw, 110px); padding-bottom: clamp(32px, 4vw, 56px); }
 .breadcrumb { font-size: 13px; color: var(--ink-4); margin-bottom: 24px; letter-spacing: -0.005em; }
 
 /* ONE-IDEA sections */
@@ -269,6 +363,7 @@ p  { margin: 0; }
 .tiles-3 { grid-template-columns: repeat(3, 1fr); }
 .tiles-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 900px) { .tiles-2, .tiles-3, .tiles-4 { grid-template-columns: 1fr; } }
+@media (min-width: 600px) and (max-width: 900px) { .tiles-4 { grid-template-columns: repeat(2, 1fr); } }
 
 .tile {
   background: var(--bg-soft);
@@ -280,7 +375,8 @@ p  { margin: 0; }
   display: flex; flex-direction: column; justify-content: flex-end;
   transition: transform .5s var(--ease);
 }
-.tile:hover { transform: translateY(-6px); }
+@media (hover: hover) { .tile:hover { transform: translateY(-6px); } }
+@media (max-width: 900px) { .tile { min-height: auto; } }
 .tile--dark { background: var(--bg-dark); color: #fff; }
 .tile--dark h3 { color: #fff; }
 .tile--dark .tile-body { color: rgba(255,255,255,.7); }
@@ -498,7 +594,7 @@ p  { margin: 0; }
   padding: 28px;
   transition: transform .3s var(--ease);
 }
-.card:hover { transform: translateY(-4px); }
+@media (hover: hover) { .card:hover { transform: translateY(-4px); } }
 .card h3 { margin-bottom: 10px; }
 .card p { color: var(--ink-3); font-size: 15px; }
 
@@ -519,6 +615,7 @@ p  { margin: 0; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 820px) { .grid-3, .grid-2, .grid-4, .grid-6 { grid-template-columns: 1fr; gap: 16px; } }
+@media (min-width: 600px) and (max-width: 820px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 821px) and (max-width: 1040px) { .grid-6 { grid-template-columns: repeat(2, 1fr); } }
 
 .trust-strip { margin-top: 32px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-4); }
@@ -584,6 +681,25 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 .price-card li { font-size: 14px; color: var(--ink-3); display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
 .price-card li::before { content: "✓"; color: var(--accent); font-weight: 600; flex-shrink: 0; }
 
+/* Pricing — plan name, featured scale, strong highlight, annual note */
+.price-card .price-plan-name {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #fff;
+  display: block;
+  margin-top: 8px;
+}
+.price-card li strong { color: var(--ink); }
+.price-card.featured li strong { color: #fff; }
+.price-card.featured li::before { color: var(--accent-soft); }
+.card.price-card.featured { transform: scale(1.03); }
+.card.price-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+@media (prefers-reduced-motion: reduce) {
+  .card.price-card.featured,
+  .card.price-card.featured:hover { transform: none; }
+}
+
 /* Focus ring */
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px;
@@ -613,7 +729,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 @keyframes lcPulse { 0%{box-shadow:0 0 0 0 rgba(63,191,115,.55);} 70%{box-shadow:0 0 0 10px rgba(63,191,115,0);} 100%{box-shadow:0 0 0 0 rgba(63,191,115,0);} }
 
 /* Hero inline anim wrappers (legacy helpers) */
-[data-mount]{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+[data-mount]{opacity:0;transform:translateY(24px);transition:opacity .4s var(--ease),transform .4s var(--ease);}
 [data-mount].in{opacity:1;transform:none;}
 
 /* RecallQAd component (restyled, Apple-ish) */
@@ -678,50 +794,73 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   </div>
 </section>
 
-<section class="section section--white">
+<section class="section section--white" id="pricing-cards">
   <div class="container">
+
+    <!-- Billing cycle toggle -->
+    <div style="display:flex;justify-content:center;margin-bottom:48px;" data-anim="fade-up">
+      <div style="display:inline-flex;background:var(--bg-soft);border-radius:980px;padding:4px;gap:2px;" role="group" aria-label="Billing frequency">
+        <button class="billing-tog" data-tog="monthly" aria-pressed="true" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:var(--ink);color:#fff;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;">Monthly</button>
+        <button class="billing-tog" data-tog="annual" aria-pressed="false" style="padding:10px 22px;border-radius:980px;font-size:14px;font-weight:500;border:0;background:transparent;color:var(--ink-3);cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:-0.01em;display:inline-flex;align-items:center;gap:8px;">Annual <span style="background:#3FBF73;color:#fff;font-size:11px;font-weight:600;padding:3px 8px;border-radius:980px;white-space:nowrap;">Save 1.5 months</span></button>
+      </div>
+    </div>
+
     <div class="grid-3" data-stagger>
+
+      <!-- STARTER -->
       <div class="card price-card">
         <span class="badge">Starter</span>
-        <div><span class="amount">$1,000</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
+        <div><span class="amount price-val" data-monthly="$1,000" data-annual="$875">$1,000</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $10,500/year</span></div>
         <ul>
-          <li>Up to 500 active patients</li>
-          <li>Email recall messages</li>
+          <li><strong>Up to 500 active patients</strong></li>
+          <li><strong>Email recall messages</strong></li>
           <li>Standard templates</li>
           <li>Email support</li>
           <li>AU data residency</li>
         </ul>
-        <button class="btn btn--ghost btn--full" data-start-now>Start now</button>
+        <a class="btn btn--ghost btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p class="fine" style="text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
-      <div class="card price-card featured">
-        <span class="badge">Most popular</span>
-        <div><span class="amount">$ 1,799</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
-        <ul>
-          <li>Up to 2,000 active patients</li>
-          <li>SMS + email recall messages</li>
-          <li>AI-personalised messages</li>
+
+      <!-- GROWTH -->
+      <div class="card price-card">
+        <span class="badge">Growth</span>
+        <div><span class="amount price-val" data-monthly="$1,799" data-annual="$1,574">$1,799</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $18,890/year</span></div>
+        <p style="font-size:13px;color:var(--ink-4);font-weight:500;margin:20px 0 0;">Everything in Starter, plus:</p>
+        <ul style="margin-top:8px;">
+          <li><strong>Up to 2,000 active patients</strong></li>
+          <li><strong>SMS + email recall messages</strong></li>
+          <li><strong>AI-personalised messages</strong></li>
           <li>Two-way replies with booking intent classification</li>
           <li>Priority support</li>
-          <li>Calendly integration</li>
+          <li>Online booking integration</li>
         </ul>
-        <button class="btn btn--primary btn--full" data-start-now>Start now</button>
+        <a class="btn btn--ghost btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p class="fine" style="text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
-      <div class="card price-card">
-        <span class="badge">Pro</span>
-        <div><span class="amount">$2,000</span><span class="per">/month</span></div>
-        <div class="gst">GST incl.</div>
-        <ul>
-          <li>Unlimited patients</li>
-          <li>Everything in Growth</li>
-          <li>WhatsApp messaging</li>
-          <li>Conversational booking agent</li>
+
+      <!-- PRO — featured / Most popular -->
+      <div class="card price-card featured">
+        <div style="margin-bottom:18px;">
+          <span class="badge">Most popular</span>
+          <span class="price-plan-name">Pro</span>
+        </div>
+        <div><span class="amount price-val" data-monthly="$2,000" data-annual="$1,750">$2,000</span><span class="per">/month</span></div>
+        <div class="gst">GST incl.<span class="annual-note" style="display:none;"> · Billed $21,000/year</span></div>
+        <p style="font-size:13px;color:rgba(255,255,255,.45);font-weight:500;margin:20px 0 0;">Everything in Growth, plus:</p>
+        <ul style="margin-top:8px;">
+          <li><strong>Unlimited patients</strong></li>
+          <li><strong>WhatsApp messaging</strong></li>
+          <li><strong>Conversational booking agent</strong></li>
           <li>Direct PMS integrations</li>
           <li>Dedicated success manager</li>
         </ul>
-        <button class="btn btn--ghost btn--full" data-start-now>Start now</button>
+        <a class="btn btn--primary btn--full" href="https://app.recallq.com.au/signup">Recover patients now →</a>
+        <p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-top:12px;">No credit card · Cancel anytime</p>
       </div>
+
     </div>
     <p class="text-center small" data-anim="fade-up" style="margin-top:24px;">Multi-location or group practice? Contact us for Enterprise pricing.</p>
   </div>
@@ -730,7 +869,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
 <section class="section">
   <div class="container">
     <blockquote data-anim="fade-up" style="max-width:640px;margin:0 auto;border-left:3px solid var(--periwinkle-dark);padding-left:24px;color:var(--text-primary);font-size:18px;font-weight:500;line-height:1.55;">
-      Across dental, physio, and optometry, the average RecallQ practice recovers $1,200–$20,000 in month one. Our Growth plan costs $1,799. The maths is the maths.
+      Across dental, physio, and optometry, a typical practice can recover $1,200–$20,000 in the first month. Our Growth plan costs $1,799. The maths is the maths.
     </blockquote>
   </div>
 </section>
@@ -742,7 +881,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
       <details class="faq-item" open><summary>How long is the minimum contract?</summary><p class="a">Month-to-month. Cancel anytime.</p></details>
       <details class="faq-item"><summary>What happens to my data if I cancel?</summary><p class="a">Export your data as CSV within 30 days; then it is permanently deleted.</p></details>
       <details class="faq-item"><summary>What practice management systems do you support?</summary><p class="a">Any system that exports CSV, including most major AU practice management systems.</p></details>
-      <details class="faq-item"><summary>Do I need a credit card to start?</summary><p class="a">No. Click Start now, fill the form, and we run a recall audit on your patient list first.</p></details>
+      <details class="faq-item"><summary>Do I need a credit card to start?</summary><p class="a">No credit card needed. Create your account, import a patient CSV, and you're live in about 20 minutes. No contracts, no setup calls.</p></details>
       <details class="faq-item"><summary>How fast can I go live?</summary><p class="a">Under 20 minutes from CSV upload.</p></details>
       <details class="faq-item"><summary>What about GST?</summary><p class="a">GST is included in the price — no extra charge at checkout.</p></details>
       <details class="faq-item"><summary>Can I run multiple verticals?</summary><p class="a">Yes — ask us about combined pricing for multi-vertical groups.</p></details>
@@ -754,10 +893,43 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   <div class="container" data-stagger>
     <h2>Still not sure? Start now.</h2>
     <p>We'll quote for your practice and vertical.</p>
-    <div><button class="btn btn--primary btn--lg" data-start-now>Start now</button></div>
+    <div><a class="btn btn--primary btn--lg" href="https://app.recallq.com.au/signup">Recover patients now →</a></div>
   </div>
 </section>
 
+<script>
+/* Billing cycle toggle — monthly vs annual (annual = monthly × 10.5, per-month equivalent shown) */
+(function () {
+  'use strict';
+
+  function setMode(annual) {
+    document.querySelectorAll('.billing-tog').forEach(function (btn) {
+      var active = annual ? btn.dataset.tog === 'annual' : btn.dataset.tog === 'monthly';
+      btn.style.background = active ? 'var(--ink)' : 'transparent';
+      btn.style.color = active ? '#fff' : 'var(--ink-3)';
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('.price-val').forEach(function (el) {
+      el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
+    });
+    document.querySelectorAll('.annual-note').forEach(function (el) {
+      el.style.display = annual ? 'inline' : 'none';
+    });
+  }
+
+  function init() {
+    document.querySelectorAll('.billing-tog').forEach(function (btn) {
+      btn.addEventListener('click', function () { setMode(btn.dataset.tog === 'annual'); });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 <script>
 /* RecallQ — animation helpers (vanilla, framer-motion-free) */
 (function () {
@@ -919,8 +1091,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <a href="${up}pricing.html">Pricing</a>
           <a href="${up}about.html">About</a>
         </nav>
-        <button class="btn btn--primary" data-start-now>Start now</button>
-        <button class="hamb" aria-label="Menu" id="hambBtn"><span></span></button>
+        <a class="btn btn--primary" href="https://app.recallq.com.au/signup" aria-label="Recover patients now — create your RecallQ account">Recover patients</a>
+        <button class="hamb" aria-label="Menu" id="hambBtn" aria-expanded="false"><span></span></button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -930,12 +1102,24 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <li><a href="${up}how-it-works.html">How it works</a></li>
           <li><a href="${up}pricing.html">Pricing</a></li>
           <li><a href="${up}about.html">About</a></li>
-          <li><button data-start-now style="color:var(--periwinkle-dark);font-weight:500;">Start now →</button></li>
+          <li><a href="https://app.recallq.com.au/signup" style="color:var(--periwinkle-dark);font-weight:500;">Recover patients now →</a></li>
         </ul>
       </div>
     </header>
   `;
   document.body.insertBefore(hdr.firstElementChild, document.body.firstChild);
+
+  // Wire aria-expanded on Solutions dropdown — reflects open state to screen readers
+  (function(){
+    var _dd = document.querySelector('.nav-dd');
+    var _ddBtn = _dd && _dd.querySelector('button[aria-haspopup]');
+    if (_dd && _ddBtn) {
+      _dd.addEventListener('mouseenter', function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('mouseleave', function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+      _dd.addEventListener('focusin',    function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('focusout',   function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+    }
+  })();
   // Double-rAF + forced reflow to guarantee the transition starts from the initial state.
   // Without this, iframes that are backgrounded on load can stall the transition in
   // "pending" state (playState:running, startTime:null) and opacity stays at 0 forever.
@@ -954,8 +1138,21 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   }));
 
   document.getElementById('hambBtn')?.addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    var _mm = document.getElementById('mobileMenu');
+    _mm.classList.toggle('open');
+    var _hb = document.getElementById('hambBtn');
+    if (_hb) _hb.setAttribute('aria-expanded', _mm.classList.contains('open') ? 'true' : 'false');
   });
+
+  // Active nav state
+  if (active) {
+    var _fileMap = { home: 'index.html', how: 'how-it-works.html', pricing: 'pricing.html', about: 'about.html', dentistry: 'dentistry.html', physio: 'physio.html', optometry: 'optometry.html' };
+    var _target = _fileMap[active];
+    if (_target) {
+      var _link = document.getElementById('siteHeader') && document.getElementById('siteHeader').querySelector('a[href$="' + _target + '"]');
+      if (_link) _link.classList.add('is-active');
+    }
+  }
 
   // FOOTER
   const footer = document.createElement('footer');
@@ -980,14 +1177,14 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <ul>
             <li><a href="${up}how-it-works.html">How it works</a></li>
             <li><a href="${up}pricing.html">Pricing</a></li>
-            <li><button data-start-now>Start now</button></li>
+            <li><a href="https://app.recallq.com.au/signup">Recover patients now →</a></li>
           </ul>
         </div>
         <div>
           <h4>Company &amp; Legal</h4>
           <ul>
             <li><a href="${up}about.html">About</a></li>
-            <li><a href="mailto:">Contact</a></li>
+            <li><a href="mailto:recallq@gmail.com">Contact</a></li>
             <li><a href="${up}legal/privacy.html">Privacy Policy</a></li>
             <li><a href="${up}legal/terms.html">Terms</a></li>
             <li><a href="${up}legal/dpa.html">DPA</a></li>
@@ -1000,94 +1197,24 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <span>Privacy Act 1988</span><span class="sep">·</span>
         <span>Spam Act 2003</span>
       </div>
-      <div class="copy">© RecallQ Pty Ltd · recallq.com.au · Made in Australia</div>
+      <div class="copy">© RecallQ Pty Ltd ABN 84 202 664 713 · recallq.com.au · Made in Australia</div>
     </div>
   `;
   document.body.appendChild(footer);
 
-  // MODAL
-  const modal = document.createElement('div');
-  modal.className = 'modal-backdrop';
-  modal.id = 'startNowModal';
-  modal.innerHTML = `
-    <div class="modal" role="dialog" aria-labelledby="snmTitle" aria-modal="true">
-      <button class="close" aria-label="Close" data-close>✕</button>
-      <div id="snmForm">
-        <h2 id="snmTitle">Start with RecallQ</h2>
-        <p class="sub">Tell us about your practice. We'll run the numbers and get back to you within 24 hours.</p>
-        <form id="snmFormEl" novalidate>
-          <div><label>Your name</label><input name="name" required placeholder="First and last name" autocomplete="name"></div>
-          <div><label>Work email</label><input name="email" type="email" required placeholder="you@yourpractice.com.au" autocomplete="email"></div>
-          <div><label>Mobile</label><input name="mobile" type="tel" placeholder="+61 4XX XXX XXX" autocomplete="tel"></div>
-          <div><label>Practice name</label><input name="practice" required placeholder="Your practice name"></div>
-          <div>
-            <label>Your vertical</label>
-            <div class="vpicker" role="group" aria-label="Vertical">
-              <button type="button" data-v="Dentistry">Dentistry</button>
-              <button type="button" data-v="Physio">Physio</button>
-              <button type="button" data-v="Optometry">Optometry</button>
-            </div>
-            <input type="hidden" name="vertical" id="snmVertical" value="">
-          </div>
-          <div><label>Active patients</label><select name="patients"><option>Under 500</option><option>500–1,500</option><option>1,500–3,000</option><option>3,000+</option></select></div>
-          <div><label>Biggest recall problem (optional)</label><textarea name="problem" rows="2" placeholder="e.g. Hundreds of patients are overdue but we can't reach them all."></textarea></div>
-          <button type="submit" class="btn btn--primary btn--full btn--lg">Start now →</button>
-          <p class="privacy-note">By submitting you agree to our <a href="${up}legal/privacy.html">Privacy Policy</a>. No spam, ever.</p>
-        </form>
-      </div>
-      <div id="snmSuccess" class="success" style="display:none;">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12.5 l4 4 L19 7"/></svg></div>
-        <h3 id="snmThanks">Thanks. We've got it.</h3>
-        <p>One of the founders will email you within 24 hours with a link to book a 15-minute call.</p>
-        <a href="${up}how-it-works.html" class="btn btn--link">See how RecallQ works →</a>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  const backdrop = modal;
-  const verticalHidden = modal.querySelector('#snmVertical');
-
-  function openModal(preset) {
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    const preselect = preset || vPreset;
-    if (preselect) selectVertical(preselect);
-    setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 300);
-  }
-  function closeModal() {
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function selectVertical(v) {
-    verticalHidden.value = v;
-    modal.querySelectorAll('.vpicker button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-  }
-
-  modal.querySelectorAll('.vpicker button').forEach(b => b.addEventListener('click', () => selectVertical(b.dataset.v)));
-  modal.querySelector('[data-close]').addEventListener('click', closeModal);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  modal.querySelector('#snmFormEl').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    const first = (data.name || '').split(' ')[0] || '';
-    document.getElementById('snmForm').style.display = 'none';
-    const success = document.getElementById('snmSuccess');
-    success.style.display = 'block';
-    document.getElementById('snmThanks').textContent = `Thanks${first ? ', ' + first : ''}. We've got it.`;
+  // Task-12: wrap trailing → in .btn CTAs for arrow nudge animation
+  document.querySelectorAll('a.btn, button.btn').forEach(function(b){
+    if (/→\s*$/.test(b.textContent) && !b.querySelector('.cta-arrow')) {
+      b.innerHTML = b.innerHTML.replace(/→(\s*)$/, '<span class="cta-arrow">→</span>$1');
+    }
   });
 
-  // Bind all Start now triggers
-  document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-start-now]');
-    if (!t) return;
-    e.preventDefault();
-    openModal(t.dataset.vertical);
+  // Wire aria-label on portal signup CTAs — disambiguates repeated labels for screen readers
+  document.querySelectorAll('a.btn[href*="app.recallq.com.au/signup"]').forEach(function(a){
+    if (!a.getAttribute('aria-label')) {
+      a.setAttribute('aria-label', 'Recover patients now — create your RecallQ account');
+    }
   });
-
-  window.RQModal = { open: openModal, close: closeModal, selectVertical };
 
   /* LivingBackground removed — Apple-style restraint */
 })();
@@ -1104,131 +1231,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   'use strict';
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ============================================================
-     LIVE ACTIVITY TOASTS
-     ============================================================ */
-  const POOL = [
-    { v: 'Dentistry',  c: '#5C5A54', city: 'Sydney',    amt: 200, who: 'Rosehill Dental',  msg: 'clean booked' },
-    { v: 'Optometry',  c: '#5A6470', city: 'Melbourne', amt: 340, who: 'Parkside Eyecare', msg: 'eye exam booked' },
-    { v: 'Physio',     c: '#7A6A5C', city: 'Brisbane',  amt: 120, who: 'Northside Physio', msg: 'session booked' },
-    { v: 'Dentistry',  c: '#5C5A54', city: 'Perth',     amt: 180, who: 'Leederville Smile',msg: 'check-up booked' },
-    { v: 'Optometry',  c: '#5A6470', city: 'Adelaide',  amt: 390, who: 'Glenelg Optical',  msg: 'frames + exam booked' },
-    { v: 'Physio',     c: '#7A6A5C', city: 'Newcastle', amt: 150, who: 'Hunter Sports Physio', msg: 'review booked' },
-    { v: 'Dentistry',  c: '#5C5A54', city: 'Gold Coast',amt: 220, who: 'Broadbeach Dental',msg: 'hygiene recall' },
-    { v: 'Optometry',  c: '#5A6470', city: 'Canberra',  amt: 280, who: 'Braddon Optometry',msg: '2-year recall' },
-    { v: 'Physio',     c: '#7A6A5C', city: 'Hobart',    amt: 110, who: 'Salamanca Physio', msg: 'mid-plan return' },
-    { v: 'Dentistry',  c: '#5C5A54', city: 'Geelong',   amt: 240, who: 'Waterfront Dental',msg: 'perio booked' }
-  ];
-
-  const NAMES = ['Sarah M.', 'James L.', 'Priya K.', 'Tom W.', 'Aisha R.', 'Oliver B.', 'Lily N.', 'Marcus T.', 'Chen W.', 'Emma S.', 'Jake P.', 'Nora D.'];
-  function pickName(i) { return NAMES[i % NAMES.length]; }
-
-  function buildToastContainer() {
-    if (document.getElementById('rqa-toasts')) return document.getElementById('rqa-toasts');
-    const host = document.createElement('div');
-    host.id = 'rqa-toasts';
-    host.setAttribute('aria-live', 'polite');
-    host.style.cssText = [
-      'position:fixed',
-      'left:20px',
-      'bottom:20px',
-      'z-index:60',
-      'display:flex',
-      'flex-direction:column',
-      'gap:10px',
-      'pointer-events:none',
-      'max-width:300px'
-    ].join(';');
-    document.body.appendChild(host);
-    return host;
-  }
-
-  function showToast(data, idx) {
-    const host = buildToastContainer();
-    const el = document.createElement('div');
-    el.className = 'rqa-toast';
-    el.style.cssText = [
-      'background:#fff',
-      'border:.5px solid #D5DAE4',
-      'border-left:3px solid ' + data.c,
-      'border-radius:10px',
-      'padding:12px 14px',
-      'box-shadow:0 6px 24px rgba(42,40,35,.10)',
-      'font-family:Inter,-apple-system,sans-serif',
-      'font-size:13px',
-      'color:#2A2823',
-      'line-height:1.4',
-      'pointer-events:auto',
-      'opacity:0',
-      'transform:translateX(-24px) scale(.96)',
-      'transition:opacity .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1)'
-    ].join(';');
-    el.innerHTML =
-      '<div style="display:flex;align-items:flex-start;gap:10px;">' +
-        '<div style="width:8px;height:8px;border-radius:50%;background:' + data.c + ';flex-shrink:0;margin-top:5px;animation:rqaPulse 1.4s ease-out infinite;"></div>' +
-        '<div style="flex:1;min-width:0;">' +
-          '<div style="font-weight:500;color:#2A2823;">' + pickName(idx) + ' · ' + data.city + '</div>' +
-          '<div style="color:#7A7870;font-size:12px;margin-top:2px;">' + data.msg + ' · <span style="color:#5876C4;font-weight:500;">+$' + data.amt + '</span></div>' +
-          '<div style="color:#7A7870;font-size:11px;margin-top:4px;opacity:.7;">via ' + data.v + 'IQ · just now</div>' +
-        '</div>' +
-        '<button aria-label="Dismiss" style="background:none;border:0;color:#7A7870;cursor:pointer;font-size:16px;line-height:1;padding:0 2px;">×</button>' +
-      '</div>';
-    host.appendChild(el);
-
-    requestAnimationFrame(() => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-    });
-
-    el.querySelector('button').addEventListener('click', () => removeToast(el));
-
-    setTimeout(() => removeToast(el), 5200);
-  }
-
-  function removeToast(el) {
-    if (!el || !el.parentNode) return;
-    el.style.opacity = '0';
-    el.style.transform = 'translateX(-24px) scale(.96)';
-    setTimeout(() => el.remove(), 500);
-  }
-
-  function startToastStream() {
-    if (reduced) return;
-    let i = 0;
-    function next() {
-      const data = POOL[Math.floor(Math.random() * POOL.length)];
-      showToast(data, i++);
-      // irregular cadence: 6–11s
-      const wait = 6000 + Math.random() * 5000;
-      setTimeout(next, wait);
-    }
-    // first toast after 3.5s
-    setTimeout(next, 3500);
-  }
-
-  /* ============================================================
-     LIVE COUNTER STRIP (optional — inject if [data-live-counter])
-     ============================================================ */
-  function liveCounter() {
-    const el = document.querySelector('[data-live-counter]');
-    if (!el) return;
-    // seed from a pseudo-random base that increments every second
-    const startBase = 2384000; // cumulative AUD recovered this month
-    const startTime = Date.now();
-    const amountEl = el.querySelector('[data-lc-amount]');
-    const bookingsEl = el.querySelector('[data-lc-bookings]');
-
-    function tick() {
-      const elapsed = (Date.now() - startTime) / 1000;
-      // ~$47/sec steady tick + noise
-      const amt = startBase + Math.floor(elapsed * 47) + Math.floor(Math.random() * 3);
-      const bookings = 11842 + Math.floor(elapsed * 0.19);
-      if (amountEl) amountEl.textContent = '$' + amt.toLocaleString();
-      if (bookingsEl) bookingsEl.textContent = bookings.toLocaleString();
-    }
-    tick();
-    setInterval(tick, reduced ? 5000 : 900);
-  }
 
   /* ============================================================
      CTA pulse beacon — adds a subtle pulsing ring to primary CTAs
@@ -1252,14 +1254,12 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     const s = document.createElement('style');
     s.id = 'rqa-live-kf';
     s.textContent = [
-      '@keyframes rqaPulse { 0%{box-shadow:0 0 0 0 rgba(88,118,196,.55);} 70%{box-shadow:0 0 0 8px rgba(88,118,196,0);} 100%{box-shadow:0 0 0 0 rgba(88,118,196,0);} }',
       '@keyframes rqaBeacon { 0%{box-shadow:0 0 0 0 rgba(88,118,196,.4);} 70%{box-shadow:0 0 0 14px rgba(88,118,196,0);} 100%{box-shadow:0 0 0 0 rgba(88,118,196,0);} }',
       '@keyframes rqaFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }',
       '@keyframes rqaTickerSlide { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }',
       '.btn--primary.btn--lg[data-pulse] { animation: rqaBeacon 2.4s ease-out infinite; }',
       '.btn--primary.btn--lg[data-pulse]:hover { animation: none; }',
-      '@media (prefers-reduced-motion: reduce) { .btn--primary.btn--lg[data-pulse], .rqa-toast .rqa-toast-dot { animation: none !important; } }',
-      '@media (max-width: 640px) { #rqa-toasts { left: 12px; right: 12px; bottom: 12px; max-width: none; } }'
+      '@media (prefers-reduced-motion: reduce) { .btn--primary.btn--lg[data-pulse] { animation: none !important; } }',
     ].join('\n');
     document.head.appendChild(s);
   }
@@ -1288,9 +1288,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   function boot() {
     injectKeyframes();
     addCTAPulse();
-    liveCounter();
     enhanceROI();
-    startToastStream();
   }
 
   if (document.readyState === 'loading') {
@@ -1472,26 +1470,12 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     });
   }
 
-  /* ---------- ExitIntentModal ---------- */
-  function exitIntent(){
-    if(sessionStorage.getItem('rqa-exit')) return;
-    function onMove(e){
-      if(e.clientY<20){ trigger(); document.removeEventListener('mouseout',onMove); }
-    }
-    document.addEventListener('mouseout',onMove);
-    function trigger(){
-      sessionStorage.setItem('rqa-exit','1');
-      const btn=document.querySelector('[data-start-now]');
-      if(btn) btn.click();
-    }
-  }
-
   /* ---------- StickyROIBar ---------- */
   function stickyROI(){
     const roi=document.getElementById('roiMonth'); if(!roi) return;
     if(sessionStorage.getItem('rqa-sroi-dismissed')) return;
     const bar=document.createElement('div'); bar.className='rqa-sticky-roi';
-    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="#" data-start-now>Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
+    bar.innerHTML=`<span>Your estimated recovery:</span><strong id="rqa-sroi-amt">$0</strong><span>/month</span><a href="https://app.recallq.com.au/signup">Start now →</a><button class="rqa-dismiss" aria-label="Dismiss">×</button>`;
     document.body.appendChild(bar);
     const amt=bar.querySelector('#rqa-sroi-amt');
     function sync(){ amt.textContent=roi.textContent; }
@@ -1550,7 +1534,6 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     particles();
     odometer();
     stickyROI();
-    exitIntent();
     verticalDetect();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);

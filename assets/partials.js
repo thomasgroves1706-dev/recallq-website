@@ -1,8 +1,7 @@
-/* RecallQ — header, footer, Start Now modal
+/* RecallQ — header, footer
    Usage: <script src="assets/partials.js"
           data-active="home|dentistry|physio|optometry|how|pricing|about|legal"
-          data-vertical="Dentistry|Physio|Optometry" (optional modal preset)
-          data-depth="0|1"></script>
+          data-depth="0|1|2"></script>
 */
 (function () {
   const me = document.currentScript;
@@ -31,8 +30,8 @@
           <a href="${up}pricing.html">Pricing</a>
           <a href="${up}about.html">About</a>
         </nav>
-        <button class="btn btn--primary" data-start-now>Start now</button>
-        <button class="hamb" aria-label="Menu" id="hambBtn"><span></span></button>
+        <a class="btn btn--primary" href="https://app.recallq.com.au/signup" aria-label="Recover patients now — create your RecallQ account">Recover patients</a>
+        <button class="hamb" aria-label="Menu" id="hambBtn" aria-expanded="false"><span></span></button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -42,12 +41,25 @@
           <li><a href="${up}how-it-works.html">How it works</a></li>
           <li><a href="${up}pricing.html">Pricing</a></li>
           <li><a href="${up}about.html">About</a></li>
-          <li><button data-start-now style="color:var(--periwinkle-dark);font-weight:500;">Start now →</button></li>
+          <li><a href="https://app.recallq.com.au/signup" style="color:var(--periwinkle-dark);font-weight:500;">Recover patients now →</a></li>
         </ul>
       </div>
     </header>
   `;
   document.body.insertBefore(hdr.firstElementChild, document.body.firstChild);
+
+  // Wire aria-expanded on Solutions dropdown — reflects open state to screen readers
+  (function(){
+    var _dd = document.querySelector('.nav-dd');
+    var _ddBtn = _dd && _dd.querySelector('button[aria-haspopup]');
+    if (_dd && _ddBtn) {
+      _dd.addEventListener('mouseenter', function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('mouseleave', function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+      _dd.addEventListener('focusin',    function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('focusout',   function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+    }
+  })();
+
   // Double-rAF + forced reflow to guarantee the transition starts from the initial state.
   // Without this, iframes that are backgrounded on load can stall the transition in
   // "pending" state (playState:running, startTime:null) and opacity stays at 0 forever.
@@ -66,8 +78,21 @@
   }));
 
   document.getElementById('hambBtn')?.addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    var _mm = document.getElementById('mobileMenu');
+    _mm.classList.toggle('open');
+    var _hb = document.getElementById('hambBtn');
+    if (_hb) _hb.setAttribute('aria-expanded', _mm.classList.contains('open') ? 'true' : 'false');
   });
+
+  // Active nav state
+  if (active) {
+    var _fileMap = { home: 'index.html', how: 'how-it-works.html', pricing: 'pricing.html', about: 'about.html', dentistry: 'dentistry.html', physio: 'physio.html', optometry: 'optometry.html' };
+    var _target = _fileMap[active];
+    if (_target) {
+      var _link = document.getElementById('siteHeader') && document.getElementById('siteHeader').querySelector('a[href$="' + _target + '"]');
+      if (_link) _link.classList.add('is-active');
+    }
+  }
 
   // FOOTER
   const footer = document.createElement('footer');
@@ -92,14 +117,14 @@
           <ul>
             <li><a href="${up}how-it-works.html">How it works</a></li>
             <li><a href="${up}pricing.html">Pricing</a></li>
-            <li><button data-start-now>Start now</button></li>
+            <li><a href="https://app.recallq.com.au/signup">Recover patients now →</a></li>
           </ul>
         </div>
         <div>
           <h4>Company &amp; Legal</h4>
           <ul>
             <li><a href="${up}about.html">About</a></li>
-            <li><a href="mailto:hello@recallq.com.au">Contact</a></li>
+            <li><a href="mailto:recallq@gmail.com">Contact</a></li>
             <li><a href="${up}legal/privacy.html">Privacy Policy</a></li>
             <li><a href="${up}legal/terms.html">Terms</a></li>
             <li><a href="${up}legal/dpa.html">DPA</a></li>
@@ -112,94 +137,24 @@
         <span>Privacy Act 1988</span><span class="sep">·</span>
         <span>Spam Act 2003</span>
       </div>
-      <div class="copy">© RecallQ Pty Ltd · ABN placeholder · recallq.com.au · Made in Australia</div>
+      <div class="copy">© RecallQ Pty Ltd ABN 84 202 664 713 · recallq.com.au · Made in Australia</div>
     </div>
   `;
   document.body.appendChild(footer);
 
-  // MODAL
-  const modal = document.createElement('div');
-  modal.className = 'modal-backdrop';
-  modal.id = 'startNowModal';
-  modal.innerHTML = `
-    <div class="modal" role="dialog" aria-labelledby="snmTitle" aria-modal="true">
-      <button class="close" aria-label="Close" data-close>✕</button>
-      <div id="snmForm">
-        <h2 id="snmTitle">Start with RecallQ</h2>
-        <p class="sub">Tell us about your practice. We'll run the numbers and get back to you within 24 hours.</p>
-        <form id="snmFormEl" novalidate>
-          <div><label>Your name</label><input name="name" required placeholder="First and last name" autocomplete="name"></div>
-          <div><label>Work email</label><input name="email" type="email" required placeholder="you@yourpractice.com.au" autocomplete="email"></div>
-          <div><label>Mobile</label><input name="mobile" type="tel" placeholder="+61 4XX XXX XXX" autocomplete="tel"></div>
-          <div><label>Practice name</label><input name="practice" required placeholder="Your practice name"></div>
-          <div>
-            <label>Your vertical</label>
-            <div class="vpicker" role="group" aria-label="Vertical">
-              <button type="button" data-v="Dentistry">Dentistry</button>
-              <button type="button" data-v="Physio">Physio</button>
-              <button type="button" data-v="Optometry">Optometry</button>
-            </div>
-            <input type="hidden" name="vertical" id="snmVertical" value="">
-          </div>
-          <div><label>Active patients</label><select name="patients"><option>Under 500</option><option>500–1,500</option><option>1,500–3,000</option><option>3,000+</option></select></div>
-          <div><label>Biggest recall problem (optional)</label><textarea name="problem" rows="2" placeholder="e.g. Hundreds of patients are overdue but we can't reach them all."></textarea></div>
-          <button type="submit" class="btn btn--primary btn--full btn--lg">Start now →</button>
-          <p class="privacy-note">By submitting you agree to our <a href="${up}legal/privacy.html">Privacy Policy</a>. No spam, ever.</p>
-        </form>
-      </div>
-      <div id="snmSuccess" class="success" style="display:none;">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 12.5 l4 4 L19 7"/></svg></div>
-        <h3 id="snmThanks">Thanks. We've got it.</h3>
-        <p>One of the founders will email you within 24 hours with a link to book a 15-minute call.</p>
-        <a href="${up}how-it-works.html" class="btn btn--link">See how RecallQ works →</a>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  const backdrop = modal;
-  const verticalHidden = modal.querySelector('#snmVertical');
-
-  function openModal(preset) {
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    const preselect = preset || vPreset;
-    if (preselect) selectVertical(preselect);
-    setTimeout(() => modal.querySelector('input[name="name"]')?.focus(), 300);
-  }
-  function closeModal() {
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function selectVertical(v) {
-    verticalHidden.value = v;
-    modal.querySelectorAll('.vpicker button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
-  }
-
-  modal.querySelectorAll('.vpicker button').forEach(b => b.addEventListener('click', () => selectVertical(b.dataset.v)));
-  modal.querySelector('[data-close]').addEventListener('click', closeModal);
-  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-
-  modal.querySelector('#snmFormEl').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    const first = (data.name || '').split(' ')[0] || '';
-    document.getElementById('snmForm').style.display = 'none';
-    const success = document.getElementById('snmSuccess');
-    success.style.display = 'block';
-    document.getElementById('snmThanks').textContent = `Thanks${first ? ', ' + first : ''}. We've got it.`;
+  // Wrap trailing → in .btn CTAs for arrow nudge animation
+  document.querySelectorAll('a.btn, button.btn').forEach(function(b){
+    if (/→\s*$/.test(b.textContent) && !b.querySelector('.cta-arrow')) {
+      b.innerHTML = b.innerHTML.replace(/→(\s*)$/, '<span class="cta-arrow">→</span>$1');
+    }
   });
 
-  // Bind all Start now triggers
-  document.addEventListener('click', (e) => {
-    const t = e.target.closest('[data-start-now]');
-    if (!t) return;
-    e.preventDefault();
-    openModal(t.dataset.vertical);
+  // Wire aria-label on portal signup CTAs — disambiguates repeated labels for screen readers
+  document.querySelectorAll('a.btn[href*="app.recallq.com.au/signup"]').forEach(function(a){
+    if (!a.getAttribute('aria-label')) {
+      a.setAttribute('aria-label', 'Recover patients now — create your RecallQ account');
+    }
   });
-
-  window.RQModal = { open: openModal, close: closeModal, selectVertical };
 
   /* LivingBackground removed — Apple-style restraint */
 })();
