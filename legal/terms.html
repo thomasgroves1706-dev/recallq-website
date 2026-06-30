@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en-AU"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Terms of Service — RecallQ</title><meta name="description" content="RecallQ Terms of Service — the agreement between RecallQ Pty Ltd and your health practice, covering subscription, acceptable use, liability, and governing law (NSW, Australia)."/>
+<title>Terms of Service — RecallQ</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="description" content="RecallQ Terms of Service — the agreement between RecallQ Pty Ltd and your health practice, covering subscription, acceptable use, liability, and governing law (NSW, Australia)."/>
 <link rel="canonical" href="https://recallq.com.au/legal/terms.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="RecallQ">
@@ -872,8 +873,8 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <a href="${up}pricing.html">Pricing</a>
           <a href="${up}about.html">About</a>
         </nav>
-        <a class="btn btn--primary" href="https://app.recallq.com.au/signup">Recover patients</a>
-        <button class="hamb" aria-label="Menu" id="hambBtn"><span></span></button>
+        <a class="btn btn--primary" href="https://app.recallq.com.au/signup" aria-label="Recover patients now — create your RecallQ account">Recover patients</a>
+        <button class="hamb" aria-label="Menu" id="hambBtn" aria-expanded="false"><span></span></button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -889,6 +890,18 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
     </header>
   `;
   document.body.insertBefore(hdr.firstElementChild, document.body.firstChild);
+
+  // Wire aria-expanded on Solutions dropdown — reflects open state to screen readers
+  (function(){
+    var _dd = document.querySelector('.nav-dd');
+    var _ddBtn = _dd && _dd.querySelector('button[aria-haspopup]');
+    if (_dd && _ddBtn) {
+      _dd.addEventListener('mouseenter', function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('mouseleave', function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+      _dd.addEventListener('focusin',    function(){ _ddBtn.setAttribute('aria-expanded','true'); });
+      _dd.addEventListener('focusout',   function(){ _ddBtn.setAttribute('aria-expanded','false'); });
+    }
+  })();
   // Double-rAF + forced reflow to guarantee the transition starts from the initial state.
   // Without this, iframes that are backgrounded on load can stall the transition in
   // "pending" state (playState:running, startTime:null) and opacity stays at 0 forever.
@@ -907,7 +920,10 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   }));
 
   document.getElementById('hambBtn')?.addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('open');
+    var _mm = document.getElementById('mobileMenu');
+    _mm.classList.toggle('open');
+    var _hb = document.getElementById('hambBtn');
+    if (_hb) _hb.setAttribute('aria-expanded', _mm.classList.contains('open') ? 'true' : 'false');
   });
 
   // Active nav state
@@ -972,6 +988,13 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
   document.querySelectorAll('a.btn, button.btn').forEach(function(b){
     if (/→\s*$/.test(b.textContent) && !b.querySelector('.cta-arrow')) {
       b.innerHTML = b.innerHTML.replace(/→(\s*)$/, '<span class="cta-arrow">→</span>$1');
+    }
+  });
+
+  // Wire aria-label on portal signup CTAs — disambiguates repeated labels for screen readers
+  document.querySelectorAll('a.btn[href*="app.recallq.com.au/signup"]').forEach(function(a){
+    if (!a.getAttribute('aria-label')) {
+      a.setAttribute('aria-label', 'Recover patients now — create your RecallQ account');
     }
   });
 
