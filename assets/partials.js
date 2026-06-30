@@ -105,7 +105,7 @@
           <p class="tag">AI-powered patient recall. Built in Australia.</p>
         </div>
         <div>
-          <h4>Solutions</h4>
+          <h3>Solutions</h3>
           <ul>
             <li><a href="${up}dentistry.html">DentistryIQ</a></li>
             <li><a href="${up}physio.html">PhysioIQ</a></li>
@@ -113,7 +113,7 @@
           </ul>
         </div>
         <div>
-          <h4>Product</h4>
+          <h3>Product</h3>
           <ul>
             <li><a href="${up}how-it-works.html">How it works</a></li>
             <li><a href="${up}pricing.html">Pricing</a></li>
@@ -121,7 +121,7 @@
           </ul>
         </div>
         <div>
-          <h4>Company &amp; Legal</h4>
+          <h3>Company &amp; Legal</h3>
           <ul>
             <li><a href="${up}about.html">About</a></li>
             <li><a href="mailto:recallq@gmail.com">Contact</a></li>

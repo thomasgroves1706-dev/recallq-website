@@ -50,9 +50,9 @@
   --ink:          #1A1915;
   --ink-2:        #3A3833;
   --ink-3:        #6E6C66;
-  --ink-4:        #A5A39C;
+  --ink-4:        #726F67;
 
-  --accent:       #5876C4;
+  --accent:       #4C6BBC;
   --accent-soft:  #8AA8E8;
   --periwinkle:      #5876C4;
   --periwinkle-dark: #3F5BA8;
@@ -464,7 +464,7 @@ p  { margin: 0; }
   border: .5px solid rgba(255,255,255,.16);
   font-size: 13px; color: rgba(255,255,255,.85); font-weight: 500; letter-spacing: -0.005em;
 }
-.section--white .cpill, .section--soft .cpill { background: #fff; border-color: var(--border); color: var(--ink-2); }
+.section--white .cpill, .section--soft .cpill, .idea--soft .cpill, .idea--white .cpill { background: #fff; border-color: var(--border); color: var(--ink-2); }
 
 /* CTA BAND — simpler */
 .cta-band {
@@ -1927,10 +1927,10 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <a class="btn btn--primary btn--lg" href="#roi-calc">Run this on my patient list →</a>
         </div>
         <div class="audit-steps">
-          <div class="audit-step"><span class="num">01</span><div><h4>Export your list</h4><p>Send a CSV from your practice system. No PMS lock-in required.</p></div></div>
-          <div class="audit-step"><span class="num">02</span><div><h4>Find overdue patients</h4><p>RecallQ identifies inactive, overdue, and high-value recall opportunities.</p></div></div>
-          <div class="audit-step"><span class="num">03</span><div><h4>Review the plan</h4><p>You see the segments, message style, and expected booking flow before launch.</p></div></div>
-          <div class="audit-step"><span class="num">04</span><div><h4>Recover bookings</h4><p>Personalised messages go out, replies are handled, and intent comes back to your team.</p></div></div>
+          <div class="audit-step"><span class="num">01</span><div><h3>Export your list</h3><p>Send a CSV from your practice system. No PMS lock-in required.</p></div></div>
+          <div class="audit-step"><span class="num">02</span><div><h3>Find overdue patients</h3><p>RecallQ identifies inactive, overdue, and high-value recall opportunities.</p></div></div>
+          <div class="audit-step"><span class="num">03</span><div><h3>Review the plan</h3><p>You see the segments, message style, and expected booking flow before launch.</p></div></div>
+          <div class="audit-step"><span class="num">04</span><div><h3>Recover bookings</h3><p>Personalised messages go out, replies are handled, and intent comes back to your team.</p></div></div>
         </div>
       </div>
     </div>
@@ -2018,11 +2018,11 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <h3>Patient context</h3>
         <div class="field">
           <span class="lbl">Patient name</span>
-          <input type="text" data-c-name value="Sarah Anderson"/>
+          <input type="text" data-c-name value="Sarah Anderson" aria-label="Patient name"/>
         </div>
         <div class="field">
           <span class="lbl">Practice type</span>
-          <select data-c-vertical>
+          <select data-c-vertical aria-label="Practice type">
             <option value="dental" selected>Dental</option>
             <option value="physio">Physiotherapy</option>
             <option value="optometry">Optometry</option>
@@ -2030,7 +2030,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         </div>
         <div class="field">
           <span class="lbl">Last seen</span>
-          <select data-c-last>
+          <select data-c-last aria-label="Last seen">
             <option value="6 weeks">6 weeks ago</option>
             <option value="3 months">3 months ago</option>
             <option value="6 months" selected>6 months ago</option>
@@ -2040,7 +2040,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         </div>
         <div class="field">
           <span class="lbl">Tone</span>
-          <select data-c-tone>
+          <select data-c-tone aria-label="Tone">
             <option value="warm" selected>Warm &amp; conversational</option>
             <option value="direct">Direct &amp; concise</option>
           </select>
@@ -2584,7 +2584,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
         <nav class="nav" aria-label="Primary">
           <div class="nav-dd">
             <button aria-haspopup="true" aria-expanded="false">Solutions</button>
-            <div class="nav-dd-menu" role="menu">
+            <div class="nav-dd-menu">
               <a href="${up}dentistry.html"><span class="dot" style="background:#5C5A54"></span><span><strong>DentistryIQ</strong><span class="sub-desc">Recall for dental practices</span></span></a>
               <a href="${up}physio.html"><span class="dot" style="background:#7A6A5C"></span><span><strong>PhysioIQ</strong><span class="sub-desc">Recall for physiotherapy</span></span></a>
               <a href="${up}optometry.html"><span class="dot" style="background:#5A6470"></span><span><strong>OptometryIQ</strong><span class="sub-desc">Recall for optometry</span></span></a>
@@ -2668,7 +2668,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           <p class="tag">AI-powered patient recall. Built in Australia.</p>
         </div>
         <div>
-          <h4>Solutions</h4>
+          <h3>Solutions</h3>
           <ul>
             <li><a href="${up}dentistry.html">DentistryIQ</a></li>
             <li><a href="${up}physio.html">PhysioIQ</a></li>
@@ -2676,7 +2676,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           </ul>
         </div>
         <div>
-          <h4>Product</h4>
+          <h3>Product</h3>
           <ul>
             <li><a href="${up}how-it-works.html">How it works</a></li>
             <li><a href="${up}pricing.html">Pricing</a></li>
@@ -2684,7 +2684,7 @@ table.subs td { border-bottom: .5px solid var(--border); color: var(--ink-3); }
           </ul>
         </div>
         <div>
-          <h4>Company &amp; Legal</h4>
+          <h3>Company &amp; Legal</h3>
           <ul>
             <li><a href="${up}about.html">About</a></li>
             <li><a href="mailto:recallq@gmail.com">Contact</a></li>
